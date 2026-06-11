@@ -114,7 +114,10 @@ def load_permanent_bets():
         return []
 
 def save_all_bets_permanently(bets_list):
-    df = pd.DataFrame(bets_list)
+    if len(bets_list) == 0:
+        df = pd.DataFrame(columns=["Bet_ID","Creator","Match_Num","Match_Name","Prediction","Points","Opponent_Payout","Opponent","Status","Is_Expired"])
+    else:
+        df = pd.DataFrame(bets_list)
     df.to_csv(DATA_FILE, index=False)
 
 if "current_page" not in st.session_state:
@@ -124,7 +127,7 @@ if "player_name" not in st.session_state:
 
 combined_bets = load_permanent_bets()
 
-# Date Expiry Logic
+# Date Expiry Logic Engine
 for bet in combined_bets:
     try:
         m_num = int(float(str(bet.get('Match_Num', 1)).strip()))
@@ -141,7 +144,10 @@ for bet in combined_bets:
 # UI SCREEN 1: LOGIN
 if st.session_state.current_page == "login":
     st.title("⚽ Fit N 40 Match Prediction")
-    player_input = st.text_input("Enter Profile Name:", placeholder="e.g., Ashu")
+    st.subheader("Join the Prediction Tournament Lounge")
+    
+    # Updated placeholder as requested
+    player_input = st.text_input("Enter Profile Name:", placeholder="e.g., Messi")
     
     if st.button("Enter Dashboard", use_container_width=True, type="primary"):
         cleaned_name = player_input.strip()
@@ -165,7 +171,9 @@ elif st.session_state.current_page == "dashboard":
     live_bets = [b for b in combined_bets if str(b.get("Status", "")).strip().lower() == "matched" and not b.get("Is_Expired", False)]
     expired_bets = [b for b in combined_bets if b.get("Is_Expired", False)]
     
-    # 1. Open Bets Available
+    is_admin = (st.session_state.player_name.lower() == "ashu")
+
+    # 1. Open Bets Section
     st.subheader("📋 1. Open Bets Available")
     if not open_bets:
         st.info("No active open bets available.")
@@ -182,10 +190,17 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.selected_bet_to_match = bet
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
+                
+                if is_admin or str(bet.get('Creator', '')).lower() == st.session_state.player_name.lower():
+                    if st.button(f"🗑️ Delete Bet Offer #{bet.get('Bet_ID')}", key=f"del_open_{bet.get('Bet_ID')}", type="secondary", use_container_width=True):
+                        updated_list = [b for b in combined_bets if int(b["Bet_ID"]) != int(bet["Bet_ID"])]
+                        save_all_bets_permanently(updated_list)
+                        st.toast(f"Bet Offer #{bet.get('Bet_ID')} removed selectively!", icon="🗑️")
+                        st.rerun()
 
     st.markdown("---")
     
-    # 2. Live Matched Bets
+    # 2. Live Matched Bets Section
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No locked matched bets running currently.")
@@ -195,10 +210,17 @@ elif st.session_state.current_page == "dashboard":
                 st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
                 st.write(f"**Match:** {bet.get('Match_Name')} | **Prediction:** {bet.get('Creator')} chose *{bet.get('Prediction')}*")
                 st.write(f"**Stakes:** Risking {bet.get('Points')} pts vs {bet.get('Opponent_Payout')} pts")
+                
+                if is_admin:
+                    if st.button(f"🗑️ Delete Live Bet #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", type="secondary", use_container_width=True):
+                        updated_list = [b for b in combined_bets if int(b["Bet_ID"]) != int(bet["Bet_ID"])]
+                        save_all_bets_permanently(updated_list)
+                        st.toast(f"Live Bet #{bet.get('Bet_ID')} deleted!", icon="🗑️")
+                        st.rerun()
 
     st.markdown("---")
     
-    # 3. Expired & Completed Bets
+    # 3. Expired Bets Section
     st.subheader("🏁 3. Expired & Completed Bets")
     if not expired_bets:
         st.caption("No completed match history yet.")
@@ -210,6 +232,13 @@ elif st.session_state.current_page == "dashboard":
                     st.error("❌ **Bet Expired Unmatched**")
                 else:
                     st.success(f"🎉 Match date closed. Payout tracked between {bet.get('Creator')} and {bet.get('Opponent')}")
+                
+                if is_admin:
+                    if st.button(f"🗑️ Purge Archive Entry #{bet.get('Bet_ID')}", key=f"del_exp_{bet.get('Bet_ID')}", type="secondary", use_container_width=True):
+                        updated_list = [b for b in combined_bets if int(b["Bet_ID"]) != int(bet["Bet_ID"])]
+                        save_all_bets_permanently(updated_list)
+                        st.toast("Archive logs updated!", icon="🗑️")
+                        st.rerun()
 
 # UI SCREEN 3: CONFIRM MATCH
 elif st.session_state.current_page == "confirm_match":
@@ -267,8 +296,10 @@ elif st.session_state.current_page == "new_bet":
             st.metric(label="🎁 Opposing Bettor Payout (if you lose):", value=f"{opponent_payout} pts")
             
             if st.button("🚀 Submit Bet to Dashboard", use_container_width=True, type="primary"):
+                next_id = 1 if len(combined_bets) == 0 else max([int(b.get("Bet_ID", 0)) for b in combined_bets]) + 1
+                
                 new_bet_entry = {
-                    "Bet_ID": len(combined_bets) + 1,
+                    "Bet_ID": next_id,
                     "Creator": st.session_state.player_name,
                     "Match_Num": int(match_row['Match_Num']),
                     "Match_Name": f"{match_row['Home_Team']} vs {match_row['Away_Team']}",

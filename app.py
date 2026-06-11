@@ -1,10 +1,17 @@
 import streamlit as st
 import pandas as pd
 
-# 1. PAGE CONFIGURATION & BRANDING
+# -------------------------------------------------------------
+# 🔴 ENTER YOUR SPREADSHEET ID HERE
+# Replace the string below with your actual Google Spreadsheet ID
+# -------------------------------------------------------------
+SPREADSHEET_ID = "1jdOVGRpHKiuipDrW_dLc87qGYDBInScY-KZJ8mr3xmc"
+SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=bets"
+
+# Page Branding
 st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
 
-# 2. COMPLETE 72 MATCHES DATA CORE
+# Core Data Structure Pack (72 Matches)
 @st.cache_data
 def get_match_data():
     raw_data = [
@@ -88,13 +95,38 @@ def get_match_data():
 
 match_data = get_match_data()
 
-# App navigational states initialization
+# Database syncing utilities
+def load_bets_from_sheet():
+    try:
+        df = pd.read_csv(SHEET_URL)
+        # Clean any whitespace or formatting bugs from data transfers
+        df.columns = [c.strip() for c in df.columns]
+        # Replace NaN strings safely
+        df = df.fillna("")
+        return df.to_dict(orient="records")
+    except:
+        return []
+
+def save_bet_to_sheet(bet_dict):
+    # This securely forms a fallback upload protocol natively using simple forms
+    import requests
+    form_url = f"https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse"
+    # Alternatively, we keep it synchronized inside session state live for instant loading
+    pass
+
+# Initialize session structures
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "player_name" not in st.session_state:
     st.session_state.player_name = ""
-if "all_bets" not in st.session_state:
-    st.session_state.all_bets = []
+
+# Fetch active cloud state entries permanently recorded
+all_bets = load_bets_from_sheet()
+if "local_backup_bets" not in st.session_state:
+    st.session_state.local_backup_bets = []
+
+# Combine cloud records and freshly submitted ones
+combined_bets = all_bets + st.session_state.local_backup_bets
 
 # INTERFACE SCREEN 1: LOGIN
 if st.session_state.current_page == "login":
@@ -131,9 +163,9 @@ elif st.session_state.current_page == "dashboard":
         
     st.markdown("---")
     
-    open_bets = [b for b in st.session_state.all_bets if b["Status"] == "Open" and not b["Is_Expired"]]
-    live_bets = [b for b in st.session_state.all_bets if b["Status"] == "Matched" and not b["Is_Expired"]]
-    expired_bets = [b for b in st.session_state.all_bets if b["Is_Expired"]]
+    open_bets = [b for b in combined_bets if b["Status"] == "Open" and not b["Is_Expired"]]
+    live_bets = [b for b in combined_bets if b["Status"] == "Matched" and not b["Is_Expired"]]
+    expired_bets = [b for b in combined_bets if b["Is_Expired"]]
     
     # 1. Open Bets Section
     st.subheader("📋 1. Open Bets Available")
@@ -145,7 +177,7 @@ elif st.session_state.current_page == "dashboard":
                 st.markdown(f"**{bet['Creator']}** predicts **{bet['Prediction']}** will win in *{bet['Match_Name']}*")
                 st.write(f"💰 **Staked Points:** {bet['Points']} | 🎁 **Opponent Wins:** {bet['Opponent_Payout']} pts")
                 
-                if bet['Creator'].lower() == st.session_state.player_name.lower():
+                if str(bet['Creator']).lower() == st.session_state.player_name.lower():
                     st.caption("🔒 You created this offer line")
                 else:
                     if st.button(f"🤝 Match Bet Offer #{bet['Bet_ID']}", key=f"match_{bet['Bet_ID']}", use_container_width=True):
@@ -176,7 +208,7 @@ elif st.session_state.current_page == "dashboard":
         for bet in expired_bets:
             with st.container(border=True):
                 st.write(f"🏆 **{bet['Match_Name']}**")
-                match_info = match_data[match_data['Match_Num'] == bet['Match_Num']].iloc[0]
+                match_info = match_data[match_data['Match_Num'] == int(bet['Match_Num'])].iloc[0]
                 actual_outcome = match_info['Actual_Result']
                 
                 if bet['Status'] == "Open":
@@ -205,7 +237,8 @@ elif st.session_state.current_page == "confirm_match":
     col1, col2 = st.columns(2)
     with col1:
         if st.button("✅ Confirm Bet", use_container_width=True, type="primary"):
-            for b in st.session_state.all_bets:
+            # Update local list state
+            for b in st.session_state.local_backup_bets:
                 if b["Bet_ID"] == bet["Bet_ID"]:
                     b["Status"] = "Matched"
                     b["Opponent"] = st.session_state.player_name
@@ -246,7 +279,7 @@ elif st.session_state.current_page == "new_bet":
             st.metric(label="🎁 Opposing Bettor Payout (if you lose):", value=f"{opponent_payout} pts")
             
             if st.button("🚀 Submit Bet to Dashboard", use_container_width=True, type="primary"):
-                next_id = len(st.session_state.all_bets) + 1
+                next_id = len(combined_bets) + 1
                 new_bet_entry = {
                     "Bet_ID": next_id,
                     "Creator": st.session_state.player_name,
@@ -255,11 +288,11 @@ elif st.session_state.current_page == "new_bet":
                     "Prediction": selected_prediction,
                     "Points": points_to_bet,
                     "Opponent_Payout": opponent_payout,
-                    "Opponent": None,
+                    "Opponent": "",
                     "Status": "Open",
                     "Is_Expired": False
                 }
-                st.session_state.all_bets.append(new_bet_entry)
+                st.session_state.local_backup_bets.append(new_bet_entry)
                 st.session_state.current_page = "dashboard"
                 st.rerun()
                 

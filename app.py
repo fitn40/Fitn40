@@ -120,10 +120,19 @@ def save_all_bets_permanently(bets_list):
         df = pd.DataFrame(bets_list)
     df.to_csv(DATA_FILE, index=False)
 
+# -------------------------------------------------------------
+# 🔄 AUTOMATED URL PARAMETER AUTO-LOGIN SYSTEM
+# -------------------------------------------------------------
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "player_name" not in st.session_state:
     st.session_state.player_name = ""
+
+# Intercept URL parameters to see if the user has a saved link session
+url_params = st.query_params
+if "user" in url_params and st.session_state.player_name == "":
+    st.session_state.player_name = url_params["user"].strip()
+    st.session_state.current_page = "dashboard"
 
 combined_bets = load_permanent_bets()
 
@@ -152,13 +161,25 @@ if st.session_state.current_page == "login":
         cleaned_name = player_input.strip()
         if cleaned_name:
             st.session_state.player_name = cleaned_name
+            # Lock username parameters into browser link addresses instantly
+            st.query_params["user"] = cleaned_name
             st.session_state.current_page = "dashboard"
             st.rerun()
 
 # UI SCREEN 2: DASHBOARD
 elif st.session_state.current_page == "dashboard":
     st.title("🏆 Fit N 40 Match Prediction")
-    st.write(f"Logged in as: **{st.session_state.player_name}**")
+    
+    col_user, col_logout = st.columns([3, 1])
+    with col_user:
+        st.write(f"Logged in as: **{st.session_state.player_name}**")
+    with col_logout:
+        if st.button("🚪 Logout", use_container_width=True):
+            st.session_state.player_name = ""
+            # Wipe parameter cache hard drive addresses on device logout clicks
+            st.query_params.clear()
+            st.session_state.current_page = "login"
+            st.rerun()
     
     if st.button("➕ Create & Add a New Bet Offer", use_container_width=True, type="primary"):
         st.session_state.current_page = "new_bet"
@@ -180,7 +201,6 @@ elif st.session_state.current_page == "dashboard":
         for bet in open_bets:
             with st.container(border=True):
                 st.markdown(f"**{bet.get('Creator')}** predicts **{bet.get('Prediction')}** in *{bet.get('Match_Name')}*")
-                # FIXED LOGIC DISPLAY: Creator puts up Points staked, Opponent must risk the payout premium
                 st.write(f"💰 Creator Risks: {bet.get('Points')} pts | 🎁 Opponent Must Risk to Match: {bet.get('Opponent_Payout')} pts")
                 
                 if str(bet.get('Creator', '')).lower() == st.session_state.player_name.lower():
@@ -250,7 +270,6 @@ elif st.session_state.current_page == "confirm_match":
         st.write(f"**Match Event:** {bet.get('Match_Name')}")
         st.write(f"**Their Prediction:** {bet.get('Prediction')}")
         st.markdown("---")
-        # FIXED LOGIC PERSPECTIVE: What the opponent wins vs what they lose based on creator stakes
         st.write(f"🔴 If **{bet.get('Prediction')}** wins, you lose **{bet.get('Opponent_Payout')}** points to {bet.get('Creator')}.")
         st.write(f"🟢 If any other result occurs, you win **{bet.get('Points')}** points from {bet.get('Creator')}.")
         
@@ -293,9 +312,6 @@ elif st.session_state.current_page == "new_bet":
             else:
                 odds = float(match_row['Draw_Odds'])
                 
-            # FIXED ODDS MATH:
-            # Payout Premium = Points Staked * (Odds - 1)
-            # This is what the opponent must risk to challenge your prediction.
             opponent_payout = round(points_to_bet * (odds - 1), 2)
             
             st.markdown("### 📊 Odds Assessment")

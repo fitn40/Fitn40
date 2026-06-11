@@ -10,7 +10,7 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# Re-engineered Data Matrix: Pulled directly line-by-line from your exact attached CSV sheet
+# Complete 72 Matches Matrix Data
 @st.cache_data
 def get_match_data(year):
     raw_data = [
@@ -180,7 +180,8 @@ elif st.session_state.current_page == "dashboard":
         for bet in open_bets:
             with st.container(border=True):
                 st.markdown(f"**{bet.get('Creator')}** predicts **{bet.get('Prediction')}** in *{bet.get('Match_Name')}*")
-                st.write(f"💰 Staked: {bet.get('Points')} | 🎁 Opponent Wins: {bet.get('Opponent_Payout')} pts")
+                # FIXED LOGIC DISPLAY: Creator puts up Points staked, Opponent must risk the payout premium
+                st.write(f"💰 Creator Risks: {bet.get('Points')} pts | 🎁 Opponent Must Risk to Match: {bet.get('Opponent_Payout')} pts")
                 
                 if str(bet.get('Creator', '')).lower() == st.session_state.player_name.lower():
                     st.caption("🔒 You created this offer")
@@ -194,7 +195,7 @@ elif st.session_state.current_page == "dashboard":
                     if st.button(f"🗑️ Delete Bet Offer #{bet.get('Bet_ID')}", key=f"del_open_{bet.get('Bet_ID')}", type="secondary", use_container_width=True):
                         updated_list = [b for b in combined_bets if int(b["Bet_ID"]) != int(bet["Bet_ID"])]
                         save_all_bets_permanently(updated_list)
-                        st.toast(f"Bet Offer #{bet.get('Bet_ID')} removed selectively!", icon="🗑️")
+                        st.toast(f"Bet Offer #{bet.get('Bet_ID')} removed!", icon="🗑️")
                         st.rerun()
 
     st.markdown("---")
@@ -208,7 +209,7 @@ elif st.session_state.current_page == "dashboard":
             with st.container(border=True):
                 st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
                 st.write(f"**Match:** {bet.get('Match_Name')} | **Prediction:** {bet.get('Creator')} chose *{bet.get('Prediction')}*")
-                st.write(f"**Stakes:** Risking {bet.get('Points')} pts vs {bet.get('Opponent_Payout')} pts")
+                st.write(f"📊 **Stakes Layout:** Creator risks {bet.get('Points')} pts vs Opponent risks {bet.get('Opponent_Payout')} pts")
                 
                 if is_admin:
                     if st.button(f"🗑️ Delete Live Bet #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", type="secondary", use_container_width=True):
@@ -249,8 +250,9 @@ elif st.session_state.current_page == "confirm_match":
         st.write(f"**Match Event:** {bet.get('Match_Name')}")
         st.write(f"**Their Prediction:** {bet.get('Prediction')}")
         st.markdown("---")
-        st.write(f"🔴 If **{bet.get('Prediction')}** wins, you lose **{bet.get('Opponent_Payout')}** points.")
-        st.write(f"🟢 If any other result occurs, you win **{bet.get('Points')}** points.")
+        # FIXED LOGIC PERSPECTIVE: What the opponent wins vs what they lose based on creator stakes
+        st.write(f"🔴 If **{bet.get('Prediction')}** wins, you lose **{bet.get('Opponent_Payout')}** points to {bet.get('Creator')}.")
+        st.write(f"🟢 If any other result occurs, you win **{bet.get('Points')}** points from {bet.get('Creator')}.")
         
     col1, col2 = st.columns(2)
     with col1:
@@ -282,7 +284,7 @@ elif st.session_state.current_page == "new_bet":
         selected_prediction = st.selectbox("🔮 Predicted Winner Team:", options=["-- Choose Outcome --"] + prediction_options)
         
         if selected_prediction != "-- Choose Outcome --":
-            points_to_bet = st.number_input("💰 Points to Bet:", min_value=1, max_value=5000, value=100, step=10)
+            points_to_bet = st.number_input("💰 Points to Bet (Your Risk):", min_value=1, max_value=5000, value=100, step=10)
             
             if selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
@@ -291,8 +293,15 @@ elif st.session_state.current_page == "new_bet":
             else:
                 odds = float(match_row['Draw_Odds'])
                 
+            # FIXED ODDS MATH:
+            # Payout Premium = Points Staked * (Odds - 1)
+            # This is what the opponent must risk to challenge your prediction.
             opponent_payout = round(points_to_bet * (odds - 1), 2)
-            st.metric(label="🎁 Opposing Bettor Payout (if you lose):", value=f"{opponent_payout} pts")
+            
+            st.markdown("### 📊 Odds Assessment")
+            st.write(f"**Outcome Odds:** {odds}")
+            st.metric(label="🎁 Points Opponent Must Risk to Match You:", value=f"{opponent_payout} pts")
+            st.caption(f"If you win, you collect {opponent_payout} points from your opponent. If you lose, you pay them your staked {points_to_bet} points.")
             
             if st.button("🚀 Submit Bet to Dashboard", use_container_width=True, type="primary"):
                 next_id = 1 if len(combined_bets) == 0 else max([int(b.get("Bet_ID", 0)) for b in combined_bets]) + 1

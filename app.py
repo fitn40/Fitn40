@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Page Branding
+# 1. PAGE CONFIGURATION & BRANDING
 st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
 
-# Core Data Structure Pack (72 Matches)
+# 2. COMPLETE 72 MATCHES DATA CORE
 @st.cache_data
 def get_match_data():
     raw_data = [
@@ -95,11 +95,6 @@ if "player_name" not in st.session_state:
     st.session_state.player_name = ""
 if "all_bets" not in st.session_state:
     st.session_state.all_bets = []
-
-# Fallback session name-matching handling
-if st.session_state.player_name == "" and "query_params" in dir(st):
-    # Fallback placeholder if cookies aren't checked local-side
-    pass
 
 # INTERFACE SCREEN 1: LOGIN
 if st.session_state.current_page == "login":
@@ -251,4 +246,23 @@ elif st.session_state.current_page == "new_bet":
             st.metric(label="🎁 Opposing Bettor Payout (if you lose):", value=f"{opponent_payout} pts")
             
             if st.button("🚀 Submit Bet to Dashboard", use_container_width=True, type="primary"):
-                next_i
+                next_id = len(st.session_state.all_bets) + 1
+                new_bet_entry = {
+                    "Bet_ID": next_id,
+                    "Creator": st.session_state.player_name,
+                    "Match_Num": int(match_row['Match_Num']),
+                    "Match_Name": f"{home} vs {away}",
+                    "Prediction": selected_prediction,
+                    "Points": points_to_bet,
+                    "Opponent_Payout": opponent_payout,
+                    "Opponent": None,
+                    "Status": "Open",
+                    "Is_Expired": False
+                }
+                st.session_state.all_bets.append(new_bet_entry)
+                st.session_state.current_page = "dashboard"
+                st.rerun()
+                
+    if st.button("⬅ Cancel & Back", use_container_width=True):
+        st.session_state.current_page = "dashboard"
+        st.rerun()

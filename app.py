@@ -1,21 +1,16 @@
 import streamlit as st
 import pandas as pd
+import os
 from datetime import datetime
-
-# -------------------------------------------------------------
-# 🔴 ENTER YOUR SPREADSHEET ID HERE
-# -------------------------------------------------------------
-SPREADSHEET_ID = "1jdOVGRpHKiuipDrW_dLc87qGYDBInScY-KZJ8mr3xmc"
-SHEET_URL = f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=bets"
 
 # Page Branding
 st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
 
-# Get current system time parameters globally
+DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# Core Data Structure Pack (All 72 Matches with original schedule dates)
+# Complete 72 Matches Matrix Data
 @st.cache_data
 def get_match_data(year):
     raw_data = [
@@ -107,53 +102,45 @@ def get_match_data(year):
 
 match_data = get_match_data(current_year)
 
-# Database syncing utilities
-def load_bets_from_sheet():
+# File Handlers
+def load_permanent_bets():
+    if not os.path.exists(DATA_FILE):
+        return []
     try:
-        df = pd.read_csv(SHEET_URL)
-        df.columns = [c.strip() for c in df.columns]
+        df = pd.read_csv(DATA_FILE)
         df = df.fillna("")
         return df.to_dict(orient="records")
     except:
         return []
 
-# Initialize state navigation metrics
+def save_all_bets_permanently(bets_list):
+    df = pd.DataFrame(bets_list)
+    df.to_csv(DATA_FILE, index=False)
+
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "player_name" not in st.session_state:
     st.session_state.player_name = ""
-if "local_backup_bets" not in st.session_state:
-    st.session_state.local_backup_bets = []
 
-# Fetch active cloud entries
-all_bets = load_bets_from_sheet()
-combined_bets = all_bets + st.session_state.local_backup_bets
+combined_bets = load_permanent_bets()
 
-# 📅 REAL-TIME AUTO-EXPIRY ENGINE WITH BUG PROTECTION
+# Date Expiry Logic
 for bet in combined_bets:
     try:
-        # Convert values safely to prevent any column key issues from Google Sheets
         m_num = int(float(str(bet.get('Match_Num', 1)).strip()))
-        
         match_lookup = match_data[match_data['Match_Num'] == m_num]
         if not match_lookup.empty:
             match_row = match_lookup.iloc[0]
             if current_date.date() > match_row['Match_Date_Obj']:
                 bet["Is_Expired"] = True
             else:
-                # Synchronize if it was missing the key entry from the server parsing row
-                if "Is_Expired" not in bet or bet["Is_Expired"] == "":
-                    bet["Is_Expired"] = False
-        else:
-            bet["Is_Expired"] = False
+                bet["Is_Expired"] = (str(bet.get("Is_Expired")).strip().lower() in ["true", "1"])
     except:
         bet["Is_Expired"] = False
 
-# INTERFACE SCREEN 1: LOGIN
+# UI SCREEN 1: LOGIN
 if st.session_state.current_page == "login":
     st.title("⚽ Fit N 40 Match Prediction")
-    st.subheader("Join the Prediction Tournament Lounge")
-    
     player_input = st.text_input("Enter Profile Name:", placeholder="e.g., Ashu")
     
     if st.button("Enter Dashboard", use_container_width=True, type="primary"):
@@ -162,21 +149,11 @@ if st.session_state.current_page == "login":
             st.session_state.player_name = cleaned_name
             st.session_state.current_page = "dashboard"
             st.rerun()
-        else:
-            st.warning("Please enter a valid profile name.")
 
-# INTERFACE SCREEN 2: MAIN DASHBOARD
+# UI SCREEN 2: DASHBOARD
 elif st.session_state.current_page == "dashboard":
     st.title("🏆 Fit N 40 Match Prediction")
-    
-    col_user, col_logout = st.columns([3, 1])
-    with col_user:
-        st.write(f"Logged in as: **{st.session_state.player_name}**")
-    with col_logout:
-        if st.button("🚪 Logout", use_container_width=True):
-            st.session_state.player_name = ""
-            st.session_state.current_page = "login"
-            st.rerun()
+    st.write(f"Logged in as: **{st.session_state.player_name}**")
     
     if st.button("➕ Create & Add a New Bet Offer", use_container_width=True, type="primary"):
         st.session_state.current_page = "new_bet"
@@ -188,78 +165,61 @@ elif st.session_state.current_page == "dashboard":
     live_bets = [b for b in combined_bets if str(b.get("Status", "")).strip().lower() == "matched" and not b.get("Is_Expired", False)]
     expired_bets = [b for b in combined_bets if b.get("Is_Expired", False)]
     
-    # 1. Open Bets Section
+    # 1. Open Bets Available
     st.subheader("📋 1. Open Bets Available")
     if not open_bets:
-        st.info("No active open bets to take right now. Click the button above to add one!")
+        st.info("No active open bets available.")
     else:
         for bet in open_bets:
             with st.container(border=True):
-                st.markdown(f"**{bet.get('Creator', 'Unknown')}** predicts **{bet.get('Prediction', 'Draw')}** will win in *{bet.get('Match_Name', 'Unknown')}*")
-                st.write(f"💰 **Staked Points:** {bet.get('Points', 0)} | 🎁 **Opponent Wins:** {bet.get('Opponent_Payout', 0)} pts")
+                st.markdown(f"**{bet.get('Creator')}** predicts **{bet.get('Prediction')}** in *{bet.get('Match_Name')}*")
+                st.write(f"💰 Staked: {bet.get('Points')} | 🎁 Opponent Wins: {bet.get('Opponent_Payout')} pts")
                 
                 if str(bet.get('Creator', '')).lower() == st.session_state.player_name.lower():
-                    st.caption("🔒 You created this offer line")
+                    st.caption("🔒 You created this offer")
                 else:
-                    if st.button(f"🤝 Match Bet Offer #{bet.get('Bet_ID', 0)}", key=f"match_{bet.get('Bet_ID', 0)}", use_container_width=True):
+                    if st.button(f"🤝 Match Bet #{bet.get('Bet_ID')}", key=f"match_{bet.get('Bet_ID')}", use_container_width=True):
                         st.session_state.selected_bet_to_match = bet
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
     st.markdown("---")
     
-    # 2. Live Matched Bets Section
+    # 2. Live Matched Bets
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No locked matched bets running currently.")
     else:
         for bet in live_bets:
             with st.container(border=True):
-                st.markdown(f"🔒 **{bet.get('Creator', 'Unknown')}** 🆚 **{bet.get('Opponent', 'Unknown')}**")
-                st.write(f"**Match:** {bet.get('Match_Name', 'Unknown')} | **Prediction:** {bet.get('Creator', 'Unknown')} chose *{bet.get('Prediction', 'Draw')}*")
-                st.write(f"**Stakes:** Creator risks {bet.get('Points', 0)} pts vs Opponent risks {bet.get('Opponent_Payout', 0)} pts")
+                st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
+                st.write(f"**Match:** {bet.get('Match_Name')} | **Prediction:** {bet.get('Creator')} chose *{bet.get('Prediction')}*")
+                st.write(f"**Stakes:** Risking {bet.get('Points')} pts vs {bet.get('Opponent_Payout')} pts")
 
     st.markdown("---")
     
-    # 3. Expired Bets Section
+    # 3. Expired & Completed Bets
     st.subheader("🏁 3. Expired & Completed Bets")
     if not expired_bets:
         st.caption("No completed match history yet.")
     else:
         for bet in expired_bets:
             with st.container(border=True):
-                st.write(f"🏆 **{bet.get('Match_Name', 'Unknown Match')}**")
-                try:
-                    m_num = int(float(str(bet.get('Match_Num', 1)).strip()))
-                    match_info = match_data[match_data['Match_Num'] == m_num].iloc[0]
-                    actual_outcome = match_info['Actual_Result']
-                except:
-                    actual_outcome = "Pending"
-                
+                st.write(f"🏆 **{bet.get('Match_Name')}**")
                 if str(bet.get('Status', 'Open')).strip().lower() == "open":
                     st.error("❌ **Bet Expired Unmatched**")
                 else:
-                    creator_won = (bet.get('Prediction', '') == actual_outcome)
-                    if creator_won:
-                        winner, loser, points_won = bet.get('Creator', 'Unknown'), bet.get('Opponent', 'Unknown'), bet.get('Opponent_Payout', 0)
-                    else:
-                        winner, loser, points_won = bet.get('Opponent', 'Unknown'), bet.get('Creator', 'Unknown'), bet.get('Points', 0)
-                    
-                    if actual_outcome == "Pending":
-                        st.warning(f"⏳ Match date reached! Awaiting official results input.")
-                        st.write(f"**Stakes Set:** {bet.get('Creator')} vs {bet.get('Opponent')}")
-                    else:
-                        st.success(f"🎉 **{winner}** won **{points_won}** points from **{loser}**")
+                    st.success(f"🎉 Match date closed. Payout tracked between {bet.get('Creator')} and {bet.get('Opponent')}")
 
-# INTERFACE SCREEN 3: CONFIRM MATCH
+# UI SCREEN 3: CONFIRM MATCH
 elif st.session_state.current_page == "confirm_match":
     bet = st.session_state.selected_bet_to_match
     st.title("🤝 Confirm Your Match")
     
     with st.container(border=True):
-        st.write(f"**Bet Creator:** {bet.get('Creator', 'Unknown')}")
-        st.write(f"**Match Event:** {bet.get('Match_Name', 'Unknown')}")
-        st.write(f"**Their Prediction:** {bet.get('Prediction', 'Draw')}")
+        st.write(f"**Bet Creator:** {bet.get('Creator')}")
+        st.write(f"**Match Event:** {bet.get('Match_Name')}")
+        st.write(f"**Their Prediction:** {bet.get('Prediction')}")
         st.markdown("---")
         st.write(f"🔴 If **{bet.get('Prediction')}** wins, you lose **{bet.get('Opponent_Payout')}** points.")
         st.write(f"🟢 If any other result occurs, you win **{bet.get('Points')}** points.")
@@ -267,11 +227,12 @@ elif st.session_state.current_page == "confirm_match":
     col1, col2 = st.columns(2)
     with col1:
         if st.button("✅ Confirm Bet", use_container_width=True, type="primary"):
-            for b in st.session_state.local_backup_bets:
-                if b["Bet_ID"] == bet["Bet_ID"]:
+            for b in combined_bets:
+                if int(b["Bet_ID"]) == int(bet["Bet_ID"]):
                     b["Status"] = "Matched"
                     b["Opponent"] = st.session_state.player_name
-            st.success("Bet locked in successfully!")
+            save_all_bets_permanently(combined_bets)
+            st.success("Bet matched permanently!")
             st.session_state.current_page = "dashboard"
             st.rerun()
     with col2:
@@ -279,29 +240,25 @@ elif st.session_state.current_page == "confirm_match":
             st.session_state.current_page = "dashboard"
             st.rerun()
 
-# INTERFACE SCREEN 4: ADD NEW BET OFFERS
+# UI SCREEN 4: NEW BETS
 elif st.session_state.current_page == "new_bet":
     st.title("🎲 Put Down a New Bet Offer")
     
     active_matches = match_data[match_data['Match_Date_Obj'] >= current_date.date()]
     match_options = active_matches['Match_Display'].tolist()
-    
     selected_match_str = st.selectbox("👉 Group Match:", options=["-- Select League Match --"] + match_options)
     
     if selected_match_str != "-- Select League Match --":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
-        home = match_row['Home_Team']
-        away = match_row['Away_Team']
-        
-        prediction_options = [home, away, "Draw"]
+        prediction_options = [match_row['Home_Team'], match_row['Away_Team'], "Draw"]
         selected_prediction = st.selectbox("🔮 Predicted Winner Team:", options=["-- Choose Outcome --"] + prediction_options)
         
         if selected_prediction != "-- Choose Outcome --":
             points_to_bet = st.number_input("💰 Points to Bet:", min_value=1, max_value=5000, value=100, step=10)
             
-            if selected_prediction == home:
+            if selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
-            elif selected_prediction == away:
+            elif selected_prediction == match_row['Away_Team']:
                 odds = float(match_row['Away_Win_Odds'])
             else:
                 odds = float(match_row['Draw_Odds'])
@@ -310,12 +267,11 @@ elif st.session_state.current_page == "new_bet":
             st.metric(label="🎁 Opposing Bettor Payout (if you lose):", value=f"{opponent_payout} pts")
             
             if st.button("🚀 Submit Bet to Dashboard", use_container_width=True, type="primary"):
-                next_id = len(combined_bets) + 1
                 new_bet_entry = {
-                    "Bet_ID": next_id,
+                    "Bet_ID": len(combined_bets) + 1,
                     "Creator": st.session_state.player_name,
                     "Match_Num": int(match_row['Match_Num']),
-                    "Match_Name": f"{home} vs {away}",
+                    "Match_Name": f"{match_row['Home_Team']} vs {match_row['Away_Team']}",
                     "Prediction": selected_prediction,
                     "Points": points_to_bet,
                     "Opponent_Payout": opponent_payout,
@@ -323,7 +279,10 @@ elif st.session_state.current_page == "new_bet":
                     "Status": "Open",
                     "Is_Expired": False
                 }
-                st.session_state.local_backup_bets.append(new_bet_entry)
+                combined_bets.append(new_bet_entry)
+                save_all_bets_permanently(combined_bets)
+                
+                st.success("Bet registered permanently!")
                 st.session_state.current_page = "dashboard"
                 st.rerun()
                 

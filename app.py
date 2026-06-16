@@ -132,7 +132,7 @@ is_admin = (st.session_state.player_name == "Fifa@2026")
 # UI SCREEN 1: LOGIN LOUNGE
 if st.session_state.current_page == "login":
     st.title("⚽ Fit N 40 Match Prediction")
-    st.subheader("Tournament Sandbox Arena")
+    st.subheader("Welcome to the Arena")
     player_input = st.text_input("Profile Handle Name:")
     if st.button("Enter Dashboard", use_container_width=True, type="primary"):
         if player_input.strip():
@@ -146,8 +146,12 @@ elif st.session_state.current_page == "dashboard":
     st.title("🏆 Fit N 40 Dashboard")
     st.write(f"Logged in as: **{st.session_state.player_name}**")
     
-    # Navigation Layer Blocks
-    col_n1, col_n2, col_n3 = st.columns(3)
+       # Navigation Layer Blocks (With Added Logout Button)
+    if is_admin:
+        col_n1, col_n2, col_n3, col_n4 = st.columns(4)
+    else:
+        col_n1, col_n2, col_n4 = st.columns([1, 1, 1]) # Standard 3-column layout for players
+
     with col_n1:
         if st.button("➕ Open New Bet", use_container_width=True, type="primary"):
             st.session_state.current_page = "new_bet"
@@ -156,10 +160,19 @@ elif st.session_state.current_page == "dashboard":
         if st.button("📊 Live Excel Board", use_container_width=True):
             st.session_state.current_page = "view_excel"
             st.rerun()
-    with col_n3:
-        if is_admin and st.button("⚙️ Dev Storage", use_container_width=True):
-            st.session_state.current_page = "view_db"
+    if is_admin:
+        with col_n3:
+            if st.button("⚙️ Dev Storage", use_container_width=True):
+                st.session_state.current_page = "view_db"
+                st.rerun()
+    with col_n4:
+        if st.button("🚪 Logout", use_container_width=True):
+            # Clear out the session state completely to return to login screen safely
+            st.session_state.player_name = ""
+            st.query_params.clear()
+            st.session_state.current_page = "login"
             st.rerun()
+
             
     st.markdown("---")
     
@@ -206,23 +219,15 @@ elif st.session_state.current_page == "dashboard":
                 else:
                     st.warning(f"⏳ Match time crossed. Please check the 'Live Excel Board' to see who won this fixture!")
 
-# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE (CORRECTED)
+# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE (REMOVED LINK)
 elif st.session_state.current_page == "view_excel":
-    st.title("📊 Live Tournament Excel Board")
-    st.markdown("This matrix frame displays your manually updated Google Sheet.")
-    
-    if "PASTE_YOUR_PUBLIC" in GOOGLE_SHEET_LINK or not GOOGLE_SHEET_LINK.strip():
-        st.error("Setup Error: Please configure your active Google Sheet URL near the top of app.py!")
-    else:
-        try:
-            # Use the correct components module for rendering iframes in Streamlit
-            st.components.v1.iframe(GOOGLE_SHEET_LINK.strip(), height=550, scrolling=True)
-        except Exception as e:
-            st.error(f"Could not load the sheet: {e}")
+    st.title("📊 Tournament Board")
+    st.info("The results board is currently offline. Please check your WhatsApp group for updates!")
             
     if st.button("⬅ Back to Dashboard", use_container_width=True):
         st.session_state.current_page = "dashboard"
         st.rerun()
+
 
 
 # UI SCREEN: CONFIRM TO MATCH OFFER

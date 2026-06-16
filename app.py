@@ -206,7 +206,7 @@ elif st.session_state.current_page == "dashboard":
                 else:
                     st.warning(f"⏳ Match time crossed. Please check the 'Live Excel Board' to see who won this fixture!")
 
-# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE
+# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE (CORRECTED)
 elif st.session_state.current_page == "view_excel":
     st.title("📊 Live Tournament Excel Board")
     st.markdown("This matrix frame displays your manually updated Google Sheet.")
@@ -215,15 +215,14 @@ elif st.session_state.current_page == "view_excel":
         st.error("Setup Error: Please configure your active Google Sheet URL near the top of app.py!")
     else:
         try:
-            # Load the direct pubhtml link seamlessly into the app frame
-            st.iframe(GOOGLE_SHEET_LINK.strip(), height=550)
+            # Use the correct components module for rendering iframes in Streamlit
+            st.components.v1.iframe(GOOGLE_SHEET_LINK.strip(), height=550, scrolling=True)
         except Exception as e:
-            st.error("Could not load the sheet. Please check your network connection.")
+            st.error(f"Could not load the sheet: {e}")
             
     if st.button("⬅ Back to Dashboard", use_container_width=True):
         st.session_state.current_page = "dashboard"
         st.rerun()
-
 
 
 # UI SCREEN: CONFIRM TO MATCH OFFER

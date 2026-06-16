@@ -1,10 +1,13 @@
 import streamlit as st
 import pandas as pd
+import os
 from datetime import datetime
+from github import Github
 
 # Page Branding Setup
 st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
 
+DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
@@ -100,21 +103,60 @@ def get_match_data(year):
 
 match_data = get_match_data(current_year)
 
-# 💾 INTERMEDIATE SERVER-WIDE CONTAINER MEMORY LOOP
-if "internal_bets_db" not in st.session_state:
-    st.session_state.internal_bets_db = []
+# 🔄 AUTOMATIC PERMANENT STORAGE HOOKS (Ensures data survives refreshes and syncs globally)
+def get_github_repo():
+    try:
+        gh = Github(st.secrets["GITHUB_TOKEN"])
+        return gh.get_repo(st.secrets["REPO_NAME"])
+    except:
+        return None
+
+def sync_from_github():
+    repo = get_github_repo()
+    if repo:
+        try:
+            content = repo.get_contents(DATA_FILE)
+            raw_data = content.decoded_content.decode('utf-8')
+            with open(DATA_FILE, "w") as f:
+                f.write(raw_data)
+        except:
+            pass
+
+def load_permanent_bets():
+    sync_from_github()
+    if os.path.exists(DATA_FILE):
+        try:
+            df = pd.read_csv(DATA_FILE)
+            return df.fillna("").to_dict(orient="records")
+        except:
+            return []
+    return []
+
+def save_all_bets_permanently(bets_list):
+    df = pd.DataFrame(bets_list) if len(bets_list) > 0 else pd.DataFrame(columns=["Bet_ID","Creator","Match_Num","Match_Name","Match_Date","Prediction","Points","Opponent_Payout","Opponent","Status","Is_Expired"])
+    df.to_csv(DATA_FILE, index=False)
+    repo = get_github_repo()
+    if repo:
+        try:
+            csv_string = df.to_csv(index=False)
+            contents = repo.get_contents(DATA_FILE)
+            repo.update_file(contents.path, "🔄 Live Bets Auto-Sync", csv_string, contents.sha)
+        except:
+            pass
+
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 if "player_name" not in st.session_state:
     st.session_state.player_name = ""
 
-# Auto URL parameters injection configurations
 if "user" in st.query_params and st.session_state.player_name == "":
     st.session_state.player_name = st.query_params["user"].strip()
     st.session_state.current_page = "dashboard"
 
-# Expiry Processor Hook
-for bet in st.session_state.internal_bets_db:
+combined_bets = load_permanent_bets()
+
+# Auto Expiry Processing Loop
+for bet in combined_bets:
     try:
         m_lookup = match_data[match_data['Match_Num'] == int(bet['Match_Num'])]
         if not m_lookup.empty:
@@ -122,7 +164,6 @@ for bet in st.session_state.internal_bets_db:
     except:
         bet["Is_Expired"] = False
 
-# Profile clearance credentials configuration
 is_admin = (st.session_state.player_name == "Fifa@2026")
 
 # ==========================================
@@ -146,7 +187,6 @@ elif st.session_state.current_page == "dashboard":
     st.title("🏆 Fit N 40 Dashboard")
     st.write(f"Logged in as: **{st.session_state.player_name}**")
     
-    # ⚙️ Clean 4-Column Navigation Layout
     if is_admin:
         col_n1, col_n2, col_n3, col_n4 = st.columns(4)
     else:
@@ -174,9 +214,9 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
-    open_bets = [b for b in st.session_state.internal_bets_db if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
-    live_bets = [b for b in st.session_state.internal_bets_db if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
-    expired_bets = [b for b in st.session_state.internal_bets_db if b.get("Is_Expired", False)]
+    open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
+    live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
+    expired_bets = [b for b in combined_bets if b.get("Is_Expired", False)]
 
     # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")
@@ -193,7 +233,7 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-    # 🔥 2. Live Matched Locked Block (POINT-BASED WORDING INTEGRATED)
+    # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -210,7 +250,7 @@ elif st.session_state.current_page == "dashboard":
     # 🏁 3. History Container
     st.subheader("🏁 3. Closed Container History")
     if not expired_bets:
-        st.caption("No historical logs recorded inside this memory instance.")
+        st.caption("No historical logs recorded.")
     else:
         for bet in expired_bets:
             with st.container(border=True):
@@ -221,7 +261,7 @@ elif st.session_state.current_page == "dashboard":
                     st.warning(f"⏳ Match time crossed. Please check your WhatsApp group chat for running results updates!")
 
 # ==========================================
-# 📊 UI SCREEN: TOURNAMENT BOARD (REMOVED EXCEL)
+# 📊 UI SCREEN: TOURNAMENT BOARD
 # ==========================================
 elif st.session_state.current_page == "view_excel":
     st.title("📊 Tournament Board")
@@ -239,10 +279,11 @@ elif st.session_state.current_page == "confirm_match":
     st.title("🤝 Lock Match Confirmation")
     st.write(f"Accepting **{bet.get('Creator')}**'s bet on **{bet.get('Match_Name')}** ({bet.get('Match_Date')})")
     if st.button("✅ Confirm & Lock Bet", use_container_width=True, type="primary"):
-        for b in st.session_state.internal_bets_db:
+        for b in combined_bets:
             if b["Bet_ID"] == bet["Bet_ID"]:
                 b["Status"] = "Matched"
                 b["Opponent"] = st.session_state.player_name
+        save_all_bets_permanently(combined_bets)
         st.session_state.current_page = "dashboard"
         st.rerun()
     if st.button("⬅ Cancel", use_container_width=True):
@@ -268,19 +309,20 @@ elif st.session_state.current_page == "new_bet":
             st.metric("Opponent Must Risk Allocation:", f"{payout} pts")
             
             if st.button("🚀 Publish Offer to Board", use_container_width=True, type="primary"):
-                if not st.session_state.internal_bets_db:
+                if not combined_bets:
                     next_id = 1
                 else:
                     try:
-                        next_id = max([b["Bet_ID"] for b in st.session_state.internal_bets_db]) + 1
+                        next_id = max([int(b["Bet_ID"]) for b in combined_bets]) + 1
                     except:
-                        next_id = len(st.session_state.internal_bets_db) + 1
+                        next_id = len(combined_bets) + 1
                         
-                st.session_state.internal_bets_db.append({
+                combined_bets.append({
                     "Bet_ID": int(next_id), "Creator": str(st.session_state.player_name), "Match_Num": int(match_row['Match_Num']),
                     "Match_Name": f"{match_row['Home_Team']} vs {match_row['Away_Team']}", "Match_Date": str(match_row['Date_Str']),
                     "Prediction": str(selected_prediction), "Points": float(points), "Opponent_Payout": float(payout), "Opponent": "", "Status": "Open", "Is_Expired": False
                 })
+                save_all_bets_permanently(combined_bets)
                 st.session_state.current_page = "dashboard"
                 st.rerun()
                 
@@ -293,7 +335,7 @@ elif st.session_state.current_page == "new_bet":
 # ==========================================
 elif st.session_state.current_page == "view_db":
     st.title("📊 Running Memory Dump Instance")
-    st.dataframe(pd.DataFrame(st.session_state.internal_bets_db), use_container_width=True, hide_index=True)
+    st.dataframe(pd.DataFrame(combined_bets), use_container_width=True, hide_index=True)
     if st.button("⬅ Back", use_container_width=True):
         st.session_state.current_page = "dashboard"
         st.rerun()

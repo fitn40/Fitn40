@@ -5,3 +5,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 4,Ankur,31,USA vs Australia,Jun 19,USA,100.0,70.0,,Open,False
 5,Ankur,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,,Open,False
 6,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,,Open,False
+7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,,Open,False

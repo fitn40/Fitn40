@@ -157,7 +157,7 @@ elif st.session_state.current_page == "dashboard":
             st.session_state.current_page = "new_bet"
             st.rerun()
     with col_n2:
-        if st.button("📊 Live Excel Board", use_container_width=True):
+        if st.button("📊 Tournament Info", use_container_width=True):
             st.session_state.current_page = "view_excel"
             st.rerun()
     if is_admin:
@@ -204,10 +204,14 @@ elif st.session_state.current_page == "dashboard":
             with st.container(border=True):
                 st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
                 st.write(f"📅 **Kickoff Date:** {bet.get('Match_Date')} | **Match:** {bet.get('Match_Name')}")
-                st.caption(f"Bet Selection: {bet.get('Prediction')} | Allocation: {bet.get('Points')} vs {bet.get('Opponent_Payout')} pts")
+                                # Pull the actual points allocated for the creator and opponent
+                risk_pts = bet.get('Points', 100)
+                win_pts = bet.get('Opponent_Payout', 55)
+
+                st.write(f"📢 **{bet.get('Creator')}** bet on **{bet.get('Prediction')}** (Risking: {risk_pts} pts / Winning: {win_pts} pts) with **{bet.get('Opponent')}**.")
 
     # 3. Memory Closed Entries
-    st.subheader("🏁 3. Closed Container History")
+    st.subheader("🏁 3. Past Bets")
     if not expired_bets:
         st.caption("No historical logs recorded inside this memory instance.")
     else:

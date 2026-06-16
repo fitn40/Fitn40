@@ -17,7 +17,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 16,Arjun,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,False
 17,Arjun,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,,Open,False
 18,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
-19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,,Open,False
+19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,Arjun,Matched,False
 20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,,Open,False
 21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,False
 22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,False

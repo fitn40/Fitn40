@@ -12,3 +12,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 11,Mantekwal,20,Austria vs Jordan,Jun 16,Austria,60.0,39.0,,Open,False
 12,TenWall,18,Iraq vs Norway,Jun 16,Norway,500.0,400.0,,Open,False
 13,TenWall,23,England vs Croatia,Jun 17,England,250.0,150.0,,Open,False
+14,Peteza,21,Portugal vs Congo DR,Jun 17,Portugal,200.0,80.0,,Open,False

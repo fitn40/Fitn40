@@ -1,1 +1,2 @@
-Bet_ID,Creator,Match_Num,Match_Name,Prediction,Points,Opponent_Payout,Opponent,Status,Is_Expired
+Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout,Opponent,Status,Is_Expired
+1,Ashu,50,South Africa vs Korea Republic,Jun 24,Draw,100.0,230.0,,Open,False

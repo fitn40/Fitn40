@@ -7,7 +7,7 @@ st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layo
 
 # --- CONFIGURATION HUB ---
 # Paste your public viewable Google Sheet link right here inside the quotation marks:
-GOOGLE_SHEET_LINK = "https://docs.google.com/spreadsheets/d/10dSFKVVfOpPaRKut3au0FWfjWt3po530YdgmSstd6os/edit?usp=drivesdk"
+GOOGLE_SHEET_LINK = "https://docs.google.com/spreadsheets/d/10dSFKVVfOpPaRKut3au0FWfjWt3po530YdgmSstd6os/edit"
 # -------------------------
 
 current_date = datetime.now()

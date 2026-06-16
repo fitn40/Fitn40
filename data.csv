@@ -23,3 +23,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,False
 23,Ankur,20,Austria vs Jordan,Jun 16,Austria,100.0,65.0,,Open,False
 24,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
+25,Ankur,31,USA vs Australia,Jun 19,Australia,50.0,200.0,,Open,False

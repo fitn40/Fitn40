@@ -1,7 +1,7 @@
 Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout,Opponent,Status,Is_Expired
 1,Ashu,50,South Africa vs Korea Republic,Jun 24,Draw,100.0,230.0,,Open,False
 2,Ankur,28,Canada vs Qatar,Jun 18,Canada,100.0,55.0,,Open,False
-3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,,Open,False
+3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,Laakha,Matched,False
 4,Ankur,31,USA vs Australia,Jun 19,USA,100.0,70.0,Arjun,Matched,False
 5,Ankur,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Arjun,Matched,False
 6,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,,Open,False

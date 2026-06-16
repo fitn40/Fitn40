@@ -21,3 +21,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,,Open,False
 21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,False
 22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,False
+23,Ankur,20,Austria vs Jordan,Jun 16,Austria,100.0,65.0,,Open,False

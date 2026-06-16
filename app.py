@@ -206,27 +206,43 @@ elif st.session_state.current_page == "dashboard":
                 else:
                     st.warning(f"⏳ Match time crossed. Please check the 'Live Excel Board' to see who won this fixture!")
 
-# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE
+# 🆕 THE UNTOUCHABLE GOOGLE SHEET EMBED SCREEN PAGE (SELF-REPAIRING VERSION)
 elif st.session_state.current_page == "view_excel":
     st.title("📊 Live Tournament Excel Board")
-    st.markdown("This matrix frame displays your manually updated Google Sheet. Change anything inside your Google Sheet app, and it will sync here automatically without affecting active bets!")
+    st.markdown("This matrix frame displays your manually updated Google Sheet.")
     
-    if "PASTE_YOUR_PUBLIC" in GOOGLE_SHEET_LINK:
+    if "PASTE_YOUR_PUBLIC" in GOOGLE_SHEET_LINK or not GOOGLE_SHEET_LINK.strip():
         st.error("Setup Error: Please configure your active Google Sheet URL near the top of app.py!")
     else:
         try:
-            # Clean URL into direct visualization format
-            base_url = GOOGLE_SHEET_LINK.split("/edit")[0]
-            embed_url = f"{base_url}/pubhtml?widget=true&headers=false"
+            # Clean and format the incoming link automatically to prevent crashes
+            clean_url = GOOGLE_SHEET_LINK.strip()
             
-            # Render interactive framing layout sheet window directly on phone displays
-            st.components.v1.iframe(embed_url, height=550, scrolling=True)
+            # If the user forgot to add https:// on mobile, fix it automatically
+            if not clean_url.startswith("http://") and not clean_url.startswith("https://"):
+                clean_url = "https://" + clean_url
+                
+            # Convert standard sharing links into clean embed layouts safely
+            if "/edit" in clean_url:
+                base_url = clean_url.split("/edit")[0]
+                embed_url = f"{base_url}/pubhtml?widget=true&headers=false"
+            elif "/pubhtml" in clean_url:
+                embed_url = clean_url
+            else:
+                # Fallback directly to whatever text was provided if it's already customized
+                base_url = clean_url.split("?")[0]
+                embed_url = f"{base_url}/pubhtml" if not base_url.endswith("/pubhtml") else base_url
+            
+            # Render using Streamlit's native iframe framework for smooth mobile scrolling
+            st.iframe(embed_url, height=550)
+            
         except Exception as e:
-            st.error(f"Error accessing sheet grid layout: {e}")
+            st.error("The link provided could not be processed. Please verify your URL spelling at the top of app.py!")
             
     if st.button("⬅ Back to Dashboard", use_container_width=True):
         st.session_state.current_page = "dashboard"
         st.rerun()
+
 
 # UI SCREEN: CONFIRM TO MATCH OFFER
 elif st.session_state.current_page == "confirm_match":

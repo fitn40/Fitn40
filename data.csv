@@ -31,3 +31,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 30,Peterza,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,Ashu,Matched,False
 31,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Ankur,Matched,False
 32,Peterza,27,Switzerland vs Bosnia & Herz.,Jun 18,Draw,100.0,250.0,Arjun,Matched,False
+33,Arjun,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,,Open,False

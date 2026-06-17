@@ -28,4 +28,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 27,TenWall,26,Mexico vs Korea Republic,Jun 18,Draw,150.0,360.0,Mantekwal,Matched,False
 28,TenWall,25,Czechia vs South Africa,Jun 18,Czechia,200.0,180.0,,Open,False
 29,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Mantekwal,Matched,False
-30,Peterza,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,,Open,False
+30,Peterza,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,Ashu,Matched,False

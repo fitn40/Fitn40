@@ -7,21 +7,22 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 6,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,,Open,False
 7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,,Open,False
 8,Ankur,55,Türkiye vs USA,Jun 25,USA,100.0,95.0,,Open,False
-9,Abhroz,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,Laakha,Matched,False
+9,Abhroz,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,Laakha,Matched,True
 10,Ashu,29,Brazil vs Haiti,Jun 19,Draw,100.0,550.0,TenWall,Matched,False
-11,Mantekwal,20,Austria vs Jordan,Jun 16,Austria,60.0,39.0,,Open,False
-12,TenWall,18,Iraq vs Norway,Jun 16,Norway,500.0,400.0,,Open,False
+11,Mantekwal,20,Austria vs Jordan,Jun 16,Austria,60.0,39.0,,Open,True
+12,TenWall,18,Iraq vs Norway,Jun 16,Norway,500.0,400.0,,Open,True
 13,TenWall,23,England vs Croatia,Jun 17,England,250.0,150.0,,Open,False
 14,Peteza,21,Portugal vs Congo DR,Jun 17,Portugal,200.0,80.0,,Open,False
 15,Peteza,23,England vs Croatia,Jun 17,England,100.0,60.0,Ashu,Matched,False
-16,Arjun,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,False
-17,Arjun,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,,Open,False
+16,Arjun,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True
+17,Arjun,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,,Open,True
 18,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
-19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,Arjun,Matched,False
+19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,Arjun,Matched,True
 20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,,Open,False
-21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,False
-22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,False
-23,Ankur,20,Austria vs Jordan,Jun 16,Austria,100.0,65.0,,Open,False
+21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True
+22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,True
+23,Ankur,20,Austria vs Jordan,Jun 16,Austria,100.0,65.0,,Open,True
 24,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
 25,Ankur,31,USA vs Australia,Jun 19,Australia,50.0,200.0,,Open,False
 26,Ankur,28,Canada vs Qatar,Jun 18,Qatar,20.0,100.0,,Open,False
+27,TenWall,26,Mexico vs Korea Republic,Jun 18,Draw,150.0,360.0,,Open,False

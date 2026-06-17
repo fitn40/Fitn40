@@ -26,3 +26,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 25,Ankur,31,USA vs Australia,Jun 19,Australia,50.0,200.0,,Open,False
 26,Ankur,28,Canada vs Qatar,Jun 18,Qatar,20.0,100.0,,Open,False
 27,TenWall,26,Mexico vs Korea Republic,Jun 18,Draw,150.0,360.0,,Open,False
+28,TenWall,25,Czechia vs South Africa,Jun 18,Czechia,200.0,180.0,,Open,False

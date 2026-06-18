@@ -16,7 +16,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 15,Peteza,23,England vs Croatia,Jun 17,England,100.0,60.0,Ashu,Matched,True
 16,Arjun,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True
 17,Arjun,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,,Open,True
-18,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
+18,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,Ashu,Matched,False
 19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,Arjun,Matched,True
 20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,Laakha,Matched,True
 21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True

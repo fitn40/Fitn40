@@ -11,14 +11,14 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 10,Ashu,29,Brazil vs Haiti,Jun 19,Draw,100.0,550.0,TenWall,Matched,False
 11,Mantekwal,20,Austria vs Jordan,Jun 16,Austria,60.0,39.0,,Open,True
 12,TenWall,18,Iraq vs Norway,Jun 16,Norway,500.0,400.0,,Open,True
-13,TenWall,23,England vs Croatia,Jun 17,England,250.0,150.0,Ashu,Matched,False
-14,Peteza,21,Portugal vs Congo DR,Jun 17,Portugal,200.0,80.0,,Open,False
-15,Peteza,23,England vs Croatia,Jun 17,England,100.0,60.0,Ashu,Matched,False
+13,TenWall,23,England vs Croatia,Jun 17,England,250.0,150.0,Ashu,Matched,True
+14,Peteza,21,Portugal vs Congo DR,Jun 17,Portugal,200.0,80.0,,Open,True
+15,Peteza,23,England vs Croatia,Jun 17,England,100.0,60.0,Ashu,Matched,True
 16,Arjun,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True
 17,Arjun,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,,Open,True
 18,Ankur,27,Switzerland vs Bosnia & Herz.,Jun 18,Switzerland,100.0,75.0,,Open,False
 19,TenWall,17,France vs Senegal,Jun 16,Draw,150.0,450.0,Arjun,Matched,True
-20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,Laakha,Matched,False
+20,TenWall,23,England vs Croatia,Jun 17,Draw,200.0,560.0,Laakha,Matched,True
 21,Ankur,17,France vs Senegal,Jun 16,France,100.0,50.0,,Open,True
 22,Ankur,18,Iraq vs Norway,Jun 16,Norway,100.0,80.0,,Open,True
 23,Ankur,20,Austria vs Jordan,Jun 16,Austria,100.0,65.0,,Open,True
@@ -27,12 +27,13 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 26,Ankur,28,Canada vs Qatar,Jun 18,Qatar,20.0,100.0,,Open,False
 27,TenWall,26,Mexico vs Korea Republic,Jun 18,Draw,150.0,360.0,Mantekwal,Matched,False
 28,TenWall,25,Czechia vs South Africa,Jun 18,Czechia,200.0,180.0,,Open,False
-29,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Mantekwal,Matched,False
-30,Peterza,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,Ashu,Matched,False
-31,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Ankur,Matched,False
+29,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Mantekwal,Matched,True
+30,Peterza,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,Ashu,Matched,True
+31,TenWall,23,England vs Croatia,Jun 17,Croatia,100.0,480.0,Ankur,Matched,True
 32,Peterza,27,Switzerland vs Bosnia & Herz.,Jun 18,Draw,100.0,250.0,Arjun,Matched,False
-33,Arjun,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,,Open,False
-34,Arjun,23,England vs Croatia,Jun 17,England,100.0,60.0,,Open,False
-35,Arjun,22,Uzbekistan vs Colombia,Jun 17,Colombia,100.0,110.0,,Open,False
+33,Arjun,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,,Open,True
+34,Arjun,23,England vs Croatia,Jun 17,England,100.0,60.0,,Open,True
+35,Arjun,22,Uzbekistan vs Colombia,Jun 17,Colombia,100.0,110.0,,Open,True
 36,Peterza,53,Scotland vs Brazil,Jun 24,Brazil,100.0,55.0,TenWall,Matched,False
 37,Peterza,33,Germany vs Côte d'Ivoire,Jun 20,Germany,100.0,65.0,TenWall,Matched,False
+38,Peterza,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,,Open,False

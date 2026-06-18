@@ -7,7 +7,7 @@ from github import Github
 # Page Branding Setup
 st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
 
-DATA_FILE = "data.csv"
+DATA_FILE = "test_data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 

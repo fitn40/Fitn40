@@ -39,3 +39,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 38,Peterza,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,,Open,False
 39,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,,Open,False
 40,TenWall,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,,Open,False
+41,Peterza,33,Germany vs Côte d'Ivoire,Jun 20,Germany,100.0,65.0,,Open,False

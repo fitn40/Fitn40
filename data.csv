@@ -46,3 +46,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 46,Ankur,34,Ecuador vs Curaçao,Jun 20,Ecuador,100.0,35.0,,Open,False
 47,TenWall,34,Ecuador vs Curaçao,Jun 20,Ecuador,400.0,140.0,,Open,False
 48,TenWall,36,Tunisia vs Japan,Jun 20,Japan,150.0,180.0,,Open,False
+49,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,,Open,False

@@ -49,3 +49,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 50,TenWall,29,Brazil vs Haiti,Jun 19,Brazil,500.0,100.0,,Open,False
 51,TenWall,41,France vs Iraq,Jun 22,France,1000.0,150.0,,Open,False
 52,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,,Open,False
+53,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,,Open,False

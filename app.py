@@ -262,18 +262,6 @@ elif st.session_state.current_page == "dashboard":
                 win_pts = bet.get('Opponent_Payout', 55)
                 st.write(f"📢 **{bet.get('Creator')}** bet on **{bet.get('Prediction')}** (Risking: {risk_pts} pts / Winning: {win_pts} pts) with **{bet.get('Opponent')}**.")
 
-    # 🏁 3. History Container
-    st.subheader("🏁 3. Closed Container History")
-    if not expired_bets:
-        st.caption("No historical logs recorded.")
-    else:
-        for bet in expired_bets:
-            with st.container(border=True):
-                st.write(f"🏆 **{bet.get('Match_Name')}** (Played: {bet.get('Match_Date')})")
-                if bet.get("Status") == "Open":
-                    st.error("❌ Expired Unmatched")
-                else:
-                    st.warning(f"⏳ Match time crossed. Please check your WhatsApp group chat for running results updates!")
 
 # ==========================================
 # 📊 UI SCREEN: TOURNAMENT BOARD

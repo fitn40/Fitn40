@@ -41,3 +41,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 41,Laltu,26,Mexico vs Korea Republic,Jun 18,Draw,100.0,240.0,,Open,True
 42,Peterza,41,France vs Iraq,Jun 22,France,100.0,15.0,,Open,False
 43,Arjun,29,Brazil vs Haiti,Jun 19,Brazil,200.0,40.0,,Open,False
+44,Arjun,30,Scotland vs Morocco,Jun 19,Morocco,200.0,220.0,,Open,False

@@ -197,7 +197,7 @@ elif st.session_state.current_page == "dashboard":
             st.session_state.current_page = "new_bet"
             st.rerun()
     with col_n2:
-        if st.button("📊 Tournament Info", use_container_width=True):
+        if st.button("📊 Current Standings", use_container_width=True):
             st.session_state.current_page = "view_excel"
             st.rerun()
     if is_admin:
@@ -264,13 +264,24 @@ elif st.session_state.current_page == "dashboard":
 
 
 # ==========================================
-# 📊 UI SCREEN: TOURNAMENT BOARD
+# 📊 UI SCREEN: TOURNAMENT BOARD (LIVE EXCEL)
 # ==========================================
 elif st.session_state.current_page == "view_excel":
-    st.title("📊 Tournament Board")
-    st.info("The live spreadsheet integration is currently offline. Please check your WhatsApp group chat for active tournament standings and manual score updates!")
+    st.title("📊 Live Tournament Board")
+    st.write("This table updates dynamically whenever results are committed to the backend repository.")
     
-    if st.button("⬅ Back to Dashboard", use_container_width=True):
+    import os
+    if os.path.exists("results.xlsx"):
+        try:
+            df_excel = pd.read_excel("results.xlsx")
+            st.dataframe(df_excel, use_container_width=True, hide_index=True)
+        except Exception as e:
+            st.error("⚠️ Found results.xlsx but could not read its formatting. Ensure it is a standard data grid layout!")
+    else:
+        st.info("📢 Standings spreadsheet is currently being updated. Check back shortly or view your WhatsApp group chat for the latest scores!")
+        
+    st.markdown("---")
+    if st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
         st.session_state.current_page = "dashboard"
         st.rerun()
 

@@ -45,3 +45,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 45,Arjun,33,Germany vs Côte d'Ivoire,Jun 20,Germany,200.0,130.0,,Open,False
 46,Ankur,34,Ecuador vs Curaçao,Jun 20,Ecuador,100.0,35.0,,Open,False
 47,TenWall,34,Ecuador vs Curaçao,Jun 20,Ecuador,400.0,140.0,,Open,False
+48,TenWall,36,Tunisia vs Japan,Jun 20,Japan,150.0,180.0,,Open,False

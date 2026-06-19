@@ -214,9 +214,24 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
+    # Pull directly from your permanent data.csv rows
     open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
-    expired_bets = [b for b in combined_bets if b.get("Is_Expired", False)]
+
+    # 🔄 CHRONOLOGICAL DATE-SORTING ENGINE
+    def get_bet_sort_date(b):
+        try:
+            m_num = int(b.get("Match_Num", 0))
+            match_row = match_data[match_data['Match_Num'] == m_num]
+            if not match_row.empty:
+                return match_row.iloc[0]['Match_Date_Obj']
+        except:
+            pass
+        return current_date.date()
+
+    # Sort both lists so the earliest matches appear at the top
+    open_bets = sorted(open_bets, key=get_bet_sort_date)
+    live_bets = sorted(live_bets, key=get_bet_sort_date)
 
     # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")

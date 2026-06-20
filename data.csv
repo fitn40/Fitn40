@@ -55,3 +55,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 56,TenWall,38,New Zealand vs Egypt,Jun 21,Egypt,200.0,200.0,,Open,False
 57,TenWall,40,Uruguay vs Cabo Verde,Jun 21,Uruguay,200.0,100.0,,Open,False
 58,Peterza,37,Belgium vs IR Iran,Jun 21,Belgium,100.0,45.0,,Open,False
+59,Laltu,42,Norway vs Senegal,Jun 22,Draw,100.0,230.0,,Open,False

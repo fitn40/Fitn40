@@ -53,7 +53,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 54,Arjun,31,USA vs Australia,Jun 19,Draw,100.0,260.0,,Open,True
 55,TenWall,37,Belgium vs IR Iran,Jun 21,Belgium,300.0,135.0,,Open,False
 56,TenWall,38,New Zealand vs Egypt,Jun 21,Egypt,200.0,200.0,,Open,False
-57,TenWall,40,Uruguay vs Cabo Verde,Jun 21,Uruguay,200.0,100.0,,Open,False
+57,TenWall,40,Uruguay vs Cabo Verde,Jun 21,Uruguay,200.0,100.0,Yogi,Matched,False
 58,Peterza,37,Belgium vs IR Iran,Jun 21,Belgium,100.0,45.0,,Open,False
 59,Laltu,42,Norway vs Senegal,Jun 22,Draw,100.0,230.0,TenWall,Matched,False
 60,TenWall,35,Netherlands vs Sweden,Jun 20,Netherlands,200.0,160.0,Ashu,Matched,False

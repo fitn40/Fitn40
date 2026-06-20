@@ -38,7 +38,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 39,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,Abhroz,Matched,True
 40,TenWall,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Laakha,Matched,True
 41,Laltu,26,Mexico vs Korea Republic,Jun 18,Draw,100.0,240.0,,Open,True
-42,Peterza,41,France vs Iraq,Jun 22,France,100.0,15.0,,Open,False
+42,Peterza,41,France vs Iraq,Jun 22,France,100.0,15.0,Ankur,Matched,False
 43,Arjun,29,Brazil vs Haiti,Jun 19,Brazil,200.0,40.0,,Open,True
 44,Arjun,30,Scotland vs Morocco,Jun 19,Morocco,200.0,220.0,,Open,True
 45,Arjun,33,Germany vs Côte d'Ivoire,Jun 20,Germany,200.0,130.0,,Open,False

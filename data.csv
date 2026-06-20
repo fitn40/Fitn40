@@ -4,7 +4,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,Laakha,Matched,False
 4,Ankur,31,USA vs Australia,Jun 19,USA,100.0,70.0,Arjun,Matched,True
 5,Ankur,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Arjun,Matched,True
-7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,,Open,False
+7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,Yogi,Matched,False
 8,Ankur,55,Türkiye vs USA,Jun 25,USA,100.0,95.0,TenWall,Matched,False
 9,Abhroz,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,Laakha,Matched,True
 10,Ashu,29,Brazil vs Haiti,Jun 19,Draw,100.0,550.0,TenWall,Matched,True

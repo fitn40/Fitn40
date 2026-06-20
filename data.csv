@@ -58,3 +58,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 59,Laltu,42,Norway vs Senegal,Jun 22,Draw,100.0,230.0,TenWall,Matched,False
 60,TenWall,35,Netherlands vs Sweden,Jun 20,Netherlands,200.0,160.0,Ashu,Matched,False
 61,Laltu,50,South Africa vs Korea Republic,Jun 24,Korea Republic,300.0,390.0,,Open,False
+62,Laltu,39,Spain vs Saudi Arabia,Jun 21,Spain,200.0,60.0,,Open,False

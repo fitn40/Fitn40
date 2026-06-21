@@ -61,3 +61,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 62,Laltu,39,Spain vs Saudi Arabia,Jun 21,Spain,200.0,60.0,TenWall,Matched,False
 63,Arjun,37,Belgium vs IR Iran,Jun 21,Belgium,200.0,90.0,,Open,False
 64,TenWall,44,Jordan vs Algeria,Jun 22,Draw,100.0,220.0,,Open,False
+65,TenWall,42,Norway vs Senegal,Jun 22,Norway,100.0,100.0,,Open,False

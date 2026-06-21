@@ -33,7 +33,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 34,Arjun,23,England vs Croatia,Jun 17,England,100.0,60.0,,Open,True
 35,Arjun,22,Uzbekistan vs Colombia,Jun 17,Colombia,100.0,110.0,,Open,True
 36,Peterza,53,Scotland vs Brazil,Jun 24,Brazil,100.0,55.0,TenWall,Matched,False
-37,Peterza,33,Germany vs Côte d'Ivoire,Jun 20,Germany,100.0,65.0,TenWall,Matched,False
+37,Peterza,33,Germany vs Côte d'Ivoire,Jun 20,Germany,100.0,65.0,TenWall,Matched,True
 38,Peterza,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,,Open,False
 39,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,Abhroz,Matched,True
 40,TenWall,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Laakha,Matched,True
@@ -41,14 +41,14 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 42,Peterza,41,France vs Iraq,Jun 22,France,100.0,15.0,Ankur,Matched,False
 43,Arjun,29,Brazil vs Haiti,Jun 19,Brazil,200.0,40.0,,Open,True
 44,Arjun,30,Scotland vs Morocco,Jun 19,Morocco,200.0,220.0,,Open,True
-45,Arjun,33,Germany vs Côte d'Ivoire,Jun 20,Germany,200.0,130.0,,Open,False
-46,Ankur,34,Ecuador vs Curaçao,Jun 20,Ecuador,100.0,35.0,,Open,False
-47,TenWall,34,Ecuador vs Curaçao,Jun 20,Ecuador,400.0,140.0,,Open,False
-48,TenWall,36,Tunisia vs Japan,Jun 20,Japan,150.0,180.0,,Open,False
-49,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,Abhroz,Matched,False
+45,Arjun,33,Germany vs Côte d'Ivoire,Jun 20,Germany,200.0,130.0,,Open,True
+46,Ankur,34,Ecuador vs Curaçao,Jun 20,Ecuador,100.0,35.0,,Open,True
+47,TenWall,34,Ecuador vs Curaçao,Jun 20,Ecuador,400.0,140.0,,Open,True
+48,TenWall,36,Tunisia vs Japan,Jun 20,Japan,150.0,180.0,,Open,True
+49,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,Abhroz,Matched,True
 50,TenWall,29,Brazil vs Haiti,Jun 19,Brazil,500.0,100.0,,Open,True
 51,TenWall,41,France vs Iraq,Jun 22,France,1000.0,150.0,,Open,False
-52,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,Arjun,Matched,False
+52,TenWall,35,Netherlands vs Sweden,Jun 20,Draw,100.0,240.0,Arjun,Matched,True
 53,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,Ashu,Matched,True
 54,Arjun,31,USA vs Australia,Jun 19,Draw,100.0,260.0,,Open,True
 55,TenWall,37,Belgium vs IR Iran,Jun 21,Belgium,300.0,135.0,,Open,False
@@ -56,6 +56,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 57,TenWall,40,Uruguay vs Cabo Verde,Jun 21,Uruguay,200.0,100.0,Yogi,Matched,False
 58,Peterza,37,Belgium vs IR Iran,Jun 21,Belgium,100.0,45.0,,Open,False
 59,Laltu,42,Norway vs Senegal,Jun 22,Draw,100.0,230.0,TenWall,Matched,False
-60,TenWall,35,Netherlands vs Sweden,Jun 20,Netherlands,200.0,160.0,Ashu,Matched,False
+60,TenWall,35,Netherlands vs Sweden,Jun 20,Netherlands,200.0,160.0,Ashu,Matched,True
 61,Laltu,50,South Africa vs Korea Republic,Jun 24,Korea Republic,300.0,390.0,,Open,False
 62,Laltu,39,Spain vs Saudi Arabia,Jun 21,Spain,200.0,60.0,,Open,False
+63,Arjun,37,Belgium vs IR Iran,Jun 21,Belgium,200.0,90.0,,Open,False

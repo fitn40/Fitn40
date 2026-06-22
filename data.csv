@@ -71,3 +71,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 72,Ashu,44,Jordan vs Algeria,Jun 22,Algeria,100.0,140.0,,Open,False
 73,Laakha,45,Portugal vs Uzbekistan,Jun 23,Portugal,100.0,22.0,,Open,False
 74,Laakha,44,Jordan vs Algeria,Jun 22,Algeria,50.0,70.0,,Open,False
+75,Ankur,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,,Open,False

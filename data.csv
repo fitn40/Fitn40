@@ -63,3 +63,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 64,TenWall,44,Jordan vs Algeria,Jun 22,Draw,100.0,220.0,,Open,False
 65,TenWall,42,Norway vs Senegal,Jun 22,Norway,100.0,100.0,Arjun,Matched,False
 66,Arjun,43,Argentina vs Austria,Jun 22,Draw,100.0,350.0,,Open,False
+67,Arjun,47,England vs Ghana,Jun 23,England,200.0,70.0,,Open,False

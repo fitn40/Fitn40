@@ -68,3 +68,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 69,Laltu,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,Mantekwal,Matched,False
 70,Laakha,55,Türkiye vs USA,Jun 25,USA,80.0,76.0,,Open,False
 71,Abhroz,63,Cabo Verde vs Saudi Arabia,Jun 26,Cabo Verde,100.0,220.0,,Open,False
+72,Ashu,44,Jordan vs Algeria,Jun 22,Algeria,100.0,140.0,,Open,False

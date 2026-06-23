@@ -84,7 +84,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 85,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,70.0,,Open,False
 86,Arjun,65,Norway vs France,Jun 26,France,100.0,60.0,,Open,False
 87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
-88,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
 89,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,65.0,,Open,False
 90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False
 91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,False

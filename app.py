@@ -143,6 +143,14 @@ def save_all_bets_permanently(bets_list):
             repo.update_file(contents.path, "🔄 Live Bets Auto-Sync", csv_string, contents.sha)
         except:
             pass
+            
+def execute_backend_deletion(bet_id_to_remove):
+    # Filter out the targeted bet ID from the master list
+    updated_bets = [b for b in combined_bets if int(b.get("Bet_ID", 0)) != int(bet_id_to_remove)]
+    save_all_bets_permanently(updated_bets)
+    st.success(f"🗑️ Bet #{bet_id_to_remove} deleted successfully from backend!")
+    st.rerun()
+    
 
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
@@ -233,6 +241,7 @@ elif st.session_state.current_page == "dashboard":
     open_bets = sorted(open_bets, key=get_bet_sort_date)
     live_bets = sorted(live_bets, key=get_bet_sort_date)
 
+    
     # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")
     if not open_bets:
@@ -242,7 +251,14 @@ elif st.session_state.current_page == "dashboard":
             with st.container(border=True):
                 st.markdown(f"🗓️ **Match Date:** {bet.get('Match_Date')} | **{bet.get('Creator')}** backs **{bet.get('Prediction')}**")
                 st.caption(f"Fixture: {bet.get('Match_Name')} | Stakes: {bet.get('Points')} pts vs {bet.get('Opponent_Payout')} pts")
-                if bet.get('Creator').lower() != st.session_state.player_name.lower():
+                
+                is_bet_creator = bet.get('Creator').lower() == st.session_state.player_name.lower()
+                
+                if is_admin or is_bet_creator:
+                    if st.button(f"🗑️ Delete Offer #{bet.get('Bet_ID')}", key=f"del_open_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
+                        execute_backend_deletion(bet.get('Bet_ID'))
+                
+                if not is_bet_creator:
                     if st.button(f"🤝 Match Offer #{bet.get('Bet_ID')}", key=f"m_{bet.get('Bet_ID')}", use_container_width=True):
                         st.session_state.selected_bet_to_match = bet
                         st.session_state.current_page = "confirm_match"
@@ -261,7 +277,11 @@ elif st.session_state.current_page == "dashboard":
                 risk_pts = bet.get('Points', 100)
                 win_pts = bet.get('Opponent_Payout', 55)
                 st.write(f"📢 **{bet.get('Creator')}** bet on **{bet.get('Prediction')}** (Risking: {risk_pts} pts / Winning: {win_pts} pts) with **{bet.get('Opponent')}**.")
-
+                
+                if is_admin:
+                    if st.button(f"🚨 Admin Override: Force Delete #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
+                        execute_backend_deletion(bet.get('Bet_ID'))
+                        
 
 # ==========================================
 # 📊 UI SCREEN: TOURNAMENT BOARD (LIVE EXCEL)

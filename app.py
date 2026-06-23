@@ -337,11 +337,20 @@ elif st.session_state.current_page == "new_bet":
         selected_prediction = st.selectbox("🔮 Outcome Selection:", options=["-- Select --", match_row['Home_Team'], match_row['Away_Team'], "Draw"])
         
         if selected_prediction != "-- Select --":
-            points = st.number_input("💰 Points Risk Stake Allocation:", min_value=1, value=100)
-            odds = float(match_row['Home_Win_Odds'] if selected_prediction == match_row['Home_Team'] else (match_row['Away_Win_Odds'] if selected_prediction == match_row['Away_Team'] else match_row['Draw_Odds']))
-            payout = round(points * (odds - 1), 2)
-            st.metric("Opponent Must Risk Allocation:", f"{payout} pts")
+        # 💰 UNLOCKED RISK & WIN SELECTION EXCHANGE
+            points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
+            # Use the matrix odds to calculate a smart initial recommendation
+            odds = float(match_row['Home_Win_Odds'] if selected_prediction == match_row['Home_Team'] else (match_row['Away_Win_Odds'] if selected_prediction == match_row['Away_Team'] else match_row['Draw_Odds']))
+            default_payout = int(round(points * (odds - 1), 0))
+            
+            # Fully unlocked win input box with adjusters (+ / -)
+            payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)
+            
+            # Display information layout for the player
+            custom_odds = round((payout / points) + 1, 2) if points > 0 else 0
+            st.caption(f"💡 Implied custom odds layout: {custom_odds}x (Your opponent risks {payout} pts to win {points} pts)")
+
             if st.button("🚀 Publish Offer to Board", use_container_width=True, type="primary"):
                 if not combined_bets:
                     next_id = 1

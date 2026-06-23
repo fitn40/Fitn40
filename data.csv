@@ -80,3 +80,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,,Open,False
 82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,,Open,False
 83,TenWall,41,France vs Iraq,Jun 22,France,600.0,90.0,,Open,True
+84,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False

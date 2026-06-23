@@ -82,3 +82,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
 90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False
 91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,False
+92,Ashu,45,Portugal vs Uzbekistan,Jun 23,Portugal,115.0,50.0,,Open,False

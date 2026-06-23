@@ -77,7 +77,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 78,Ankur,53,Scotland vs Brazil,Jun 24,Brazil,100.0,55.0,,Open,False
 79,Laakha,55,Türkiye vs USA,Jun 25,USA,200.0,190.0,,Open,False
 80,TenWall,43,Argentina vs Austria,Jun 22,Argentina,250.0,100.0,,Open,True
-81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,,Open,False
+81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,False
 82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,,Open,False
 83,TenWall,41,France vs Iraq,Jun 22,France,600.0,90.0,,Open,True
 84,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False

@@ -249,8 +249,36 @@ elif st.session_state.current_page == "dashboard":
     else:
         for bet in open_bets:
             with st.container(border=True):
-                st.markdown(f"🗓️ **Match Date:** {bet.get('Match_Date')} | **{bet.get('Creator')}** backs **{bet.get('Prediction')}**")
-                st.caption(f"Fixture: {bet.get('Match_Name')} | Stakes: {bet.get('Points')} pts vs {bet.get('Opponent_Payout')} pts")
+                # 🔍 1. Background lookup to grab original market baseline payout
+                try:
+                    m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
+                    prediction_type = bet.get('Prediction')
+                    
+                    if prediction_type == m_lookup['Home_Team']:
+                        m_odds = m_lookup['Home_Win_Odds']
+                    elif prediction_type == m_lookup['Away_Team']:
+                        m_odds = m_lookup['Away_Win_Odds']
+                    else:
+                        m_odds = m_lookup['Draw_Odds']
+                    
+                    # Calculate what the market payout would have been for this risk amount
+                    b_pts = float(bet.get('Points', 100))
+                    market_payout = float(round(b_pts * (m_odds - 1), 1))
+                    market_str = f"Market Odds - {market_payout} pts"
+                except:
+                    market_str = "Market Odds - N/A"
+
+                # 📊 2. Read current offer numbers
+                b_creator = bet.get('Creator')
+                b_pred = bet.get('Prediction')
+                b_match = bet.get('Match_Name')
+                b_risk = float(bet.get('Points', 0))
+                b_payout = float(bet.get('Opponent_Payout', 0))
+
+                # 📱 3. Render your custom clean layout strings
+                st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
+                st.write(f"Fixture: {b_match} | Stakes: {b_risk} pts vs {b_payout} pts ({market_str})")
+
                 
                 is_bet_creator = bet.get('Creator').lower() == st.session_state.player_name.lower()
                 

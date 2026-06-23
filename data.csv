@@ -81,3 +81,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,,Open,False
 83,TenWall,41,France vs Iraq,Jun 22,France,600.0,90.0,,Open,True
 84,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False
+85,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,70.0,,Open,False

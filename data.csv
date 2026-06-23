@@ -86,4 +86,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
 88,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
 89,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,65.0,,Open,False
-90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,,Open,False
+90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False

@@ -84,3 +84,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 98,Arjun,53,Scotland vs Brazil,Jun 24,Brazil,100.0,75.0,,Open,False
 99,Arjun,54,Morocco vs Haiti,Jun 24,Morocco,100.0,60.0,,Open,False
 100,Arjun,56,Paraguay vs Australia,Jun 25,Australia,100.0,200.0,,Open,False
+101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,,Open,False

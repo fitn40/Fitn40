@@ -89,3 +89,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 103,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
 104,Arjun,64,Uruguay vs Spain,Jun 26,Spain,100.0,70.0,,Open,False
 105,Arjun,65,Norway vs France,Jun 26,France,100.0,70.0,,Open,False
+106,Arjun,68,Jordan vs Argentina,Jun 27,Argentina,100.0,40.0,,Open,False

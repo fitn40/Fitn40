@@ -80,3 +80,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,True
 95,TenWall,50,South Africa vs Korea Republic,Jun 24,Korea Republic,100.0,120.0,,Open,False
 96,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False
+97,Arjun,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,140.0,,Open,False

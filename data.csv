@@ -87,3 +87,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,,Open,False
 102,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,75.0,,Open,False
 103,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
+104,Arjun,64,Uruguay vs Spain,Jun 26,Spain,100.0,70.0,,Open,False

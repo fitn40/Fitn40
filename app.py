@@ -301,12 +301,16 @@ elif st.session_state.current_page == "dashboard":
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                # 📱 3. Render your custom clean layout strings
+                # 📱 3. Render the Crystal Clear Open Stakes Layout
                 st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
-                st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match} | Stakes: {b_risk} pts vs {b_payout} pts ({market_str})")
-
-
+                st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
                 
+                # Highlight exactly who puts up what points
+                st.markdown(f"🔹 **Creator Risks:** {b_risk} pts to win {b_payout} pts")
+                st.markdown(f"🔸 **You Must Risk:** {b_payout} pts to win {b_risk} pts *({market_str})*")
+
+
+    
                 is_bet_creator = bet.get('Creator').lower() == st.session_state.player_name.lower()
                 
                 if is_admin or is_bet_creator:

@@ -101,3 +101,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 115,TenWall,60,Tunisia vs Netherlands,Jun 25,Netherlands,1000.0,120.0,Arjun,Matched,False
 116,Vimal,68,Jordan vs Argentina,Jun 27,Argentina,100.0,50.0,,Open,False
 117,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,60.0,,Open,False
+118,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,50.0,,Open,False

@@ -95,3 +95,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 109,Arjun,71,Panama vs England,Jun 27,England,100.0,48.0,,Open,False
 110,Arjun,68,Jordan vs Argentina,Jun 27,Argentina,100.0,40.0,,Open,False
 111,TenWall,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,130.0,,Open,False
+112,TenWall,52,Bosnia & Herz. vs Qatar,Jun 24,Draw,100.0,400.0,,Open,False

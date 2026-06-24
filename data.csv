@@ -62,20 +62,21 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 64,TenWall,44,Jordan vs Algeria,Jun 22,Draw,100.0,220.0,Mantekwal,Matched,True
 65,TenWall,42,Norway vs Senegal,Jun 22,Norway,100.0,100.0,Arjun,Matched,True
 66,Arjun,43,Argentina vs Austria,Jun 22,Draw,100.0,350.0,Abhroz,Matched,True
-67,Arjun,47,England vs Ghana,Jun 23,England,200.0,70.0,,Open,False
+67,Arjun,47,England vs Ghana,Jun 23,England,200.0,70.0,,Open,True
 68,Ankur,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,Mantekwal,Matched,True
 69,Laltu,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,Mantekwal,Matched,True
 71,Abhroz,63,Cabo Verde vs Saudi Arabia,Jun 26,Cabo Verde,100.0,220.0,Mantekwal,Matched,False
 72,Ashu,44,Jordan vs Algeria,Jun 22,Algeria,100.0,140.0,,Open,True
-73,Laakha,45,Portugal vs Uzbekistan,Jun 23,Portugal,100.0,22.0,,Open,False
+73,Laakha,45,Portugal vs Uzbekistan,Jun 23,Portugal,100.0,22.0,,Open,True
 74,Laakha,44,Jordan vs Algeria,Jun 22,Algeria,50.0,70.0,,Open,True
-75,Ankur,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,False
-76,Ankur,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,,Open,False
+75,Ankur,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,True
+76,Ankur,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,,Open,True
 80,TenWall,43,Argentina vs Austria,Jun 22,Argentina,250.0,100.0,,Open,True
-81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,False
-82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,Ashu,Matched,False
+81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,True
+82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,Ashu,Matched,True
 83,TenWall,41,France vs Iraq,Jun 22,France,600.0,90.0,,Open,True
 87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
 90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False
-91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,False
+91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,True
 95,TenWall,50,South Africa vs Korea Republic,Jun 24,Korea Republic,100.0,120.0,,Open,False
+96,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False

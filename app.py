@@ -380,7 +380,14 @@ elif st.session_state.current_page == "confirm_match":
             st.markdown("---")
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses/draws)*")
-            st.write(f"📉 **Standard Market Payout for this stake:** {market_str}")
+            
+            # 🏛️ Calculate and show the market odds equivalent (Opponent Risk / Opponent Win)
+            try:
+                # market_payout is what the market says the opponent's risk SHOULD be for the creator's stake
+                st.write(f"📊 **Market odds for the bet is:** {market_payout} (you lose) / {creator_risk} (you win)")
+            except:
+                st.write(f"📊 **Market odds for the bet is:** N/A")
+
 
         st.warning("⚠️ Once confirmed, this transaction is locked and cannot be deleted by either player.")
 

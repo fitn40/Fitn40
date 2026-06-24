@@ -277,7 +277,8 @@ elif st.session_state.current_page == "dashboard":
 
                 # 📱 3. Render your custom clean layout strings
                 st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
-                st.write(f"Fixture: {b_match} | Stakes: {b_risk} pts vs {b_payout} pts ({market_str})")
+                st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match} | Stakes: {b_risk} pts vs {b_payout} pts ({market_str})")
+
 
                 
                 is_bet_creator = bet.get('Creator').lower() == st.session_state.player_name.lower()
@@ -337,20 +338,67 @@ elif st.session_state.current_page == "view_excel":
 # 🤝 UI SCREEN: CONFIRM TO MATCH OFFER
 # ==========================================
 elif st.session_state.current_page == "confirm_match":
-    bet = st.session_state.selected_bet_to_match
-    st.title("🤝 Lock Match Confirmation")
-    st.write(f"Accepting **{bet.get('Creator')}**'s bet on **{bet.get('Match_Name')}** ({bet.get('Match_Date')})")
-    if st.button("✅ Confirm & Lock Bet", use_container_width=True, type="primary"):
-        for b in combined_bets:
-            if b["Bet_ID"] == bet["Bet_ID"]:
-                b["Status"] = "Matched"
-                b["Opponent"] = st.session_state.player_name
-        save_all_bets_permanently(combined_bets)
-        st.session_state.current_page = "dashboard"
-        st.rerun()
-    if st.button("⬅ Cancel", use_container_width=True):
-        st.session_state.current_page = "dashboard"
-        st.rerun()
+    st.title("🤝 Confirm Your Match Selection")
+    
+    bet = st.session_state.get("selected_bet_to_match", {})
+    if not bet:
+        st.error("No bet selected.")
+        if st.button("⬅ Return to Dashboard", use_container_width=True):
+            st.session_state.current_page = "dashboard"
+            st.rerun()
+    else:
+        # 🔍 Look up original market odds for reference summary
+        try:
+            m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
+            prediction_type = bet.get('Prediction')
+            if prediction_type == m_lookup['Home_Team']:
+                m_odds = m_lookup['Home_Win_Odds']
+            elif prediction_type == m_lookup['Away_Team']:
+                m_odds = m_lookup['Away_Win_Odds']
+            else:
+                m_odds = m_lookup['Draw_Odds']
+            
+            b_pts = float(bet.get('Points', 100))
+            market_payout = float(round(b_pts * (m_odds - 1), 1))
+            market_str = f"{market_payout} pts"
+        except:
+            market_str = "N/A"
+
+        # 📊 Extract exact stakes values
+        creator_name = bet.get('Creator')
+        match_title = bet.get('Match_Name')
+        prediction = bet.get('Prediction')
+        creator_risk = float(bet.get('Points', 0))
+        your_risk = float(bet.get('Opponent_Payout', 0))
+
+        # 📋 Summary Breakdown Card Display
+        with st.container(border=True):
+            st.subheader("📊 Bet Transaction Summary")
+            st.write(f"📅 **Match Date:** {bet.get('Match_Date')}")
+            st.write(f"⚽ **Fixture:** {match_title}")
+            st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
+            st.markdown("---")
+            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses/draws)*")
+            st.write(f"📉 **Standard Market Payout for this stake:** {market_str}")
+
+        st.warning("⚠️ Once confirmed, this transaction is locked and cannot be deleted by either player.")
+
+        # 🛑 Execution Buttons
+        if st.button("✅ Confirm & Lock Bet", use_container_width=True, type="primary"):
+            for b in combined_bets:
+                if int(b.get("Bet_ID", 0)) == int(bet.get("Bet_ID", 0)):
+                    b["Status"] = "Matched"
+                    b["Opponent"] = str(st.session_state.player_name)
+            
+            save_all_bets_permanently(combined_bets)
+            st.success("🔒 Bet matched and locked into ledger permanently!")
+            st.session_state.current_page = "dashboard"
+            st.rerun()
+
+        if st.button("⬅ Cancel & Go Back", use_container_width=True):
+            st.session_state.current_page = "dashboard"
+            st.rerun()
 
 # ==========================================
 # 🎲 UI SCREEN: CREATE NEW BET OFFERS

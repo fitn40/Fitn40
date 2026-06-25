@@ -103,3 +103,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 118,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,50.0,,Open,True
 119,Vimal,55,Türkiye vs USA,Jun 25,USA,100.0,75.0,Arjun,Matched,False
 120,Vimal,59,Japan vs Sweden,Jun 25,Japan,100.0,80.0,Arjun,Matched,False
+121,Arjun,58,Ecuador vs Germany,Jun 25,Draw,100.0,300.0,,Open,False

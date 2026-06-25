@@ -111,4 +111,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 127,Laakha,71,Panama vs England,Jun 27,England,250.0,50.0,Arjun,Matched,False
 128,Laakha,55,Türkiye vs USA,Jun 25,USA,100.0,80.0,Ashu,Matched,False
 129,TenWall,61,Egypt vs IR Iran,Jun 26,Egypt,200.0,120.0,,Open,False
-130,TenWall,62,New Zealand vs Belgium,Jun 26,Belgium,200.0,100.0,,Open,False

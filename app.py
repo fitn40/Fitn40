@@ -325,7 +325,20 @@ elif st.session_state.current_page == "dashboard":
         st.caption("No matched transactions are locked right now.")
     else:
         for bet in live_bets:
-            with st.container(border=True):
+            # 🟢 Custom green container card breakout
+            with st.container():
+                st.markdown(
+                    """
+                    <div style="background-color: rgba(39, 174, 96, 0.1); 
+                                border: 2px solid #27ae60; 
+                                padding: 15px; 
+                                border-radius: 6px; 
+                                margin-bottom: 10px;">
+                    """, 
+                    unsafe_allow_html=True
+                )
+                
+                # 📱 (Keep all your existing inner text/write elements exactly the same here)
                 st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
                 st.write(f"📅 **Kickoff Date:** {bet.get('Match_Date')} | **Match:** {bet.get('Match_Name')}")
                 
@@ -336,6 +349,10 @@ elif st.session_state.current_page == "dashboard":
                 if is_admin:
                     if st.button(f"🚨 Admin Override: Force Delete #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
                         execute_backend_deletion(bet.get('Bet_ID'))
+                
+                # Close the custom HTML green border layout wrapper cleanly
+                st.markdown("</div>", unsafe_allow_html=True)
+
                         
 
 # ==========================================

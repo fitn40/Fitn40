@@ -105,3 +105,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 120,Vimal,59,Japan vs Sweden,Jun 25,Japan,100.0,80.0,Arjun,Matched,False
 121,Arjun,58,Ecuador vs Germany,Jun 25,Draw,100.0,300.0,,Open,False
 122,Arjun,61,Egypt vs IR Iran,Jun 26,Draw,100.0,300.0,,Open,False
+123,Peteza,62,New Zealand vs Belgium,Jun 26,Belgium,100.0,55.0,,Open,False

@@ -112,3 +112,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 128,Laakha,55,Türkiye vs USA,Jun 25,USA,100.0,80.0,Ashu,Matched,False
 129,TenWall,61,Egypt vs IR Iran,Jun 26,Egypt,200.0,120.0,,Open,False
 130,TenWall,62,New Zealand vs Belgium,Jun 26,Belgium,200.0,90.0,,Open,False
+131,TenWall,66,Senegal vs Iraq,Jun 26,Senegal,150.0,92.0,,Open,False

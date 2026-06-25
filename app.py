@@ -252,20 +252,31 @@ elif st.session_state.current_page == "dashboard":
     open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
-    # 🔄 CHRONOLOGICAL DATE-SORTING ENGINE
-    def get_bet_sort_date(b):
+     # 🔄 CHRONOLOGICAL DATE-SORTING ENGINE (Date Ascending + Newest Bet ID First)
+    def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
-                return match_row.iloc[0]['Match_Date_Obj']
+                sort_date = match_row.iloc[0]['Match_Date_Obj']
+            else:
+                sort_date = current_date.date()
         except:
-            pass
-        return current_date.date()
+            sort_date = current_date.date()
+        
+        # Extract numerical Bet_ID safely
+        try:
+            b_id = int(b.get("Bet_ID", 0))
+        except:
+            b_id = 0
+            
+        # Returning -b_id forces the newest bet submissions to bubble to the top of that specific date
+        return (sort_date, -b_id)
 
-    # Sort both lists so the earliest matches appear at the top
-    open_bets = sorted(open_bets, key=get_bet_sort_date)
-    live_bets = sorted(live_bets, key=get_bet_sort_date)
+    # Sort both lists dynamically to show your newest creations first
+    open_bets = sorted(open_bets, key=get_bet_sort_key)
+    live_bets = sorted(live_bets, key=get_bet_sort_key)
+
 
     
     # 📋 1. Unmatched Open Block
@@ -319,36 +330,50 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-    # 🔥 2. Live Matched Locked Block
+        # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
     else:
         for bet in live_bets:
-            # 🟢 Custom green container card breakout
-            with st.container():
-                st.markdown(
-                    """
-                    <div style="background-color: rgba(39, 174, 96, 0.1); 
-                                border: 2px solid #27ae60; 
-                                padding: 15px; 
-                                border-radius: 6px; 
-                                margin-bottom: 10px;">
-                    """, 
-                    unsafe_allow_html=True
-                )
-                
-                # 📱 (Keep all your existing inner text/write elements exactly the same here)
-                st.markdown(f"🔒 **{bet.get('Creator')}** 🆚 **{bet.get('Opponent')}**")
-                st.write(f"📅 **Kickoff Date:** {bet.get('Match_Date')} | **Match:** {bet.get('Match_Name')}")
-                
-                risk_pts = bet.get('Points', 100)
-                win_pts = bet.get('Opponent_Payout', 55)
-                st.write(f"📢 **{bet.get('Creator')}** bet on **{bet.get('Prediction')}** (Risking: {risk_pts} pts / Winning: {win_pts} pts) with **{bet.get('Opponent')}**.")
-                
-                if is_admin:
-                    if st.button(f"🚨 Admin Override: Force Delete #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
-                        execute_backend_deletion(bet.get('Bet_ID'))
+            # Safely extract and format points data
+            try:
+                risk_pts = float(bet.get('Points', 100))
+                win_pts = float(bet.get('Opponent_Payout', 55))
+            except:
+                risk_pts = 100.0
+                win_pts = 55.0
+
+            # 🟢 Unified HTML card wrapper rendering all text content together
+            st.markdown(
+                f"""
+                <div style="background-color: rgba(39, 174, 96, 0.08); 
+                            border: 2px solid #27ae60; 
+                            padding: 15px; 
+                            border-radius: 6px; 
+                            margin-bottom: 12px;
+                            color: #f4efe3;
+                            font-family: sans-serif;">
+                    <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px;">
+                        🔒 {bet.get('Creator')} <span style="color: #7fa493; font-weight: normal; font-size: 0.85rem;">VS</span> {bet.get('Opponent')}
+                    </div>
+                    <div style="font-size: 0.85rem; color: #7fa493; margin-bottom: 8px;">
+                        📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
+                    </div>
+                    <div style="font-size: 0.9rem; line-height: 1.4;">
+                        📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
+                        (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
+                    </div>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+            
+            # Place the admin delete button neatly directly below the styled card row
+            if is_admin:
+                if st.button(f"🚨 Admin Override: Force Delete #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
+                    execute_backend_deletion(bet.get('Bet_ID'))
+
                 
                 # Close the custom HTML green border layout wrapper cleanly
                 st.markdown("</div>", unsafe_allow_html=True)

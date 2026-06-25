@@ -1,7 +1,7 @@
 Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout,Opponent,Status,Is_Expired
-1,Ashu,50,South Africa vs Korea Republic,Jun 24,Draw,100.0,230.0,Laakha,Matched,False
+1,Ashu,50,South Africa vs Korea Republic,Jun 24,Draw,100.0,230.0,Laakha,Matched,True
 2,Ankur,28,Canada vs Qatar,Jun 18,Canada,100.0,55.0,Ashu,Matched,True
-3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,Laakha,Matched,False
+3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,Laakha,Matched,True
 4,Ankur,31,USA vs Australia,Jun 19,USA,100.0,70.0,Arjun,Matched,True
 5,Ankur,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Arjun,Matched,True
 7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,Yogi,Matched,False
@@ -32,7 +32,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 33,Arjun,21,Portugal vs Congo DR,Jun 17,Portugal,100.0,40.0,,Open,True
 34,Arjun,23,England vs Croatia,Jun 17,England,100.0,60.0,,Open,True
 35,Arjun,22,Uzbekistan vs Colombia,Jun 17,Colombia,100.0,110.0,,Open,True
-36,Peterza,53,Scotland vs Brazil,Jun 24,Brazil,100.0,55.0,TenWall,Matched,False
+36,Peterza,53,Scotland vs Brazil,Jun 24,Brazil,100.0,55.0,TenWall,Matched,True
 37,Peterza,33,Germany vs Côte d'Ivoire,Jun 20,Germany,100.0,65.0,TenWall,Matched,True
 38,Peterza,43,Argentina vs Austria,Jun 22,Argentina,100.0,40.0,Arjun,Matched,True
 39,TenWall,30,Scotland vs Morocco,Jun 19,Draw,100.0,230.0,Abhroz,Matched,True
@@ -78,13 +78,13 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
 90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False
 91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,True
-95,TenWall,50,South Africa vs Korea Republic,Jun 24,Korea Republic,100.0,120.0,,Open,False
-96,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,False
-97,Arjun,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,140.0,,Open,False
-98,Arjun,53,Scotland vs Brazil,Jun 24,Brazil,100.0,75.0,,Open,False
-99,Arjun,54,Morocco vs Haiti,Jun 24,Morocco,100.0,60.0,,Open,False
+95,TenWall,50,South Africa vs Korea Republic,Jun 24,Korea Republic,100.0,120.0,,Open,True
+96,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,True
+97,Arjun,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,140.0,,Open,True
+98,Arjun,53,Scotland vs Brazil,Jun 24,Brazil,100.0,75.0,,Open,True
+99,Arjun,54,Morocco vs Haiti,Jun 24,Morocco,100.0,60.0,,Open,True
 100,Arjun,56,Paraguay vs Australia,Jun 25,Australia,100.0,200.0,,Open,False
-101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,,Open,False
+101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,Ashu,Matched,False
 102,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,75.0,,Open,False
 103,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
 104,Arjun,64,Uruguay vs Spain,Jun 26,Spain,100.0,70.0,,Open,False
@@ -94,10 +94,10 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 108,Arjun,70,Congo DR vs Uzbekistan,Jun 27,Congo DR,100.0,100.0,,Open,False
 109,Arjun,71,Panama vs England,Jun 27,England,100.0,48.0,,Open,False
 110,Arjun,68,Jordan vs Argentina,Jun 27,Argentina,100.0,40.0,,Open,False
-111,TenWall,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,130.0,Arjun,Matched,False
-112,TenWall,52,Bosnia & Herz. vs Qatar,Jun 24,Draw,100.0,400.0,Arjun,Matched,False
-113,TenWall,54,Morocco vs Haiti,Jun 24,Morocco,500.0,90.0,Arjun,Matched,False
+111,TenWall,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,130.0,Arjun,Matched,True
+112,TenWall,52,Bosnia & Herz. vs Qatar,Jun 24,Draw,100.0,400.0,Arjun,Matched,True
+113,TenWall,54,Morocco vs Haiti,Jun 24,Morocco,500.0,90.0,Arjun,Matched,True
 114,TenWall,57,Curaçao vs Côte d'Ivoire,Jun 25,Côte d'Ivoire,500.0,85.0,Arjun,Matched,False
 115,TenWall,60,Tunisia vs Netherlands,Jun 25,Netherlands,1000.0,120.0,Arjun,Matched,False
 116,Vimal,68,Jordan vs Argentina,Jun 27,Argentina,100.0,50.0,,Open,False
-118,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,50.0,,Open,False
+118,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,50.0,,Open,True

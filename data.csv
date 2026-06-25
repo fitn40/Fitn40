@@ -105,7 +105,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 121,Arjun,58,Ecuador vs Germany,Jun 25,Draw,100.0,300.0,Laakha,Matched,False
 122,Arjun,61,Egypt vs IR Iran,Jun 26,Draw,100.0,300.0,,Open,False
 123,Peteza,62,New Zealand vs Belgium,Jun 26,Belgium,100.0,65.0,,Open,False
-124,Ashu,59,Japan vs Sweden,Jun 25,Japan,100.0,90.0,,Open,False
+124,Ashu,59,Japan vs Sweden,Jun 25,Japan,100.0,90.0,Vimal,Matched,False
 125,Laakha,65,Norway vs France,Jun 26,France,100.0,60.0,,Open,False
 126,Laakha,68,Jordan vs Argentina,Jun 27,Argentina,200.0,50.0,,Open,False
 127,Laakha,71,Panama vs England,Jun 27,England,250.0,50.0,Arjun,Matched,False

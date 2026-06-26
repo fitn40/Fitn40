@@ -114,5 +114,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 132,TenWall,61,Egypt vs IR Iran,Jun 26,Egypt,200.0,120.0,Himadri,Matched,False
 133,Laltu,67,Algeria vs Austria,Jun 27,Austria,100.0,150.0,,Open,False
 134,Laltu,72,Croatia vs Ghana,Jun 27,Draw,100.0,180.0,Laakha,Matched,False
-136,Himadri,64,Uruguay vs Spain,Jun 26,Draw,150.0,200.0,,Open,False
+136,Himadri,64,Uruguay vs Spain,Jun 26,Draw,150.0,200.0,Laltu,Matched,False
 137,Peteza,64,Uruguay vs Spain,Jun 26,Spain,100.0,55.0,,Open,False

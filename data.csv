@@ -116,3 +116,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 134,Laltu,72,Croatia vs Ghana,Jun 27,Draw,100.0,180.0,Laakha,Matched,False
 136,Himadri,64,Uruguay vs Spain,Jun 26,Draw,150.0,200.0,Laltu,Matched,False
 137,Peteza,64,Uruguay vs Spain,Jun 26,Spain,100.0,55.0,TenWall,Matched,False
+138,TenWall,63,Cabo Verde vs Saudi Arabia,Jun 26,Draw,100.0,250.0,,Open,False

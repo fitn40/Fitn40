@@ -116,3 +116,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 137,Peteza,64,Uruguay vs Spain,Jun 26,Spain,100.0,55.0,TenWall,Matched,False
 138,TenWall,63,Cabo Verde vs Saudi Arabia,Jun 26,Draw,100.0,250.0,,Open,False
 139,TenWall,66,Senegal vs Iraq,Jun 26,Senegal,150.0,92.0,,Open,False
+140,TenWall,62,New Zealand vs Belgium,Jun 26,Belgium,200.0,90.0,,Open,False

@@ -4,8 +4,8 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 3,Ankur,52,Bosnia & Herz. vs Qatar,Jun 24,Bosnia & Herz.,100.0,90.0,Laakha,Matched,True
 4,Ankur,31,USA vs Australia,Jun 19,USA,100.0,70.0,Arjun,Matched,True
 5,Ankur,32,Türkiye vs Paraguay,Jun 19,Türkiye,150.0,180.0,Arjun,Matched,True
-7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,Yogi,Matched,False
-8,Ankur,55,Türkiye vs USA,Jun 25,USA,100.0,95.0,TenWall,Matched,False
+7,Ankur,56,Paraguay vs Australia,Jun 25,Australia,100.0,170.0,Yogi,Matched,True
+8,Ankur,55,Türkiye vs USA,Jun 25,USA,100.0,95.0,TenWall,Matched,True
 9,Abhroz,19,Argentina vs Algeria,Jun 16,Argentina,100.0,30.0,Laakha,Matched,True
 10,Ashu,29,Brazil vs Haiti,Jun 19,Draw,100.0,550.0,TenWall,Matched,True
 11,Mantekwal,20,Austria vs Jordan,Jun 16,Austria,60.0,39.0,,Open,True
@@ -75,18 +75,17 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 81,TenWall,46,Colombia vs Congo DR,Jun 23,Colombia,100.0,70.0,Arjun,Matched,True
 82,TenWall,48,Panama vs Croatia,Jun 23,Croatia,100.0,80.0,Ashu,Matched,True
 83,TenWall,41,France vs Iraq,Jun 22,France,600.0,90.0,,Open,True
-87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,False
-90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,False
+87,Arjun,59,Japan vs Sweden,Jun 25,Draw,100.0,220.0,TenWall,Matched,True
+90,Arjun,55,Türkiye vs USA,Jun 25,Draw,100.0,250.0,TenWall,Matched,True
 91,TenWall,47,England vs Ghana,Jun 23,England,300.0,105.0,,Open,True
 95,TenWall,50,South Africa vs Korea Republic,Jun 24,Korea Republic,100.0,120.0,,Open,True
 96,Arjun,49,Czechia vs Mexico,Jun 24,Mexico,100.0,100.0,,Open,True
 97,Arjun,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,140.0,,Open,True
 98,Arjun,53,Scotland vs Brazil,Jun 24,Brazil,100.0,75.0,,Open,True
 99,Arjun,54,Morocco vs Haiti,Jun 24,Morocco,100.0,60.0,,Open,True
-100,Arjun,56,Paraguay vs Australia,Jun 25,Australia,100.0,200.0,,Open,False
-101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,Ashu,Matched,False
-102,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,75.0,,Open,False
-103,Arjun,61,Egypt vs IR Iran,Jun 26,Egypt,100.0,150.0,,Open,False
+100,Arjun,56,Paraguay vs Australia,Jun 25,Australia,100.0,200.0,,Open,True
+101,Arjun,58,Ecuador vs Germany,Jun 25,Germany,100.0,80.0,Ashu,Matched,True
+102,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,75.0,,Open,True
 104,Arjun,64,Uruguay vs Spain,Jun 26,Spain,100.0,70.0,,Open,False
 105,Arjun,65,Norway vs France,Jun 26,France,100.0,70.0,Ashu,Matched,False
 106,Arjun,68,Jordan vs Argentina,Jun 27,Argentina,100.0,40.0,,Open,False
@@ -96,20 +95,20 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 111,TenWall,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,130.0,Arjun,Matched,True
 112,TenWall,52,Bosnia & Herz. vs Qatar,Jun 24,Draw,100.0,400.0,Arjun,Matched,True
 113,TenWall,54,Morocco vs Haiti,Jun 24,Morocco,500.0,90.0,Arjun,Matched,True
-114,TenWall,57,Curaçao vs Côte d'Ivoire,Jun 25,Côte d'Ivoire,500.0,85.0,Arjun,Matched,False
-115,TenWall,60,Tunisia vs Netherlands,Jun 25,Netherlands,1000.0,120.0,Arjun,Matched,False
+114,TenWall,57,Curaçao vs Côte d'Ivoire,Jun 25,Côte d'Ivoire,500.0,85.0,Arjun,Matched,True
+115,TenWall,60,Tunisia vs Netherlands,Jun 25,Netherlands,1000.0,120.0,Arjun,Matched,True
 116,Vimal,68,Jordan vs Argentina,Jun 27,Argentina,100.0,50.0,,Open,False
 118,Vimal,54,Morocco vs Haiti,Jun 24,Morocco,100.0,50.0,,Open,True
-119,Vimal,55,Türkiye vs USA,Jun 25,USA,100.0,75.0,Arjun,Matched,False
-120,Vimal,59,Japan vs Sweden,Jun 25,Japan,100.0,80.0,Arjun,Matched,False
-121,Arjun,58,Ecuador vs Germany,Jun 25,Draw,100.0,300.0,Laakha,Matched,False
+119,Vimal,55,Türkiye vs USA,Jun 25,USA,100.0,75.0,Arjun,Matched,True
+120,Vimal,59,Japan vs Sweden,Jun 25,Japan,100.0,80.0,Arjun,Matched,True
+121,Arjun,58,Ecuador vs Germany,Jun 25,Draw,100.0,300.0,Laakha,Matched,True
 122,Arjun,61,Egypt vs IR Iran,Jun 26,Draw,100.0,300.0,,Open,False
 123,Peteza,62,New Zealand vs Belgium,Jun 26,Belgium,100.0,65.0,,Open,False
-124,Ashu,59,Japan vs Sweden,Jun 25,Japan,100.0,90.0,Vimal,Matched,False
+124,Ashu,59,Japan vs Sweden,Jun 25,Japan,100.0,90.0,Vimal,Matched,True
 125,Laakha,65,Norway vs France,Jun 26,France,100.0,60.0,,Open,False
 126,Laakha,68,Jordan vs Argentina,Jun 27,Argentina,200.0,50.0,,Open,False
 127,Laakha,71,Panama vs England,Jun 27,England,250.0,50.0,Arjun,Matched,False
-128,Laakha,55,Türkiye vs USA,Jun 25,USA,100.0,80.0,Ashu,Matched,False
+128,Laakha,55,Türkiye vs USA,Jun 25,USA,100.0,80.0,Ashu,Matched,True
 130,TenWall,62,New Zealand vs Belgium,Jun 26,Belgium,200.0,90.0,,Open,False
 131,TenWall,66,Senegal vs Iraq,Jun 26,Senegal,150.0,92.0,,Open,False
 132,TenWall,61,Egypt vs IR Iran,Jun 26,Egypt,200.0,120.0,,Open,False

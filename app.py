@@ -330,13 +330,12 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-        # 🔥 2. Live Matched Locked Block
+            # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
     else:
         for bet in live_bets:
-            # Safely extract and format points data
             try:
                 risk_pts = float(bet.get('Points', 100))
                 win_pts = float(bet.get('Opponent_Payout', 55))
@@ -344,7 +343,7 @@ elif st.session_state.current_page == "dashboard":
                 risk_pts = 100.0
                 win_pts = 55.0
 
-            # 🟢 Unified HTML card wrapper rendering all text content together
+            # 🟢 Live Matched Bets - Unified Emerald Green HTML Card
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -369,16 +368,57 @@ elif st.session_state.current_page == "dashboard":
                 unsafe_allow_html=True
             )
             
-            # Place the admin delete button neatly directly below the styled card row
             if is_admin:
                 if st.button(f"🚨 Admin Override: Force Delete #{bet.get('Bet_ID')}", key=f"del_live_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
                     execute_backend_deletion(bet.get('Bet_ID'))
 
-                
-                # Close the custom HTML green border layout wrapper cleanly
-                st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("---")
 
-                        
+    # 🛑 3. Expired Matched Bets Block (Hidden inside an Expander link)
+    expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
+    expired_matched_bets = sorted(expired_matched_bets, key=get_bet_sort_key)
+
+    with st.expander("📁 View Expired Matched Bets History", expanded=False):
+        if not expired_matched_bets:
+            st.caption("No expired matched bets found in history.")
+        else:
+            for bet in expired_matched_bets:
+                try:
+                    risk_pts = float(bet.get('Points', 100))
+                    win_pts = float(bet.get('Opponent_Payout', 55))
+                except:
+                    risk_pts = 100.0
+                    win_pts = 55.0
+
+                # 🔴 Expired Matched Bets - Unified Crimson Red HTML Card
+                st.markdown(
+                    f"""
+                    <div style="background-color: rgba(192, 57, 43, 0.08); 
+                                border: 2px solid #c0392b; 
+                                padding: 15px; 
+                                border-radius: 6px; 
+                                margin-bottom: 12px;
+                                color: #f4efe3;
+                                font-family: sans-serif;">
+                        <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px; color: #e74c3c;">
+                            ⌛ [EXPIRED] {bet.get('Creator')} VS {bet.get('Opponent')}
+                        </div>
+                        <div style="font-size: 0.85rem; color: #a47f7f; margin-bottom: 8px;">
+                            📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
+                        </div>
+                        <div style="font-size: 0.9rem; line-height: 1.4;">
+                            📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
+                            (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
+                        </div>
+                    </div>
+                    """, 
+                    unsafe_allow_html=True
+                )
+                
+                if is_admin:
+                    if st.button(f"🚨 Admin Override: Clear Expired #{bet.get('Bet_ID')}", key=f"del_exp_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
+                        execute_backend_deletion(bet.get('Bet_ID'))
+
 
 # ==========================================
 # 📊 UI SCREEN: TOURNAMENT BOARD (LIVE EXCEL)

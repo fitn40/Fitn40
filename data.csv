@@ -120,5 +120,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 143,TenWall,68,Jordan vs Argentina,Jun 27,Argentina,500.0,125.0,,Open,False
 144,Mantekwal,67,Algeria vs Austria,Jun 27,Austria,150.0,225.0,,Open,False
 145,Mantekwal,72,Croatia vs Ghana,Jun 27,Ghana,100.0,395.0,,Open,False
-146,Arjun,67,Algeria vs Austria,Jun 27,Austria,100.0,100.0,,Open,False
+146,Arjun,67,Algeria vs Austria,Jun 27,Austria,100.0,100.0,TenWall,Matched,False
 147,Arjun,69,Colombia vs Portugal,Jun 27,Portugal,100.0,200.0,,Open,False

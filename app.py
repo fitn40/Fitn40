@@ -376,7 +376,28 @@ elif st.session_state.current_page == "dashboard":
 
     # 🛑 3. Expired Matched Bets Block (Hidden inside an Expander link)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
-    expired_matched_bets = sorted(expired_matched_bets, key=get_bet_sort_key)
+
+        # Sort with latest match dates at the top, and newest Bet IDs first within the same date
+    def get_expired_sort_key(b):
+        try:
+            m_num = int(b.get("Match_Num", 0))
+            match_row = match_data[match_data['Match_Num'] == m_num]
+            if not match_row.empty:
+                sort_date = match_row.iloc[0]['Match_Date_Obj']
+            else:
+                sort_date = current_date.date()
+        except:
+            sort_date = current_date.date()
+            
+        try:
+            b_id = int(b.get("Bet_ID", 0))
+        except:
+            b_id = 0
+        return (sort_date, b_id)
+
+    # reverse=True flips it so the newest dates and newest IDs show up at the very top
+    expired_matched_bets = sorted(expired_matched_bets, key=get_expired_sort_key, reverse=True)
+
 
     with st.expander("📁 View Expired Matched Bets History", expanded=False):
         if not expired_matched_bets:

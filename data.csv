@@ -104,7 +104,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 123,Peteza,62,New Zealand vs Belgium,Jun 26,Belgium,100.0,65.0,,Open,True
 124,Ashu,59,Japan vs Sweden,Jun 25,Japan,100.0,90.0,Vimal,Matched,True
 125,Laakha,65,Norway vs France,Jun 26,France,100.0,60.0,Laltu,Matched,True
-126,Laakha,68,Jordan vs Argentina,Jun 27,Argentina,200.0,50.0,,Open,False
+126,Laakha,68,Jordan vs Argentina,Jun 27,Argentina,200.0,50.0,Arjun,Matched,False
 127,Laakha,71,Panama vs England,Jun 27,England,250.0,50.0,Arjun,Matched,False
 128,Laakha,55,Türkiye vs USA,Jun 25,USA,100.0,80.0,Ashu,Matched,True
 132,TenWall,61,Egypt vs IR Iran,Jun 26,Egypt,200.0,120.0,Himadri,Matched,True

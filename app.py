@@ -305,7 +305,7 @@ elif st.session_state.current_page == "dashboard":
                 except:
                     market_str = "Market Odds - N/A"
 
-                # 📊 2. Read current offer numbers
+        # 📊 2. Read current offer numbers
                 b_creator = bet.get('Creator')
                 b_pred = bet.get('Prediction')
                 b_match = bet.get('Match_Name')
@@ -330,7 +330,7 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-            # 🔥 2. Live Matched Locked Block
+                # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -343,7 +343,7 @@ elif st.session_state.current_page == "dashboard":
                 risk_pts = 100.0
                 win_pts = 55.0
 
-            # 🟢 Live Matched Bets - Unified Emerald Green HTML Card
+            # 🟢 Live Matched Bets - Emerald Green HTML Card (Auto-adaptive Contrast)
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -351,12 +351,11 @@ elif st.session_state.current_page == "dashboard":
                             padding: 15px; 
                             border-radius: 6px; 
                             margin-bottom: 12px;
-                            color: #f4efe3;
                             font-family: sans-serif;">
                     <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px;">
-                        🔒 {bet.get('Creator')} <span style="color: #7fa493; font-weight: normal; font-size: 0.85rem;">VS</span> {bet.get('Opponent')}
+                        🔒 {bet.get('Creator')} <span style="opacity: 0.7; font-weight: normal; font-size: 0.85rem;">VS</span> {bet.get('Opponent')}
                     </div>
-                    <div style="font-size: 0.85rem; color: #7fa493; margin-bottom: 8px;">
+                    <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
                         📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
                     </div>
                     <div style="font-size: 0.9rem; line-height: 1.4;">
@@ -376,8 +375,7 @@ elif st.session_state.current_page == "dashboard":
 
     # 🛑 3. Expired Matched Bets Block (Hidden inside an Expander link)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
-
-        # Sort with latest match dates at the top, and newest Bet IDs first within the same date
+    
     def get_expired_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
@@ -395,9 +393,7 @@ elif st.session_state.current_page == "dashboard":
             b_id = 0
         return (sort_date, b_id)
 
-    # reverse=True flips it so the newest dates and newest IDs show up at the very top
     expired_matched_bets = sorted(expired_matched_bets, key=get_expired_sort_key, reverse=True)
-
 
     with st.expander("📁 View Expired Matched Bets History", expanded=False):
         if not expired_matched_bets:
@@ -411,20 +407,19 @@ elif st.session_state.current_page == "dashboard":
                     risk_pts = 100.0
                     win_pts = 55.0
 
-                # 🔴 Expired Matched Bets - Unified Crimson Red HTML Card
+                # 🔴 Expired Matched Bets - Crimson Red HTML Card (Auto-adaptive Contrast)
                 st.markdown(
                     f"""
-                    <div style="background-color: rgba(192, 57, 43, 0.08); 
+                    <div style="background-color: rgba(192, 57, 43, 0.06); 
                                 border: 2px solid #c0392b; 
                                 padding: 15px; 
                                 border-radius: 6px; 
                                 margin-bottom: 12px;
-                                color: #f4efe3;
                                 font-family: sans-serif;">
-                        <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px; color: #e74c3c;">
+                        <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px; color: #c0392b;">
                             ⌛ [EXPIRED] {bet.get('Creator')} VS {bet.get('Opponent')}
                         </div>
-                        <div style="font-size: 0.85rem; color: #a47f7f; margin-bottom: 8px;">
+                        <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
                             📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
                         </div>
                         <div style="font-size: 0.9rem; line-height: 1.4;">
@@ -439,6 +434,7 @@ elif st.session_state.current_page == "dashboard":
                 if is_admin:
                     if st.button(f"🚨 Admin Override: Clear Expired #{bet.get('Bet_ID')}", key=f"del_exp_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
                         execute_backend_deletion(bet.get('Bet_ID'))
+
 
 
 # ==========================================

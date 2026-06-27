@@ -123,4 +123,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 146,Arjun,67,Algeria vs Austria,Jun 27,Austria,100.0,100.0,TenWall,Matched,False
 147,Arjun,69,Colombia vs Portugal,Jun 27,Portugal,100.0,200.0,,Open,False
 148,TenWall,71,Panama vs England,Jun 27,England,500.0,100.0,,Open,False
-149,Yogi,72,Croatia vs Ghana,Jun 27,Croatia,200.0,100.0,,Open,False
+149,Yogi,72,Croatia vs Ghana,Jun 27,Croatia,200.0,100.0,Laltu,Matched,False

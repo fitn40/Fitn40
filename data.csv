@@ -88,7 +88,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 102,Arjun,60,Tunisia vs Netherlands,Jun 25,Netherlands,100.0,75.0,,Open,True
 104,Arjun,64,Uruguay vs Spain,Jun 26,Spain,100.0,70.0,,Open,True
 105,Arjun,65,Norway vs France,Jun 26,France,100.0,70.0,Ashu,Matched,True
-106,Arjun,68,Jordan vs Argentina,Jun 27,Argentina,100.0,40.0,,Open,False
 107,Arjun,69,Colombia vs Portugal,Jun 27,Portugal,100.0,100.0,himadri,Matched,False
 108,Arjun,70,Congo DR vs Uzbekistan,Jun 27,Congo DR,100.0,100.0,,Open,False
 111,TenWall,51,Switzerland vs Canada,Jun 24,Switzerland,100.0,130.0,Arjun,Matched,True

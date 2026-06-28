@@ -196,7 +196,7 @@ is_admin = (st.session_state.player_name == "Fifa@2026")
 # ⚽ UI SCREEN 1: LOGIN LOUNGE
 # ==========================================
 if st.session_state.current_page == "login":
-    st.title("⚽ Fit N 40 Match Prediction")
+    st.title("⚽ FIFA 2026 WC Prediction")
     st.subheader("Welcome to the Lounge")
     player_input = st.text_input("Profile Handle Name:")
     if st.button("Enter Dashboard", use_container_width=True, type="primary"):
@@ -210,7 +210,7 @@ if st.session_state.current_page == "login":
 # 🏆 UI SCREEN 2: MAIN USER APP INTERFACE
 # ==========================================
 elif st.session_state.current_page == "dashboard":
-    st.title("🏆 Fit N 40 Dashboard")
+    st.title("🏆 Predction Dashboard")
     st.write(f"Logged in as: **{st.session_state.player_name}**")
     
     if is_admin:

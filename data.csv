@@ -135,6 +135,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,,Open,False
 162,Himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,90.0,58.0,,Open,False
 163,Himadri,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False
-165,Himadri,73,South Africa vs Canada,Jun 28,South Africa,150.0,120.0,,Open,False
+165,Himadri,73,South Africa vs Canada,Jun 28,South Africa,150.0,120.0,TenWall,Matched,False
 166,Himadri,82,Belgium vs Senegal,Jul 01,Senegal,150.0,100.0,,Open,False
 167,Himadri,88,Australia vs Egypt,Jul 03,Australia,150.0,80.0,,Open,False

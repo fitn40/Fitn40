@@ -127,3 +127,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 151,Peteza,70,Congo DR vs Uzbekistan,Jun 27,Congo DR,100.0,53.0,Laltu,Matched,True
 152,Laakha,88,Australia vs Egypt,Jul 03,Australia,100.0,180.0,TenWall,Matched,False
 153,Laakha,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,50.0,,Open,False
+154,Laakha,73,South Africa vs Canada,Jun 28,Canada,100.0,75.0,,Open,False

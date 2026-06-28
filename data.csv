@@ -138,7 +138,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 165,Himadri,73,South Africa vs Canada,Jun 28,South Africa,150.0,120.0,TenWall,Matched,False
 166,Himadri,82,Belgium vs Senegal,Jul 01,Senegal,150.0,100.0,TenWall,Matched,False
 167,Himadri,88,Australia vs Egypt,Jul 03,Australia,150.0,80.0,TenWall,Matched,False
-168,TenWall,73,South Africa vs Canada,Jun 28,Draw,100.0,220.0,,Open,False
+168,TenWall,73,South Africa vs Canada,Jun 28,Draw,100.0,220.0,Vimal,Matched,False
 169,TenWall,80,England vs Congo DR,Jul 01,England,500.0,125.0,,Open,False
 170,TenWall,86,Argentina vs Cape Verde,Jul 03,Argentina,1000.0,140.0,,Open,False
 171,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False

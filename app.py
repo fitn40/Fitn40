@@ -5,16 +5,17 @@ from datetime import datetime
 from github import Github
 
 # Page Branding Setup
-st.set_page_config(page_title="Fit N 40 Match Prediction", page_icon="⚽", layout="centered")
+st.set_page_config(page_title="FIFA WC Prediction", page_icon="⚽", layout="centered")
 
 DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official 72-Match Matrix (Wrapped for Mobile)
+# 📋 Official Knockout Stage Data Matrix (Sourced from Fifa Odds Gemini1.xlsx)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
+        # --- ⏳ OLD GROUP STAGE RECORDS (Preserved for historical mapping filters) ---
         {"Match_Num": 1, "Date_Str": "Jun 11", "Home_Team": "Mexico", "Away_Team": "South Africa", "Home_Win_Odds": 1.55, "Draw_Odds": 3.8, "Away_Win_Odds": 5.5},
         {"Match_Num": 2, "Date_Str": "Jun 11", "Home_Team": "Korea Republic", "Away_Team": "Czechia", "Home_Win_Odds": 2.1, "Draw_Odds": 3.2, "Away_Win_Odds": 3.5},
         {"Match_Num": 3, "Date_Str": "Jun 12", "Home_Team": "Canada", "Away_Team": "Bosnia & Herz.", "Home_Win_Odds": 2.0, "Draw_Odds": 3.3, "Away_Win_Odds": 3.8},
@@ -63,56 +64,48 @@ def get_match_data(year):
         {"Match_Num": 46, "Date_Str": "Jun 23", "Home_Team": "Colombia", "Away_Team": "Congo DR", "Home_Win_Odds": 1.7, "Draw_Odds": 3.5, "Away_Win_Odds": 5.0},
         {"Match_Num": 47, "Date_Str": "Jun 23", "Home_Team": "England", "Away_Team": "Ghana", "Home_Win_Odds": 1.35, "Draw_Odds": 4.8, "Away_Win_Odds": 9.0},
         {"Match_Num": 48, "Date_Str": "Jun 23", "Home_Team": "Panama", "Away_Team": "Croatia", "Home_Win_Odds": 4.5, "Draw_Odds": 3.5, "Away_Win_Odds": 1.8},
+        {"Match_Num": 49, "Date_Str": "Jun 24", "Home_Team": "Czechia", "Away_Team": "Mexico", "Home_Win_Odds": 3.6, "Draw_Odds": 3.9, "Away_Win_Odds": 1.91},
+        {"Match_Num": 50, "Date_Str": "Jun 24", "Home_Team": "South Africa", "Away_Team": "Korea Republic", "Home_Win_Odds": 5.0, "Draw_Odds": 3.9, "Away_Win_Odds": 1.67},
+        {"Match_Num": 51, "Date_Str": "Jun 24", "Home_Team": "Switzerland", "Away_Team": "Canada", "Home_Win_Odds": 2.3, "Draw_Odds": 3.2, "Away_Win_Odds": 3.25},
+        {"Match_Num": 52, "Date_Str": "Jun 24", "Home_Team": "Bosnia & Herz.", "Away_Team": "Qatar", "Home_Win_Odds": 1.4, "Draw_Odds": 5.0, "Away_Win_Odds": 7.5},
+        {"Match_Num": 53, "Date_Str": "Jun 24", "Home_Team": "Scotland", "Away_Team": "Brazil", "Home_Win_Odds": 8.5, "Draw_Odds": 5.25, "Away_Win_Odds": 1.33},
+        {"Match_Num": 54, "Date_Str": "Jun 24", "Home_Team": "Morocco", "Away_Team": "Haiti", "Home_Win_Odds": 1.18, "Draw_Odds": 7.0, "Away_Win_Odds": 13.0},
+        {"Match_Num": 55, "Date_Str": "Jun 25", "Home_Team": "Türkiye", "Away_Team": "USA", "Home_Win_Odds": 3.7, "Draw_Odds": 3.9, "Away_Win_Odds": 1.91},
+        {"Match_Num": 56, "Date_Str": "Jun 25", "Home_Team": "Paraguay", "Away_Team": "Australia", "Home_Win_Odds": 2.2, "Draw_Odds": 3.1, "Away_Win_Odds": 3.1},
+        {"Match_Num": 57, "Date_Str": "Jun 25", "Home_Team": "Curaçao", "Away_Team": "Côte d'Ivoire", "Home_Win_Odds": 17.0, "Draw_Odds": 8.0, "Away_Win_Odds": 1.17},
+        {"Match_Num": 58, "Date_Str": "Jun 25", "Home_Team": "Ecuador", "Away_Team": "Germany", "Home_Win_Odds": 3.7, "Draw_Odds": 4.1, "Away_Win_Odds": 1.9},
+        {"Match_Num": 59, "Date_Str": "Jun 25", "Home_Team": "Japan", "Away_Team": "Sweden", "Home_Win_Odds": 1.9, "Draw_Odds": 3.4, "Away_Win_Odds": 4.33},
+        {"Match_Num": 60, "Date_Str": "Jun 25", "Home_Team": "Tunisia", "Away_Team": "Netherlands", "Home_Win_Odds": 23.0, "Draw_Odds": 8.0, "Away_Win_Odds": 1.12},
+        {"Match_Num": 61, "Date_Str": "Jun 26", "Home_Team": "Egypt", "Away_Team": "IR Iran", "Home_Win_Odds": 1.5, "Draw_Odds": 3.8, "Away_Win_Odds": 6.5},
+        {"Match_Num": 62, "Date_Str": "Jun 26", "Home_Team": "New Zealand", "Away_Team": "Belgium", "Home_Win_Odds": 5.5, "Draw_Odds": 4.0, "Away_Win_Odds": 1.55},
+        {"Match_Num": 63, "Date_Str": "Jun 26", "Home_Team": "Cabo Verde", "Away_Team": "Saudi Arabia", "Home_Win_Odds": 1.55, "Draw_Odds": 3.5, "Away_Win_Odds": 5.5},
+        {"Match_Num": 64, "Date_Str": "Jun 26", "Home_Team": "Uruguay", "Away_Team": "Spain", "Home_Win_Odds": 4.5, "Draw_Odds": 3.8, "Away_Win_Odds": 1.55},
+        {"Match_Num": 65, "Date_Str": "Jun 26", "Home_Team": "Norway", "Away_Team": "France", "Home_Win_Odds": 3.0, "Draw_Odds": 3.4, "Away_Win_Odds": 2.0},
+        {"Match_Num": 66, "Date_Str": "Jun 26", "Home_Team": "Senegal", "Away_Team": "Iraq", "Home_Win_Odds": 1.65, "Draw_Odds": 3.2, "Away_Win_Odds": 5.5},
+        {"Match_Num": 67, "Date_Str": "Jun 27", "Home_Team": "Algeria", "Away_Team": "Austria", "Home_Win_Odds": 2.8, "Draw_Odds": 3.2, "Away_Win_Odds": 2.5},
+        {"Match_Num": 68, "Date_Str": "Jun 27", "Home_Team": "Jordan", "Away_Team": "Argentina", "Home_Win_Odds": 8.5, "Draw_Odds": 5.0, "Away_Win_Odds": 1.25},
+        {"Match_Num": 69, "Date_Str": "Jun 27", "Home_Team": "Colombia", "Away_Team": "Portugal", "Home_Win_Odds": 2.3, "Draw_Odds": 3.2, "Away_Win_Odds": 4.5},
+        {"Match_Num": 70, "Date_Str": "Jun 27", "Home_Team": "Congo DR", "Away_Team": "Uzbekistan", "Home_Win_Odds": 1.53, "Draw_Odds": 3.9, "Away_Win_Odds": 6.5},
+        {"Match_Num": 71, "Date_Str": "Jun 27", "Home_Team": "Panama", "Away_Team": "England", "Home_Win_Odds": 8.0, "Draw_Odds": 5.5, "Away_Win_Odds": 1.2},
+        {"Match_Num": 72, "Date_Str": "Jun 27", "Home_Team": "Croatia", "Away_Team": "Ghana", "Home_Win_Odds": 1.6, "Draw_Odds": 3.2, "Away_Win_Odds": 5.5},
         
-        # 👇 Lines wrapped shorter below so they safely copy on phones:
-        {"Match_Num": 49, "Date_Str": "Jun 24", "Home_Team": "Czechia", 
-         "Away_Team": "Mexico", "Home_Win_Odds": 3.6, "Draw_Odds": 3.9, "Away_Win_Odds": 1.91},
-        {"Match_Num": 50, "Date_Str": "Jun 24", "Home_Team": "South Africa", 
-         "Away_Team": "Korea Republic", "Home_Win_Odds": 5.0, "Draw_Odds": 3.9, "Away_Win_Odds": 1.67},
-        {"Match_Num": 51, "Date_Str": "Jun 24", "Home_Team": "Switzerland", 
-         "Away_Team": "Canada", "Home_Win_Odds": 2.3, "Draw_Odds": 3.2, "Away_Win_Odds": 3.25},
-        {"Match_Num": 52, "Date_Str": "Jun 24", "Home_Team": "Bosnia & Herz.", 
-         "Away_Team": "Qatar", "Home_Win_Odds": 1.4, "Draw_Odds": 5.0, "Away_Win_Odds": 7.5},
-        {"Match_Num": 53, "Date_Str": "Jun 24", "Home_Team": "Scotland", 
-         "Away_Team": "Brazil", "Home_Win_Odds": 8.5, "Draw_Odds": 5.25, "Away_Win_Odds": 1.33},
-        {"Match_Num": 54, "Date_Str": "Jun 24", "Home_Team": "Morocco", 
-         "Away_Team": "Haiti", "Home_Win_Odds": 1.18, "Draw_Odds": 7.0, "Away_Win_Odds": 13.0},
-        {"Match_Num": 55, "Date_Str": "Jun 25", "Home_Team": "Türkiye", 
-         "Away_Team": "USA", "Home_Win_Odds": 3.7, "Draw_Odds": 3.9, "Away_Win_Odds": 1.91},
-        {"Match_Num": 56, "Date_Str": "Jun 25", "Home_Team": "Paraguay", 
-         "Away_Team": "Australia", "Home_Win_Odds": 2.2, "Draw_Odds": 3.1, "Away_Win_Odds": 3.1},
-        {"Match_Num": 57, "Date_Str": "Jun 25", "Home_Team": "Curaçao", 
-         "Away_Team": "Côte d'Ivoire", "Home_Win_Odds": 17.0, "Draw_Odds": 8.0, "Away_Win_Odds": 1.17},
-        {"Match_Num": 58, "Date_Str": "Jun 25", "Home_Team": "Ecuador", 
-         "Away_Team": "Germany", "Home_Win_Odds": 3.7, "Draw_Odds": 4.1, "Away_Win_Odds": 1.9},
-        {"Match_Num": 59, "Date_Str": "Jun 25", "Home_Team": "Japan", 
-         "Away_Team": "Sweden", "Home_Win_Odds": 1.9, "Draw_Odds": 3.4, "Away_Win_Odds": 4.33},
-        {"Match_Num": 60, "Date_Str": "Jun 25", "Home_Team": "Tunisia", 
-         "Away_Team": "Netherlands", "Home_Win_Odds": 23.0, "Draw_Odds": 8.0, "Away_Win_Odds": 1.12},
-        {"Match_Num": 61, "Date_Str": "Jun 26", "Home_Team": "Egypt", 
-         "Away_Team": "IR Iran", "Home_Win_Odds": 1.5, "Draw_Odds": 3.8, "Away_Win_Odds": 6.5},
-        {"Match_Num": 62, "Date_Str": "Jun 26", "Home_Team": "New Zealand", 
-         "Away_Team": "Belgium", "Home_Win_Odds": 5.5, "Draw_Odds": 4.0, "Away_Win_Odds": 1.55},
-        {"Match_Num": 63, "Date_Str": "Jun 26", "Home_Team": "Cabo Verde", 
-         "Away_Team": "Saudi Arabia", "Home_Win_Odds": 1.55, "Draw_Odds": 3.5, "Away_Win_Odds": 5.5},
-        {"Match_Num": 64, "Date_Str": "Jun 26", "Home_Team": "Uruguay", 
-         "Away_Team": "Spain", "Home_Win_Odds": 4.5, "Draw_Odds": 3.8, "Away_Win_Odds": 1.55},
-        {"Match_Num": 65, "Date_Str": "Jun 26", "Home_Team": "Norway", 
-         "Away_Team": "France", "Home_Win_Odds": 3.0, "Draw_Odds": 3.4, "Away_Win_Odds": 2.0},
-        {"Match_Num": 66, "Date_Str": "Jun 26", "Home_Team": "Senegal", 
-         "Away_Team": "Iraq", "Home_Win_Odds": 1.65, "Draw_Odds": 3.2, "Away_Win_Odds": 5.5},
-        {"Match_Num": 67, "Date_Str": "Jun 27", "Home_Team": "Algeria", 
-         "Away_Team": "Austria", "Home_Win_Odds": 2.8, "Draw_Odds": 3.2, "Away_Win_Odds": 2.5},
-        {"Match_Num": 68, "Date_Str": "Jun 27", "Home_Team": "Jordan", 
-         "Away_Team": "Argentina", "Home_Win_Odds": 8.5, "Draw_Odds": 5.0, "Away_Win_Odds": 1.25},
-        {"Match_Num": 69, "Date_Str": "Jun 27", "Home_Team": "Colombia", 
-         "Away_Team": "Portugal", "Home_Win_Odds": 2.3, "Draw_Odds": 3.2, "Away_Win_Odds": 4.5},
-        {"Match_Num": 70, "Date_Str": "Jun 27", "Home_Team": "Congo DR", 
-         "Away_Team": "Uzbekistan", "Home_Win_Odds": 1.53, "Draw_Odds": 3.9, "Away_Win_Odds": 6.5},
-        {"Match_Num": 71, "Date_Str": "Jun 27", "Home_Team": "Panama", 
-         "Away_Team": "England", "Home_Win_Odds": 8.0, "Draw_Odds": 5.5, "Away_Win_Odds": 1.2},
-        {"Match_Num": 72, "Date_Str": "Jun 27", "Home_Team": "Croatia", 
-         "Away_Team": "Ghana", "Home_Win_Odds": 1.6, "Draw_Odds": 3.2, "Away_Win_Odds": 5.5}
+        # --- 🏆 ROUND OF 32 ELIMINATION FIXTURES (Sourced from Fifa Odds Gemini1.xlsx) ---
+        {"Match_Num": 73, "Date_Str": "Jun 28", "Home_Team": "South Africa", "Away_Team": "Canada", "Home_Win_Odds": 4.2, "Draw_Odds": 3.4, "Away_Win_Odds": 1.85},
+        {"Match_Num": 74, "Date_Str": "Jun 29", "Home_Team": "Germany", "Away_Team": "Paraguay", "Home_Win_Odds": 1.35, "Draw_Odds": 5.0, "Away_Win_Odds": 8.5},
+        {"Match_Num": 75, "Date_Str": "Jun 29", "Home_Team": "Netherlands", "Away_Team": "Morocco", "Home_Win_Odds": 2.1, "Draw_Odds": 3.2, "Away_Win_Odds": 3.6},
+        {"Match_Num": 76, "Date_Str": "Jun 29", "Home_Team": "Brazil", "Away_Team": "Japan", "Home_Win_Odds": 1.4, "Draw_Odds": 4.6, "Away_Win_Odds": 7.5},
+        {"Match_Num": 77, "Date_Str": "Jun 30", "Home_Team": "France", "Away_Team": "Sweden", "Home_Win_Odds": 1.3, "Draw_Odds": 5.2, "Away_Win_Odds": 9.5},
+        {"Match_Num": 78, "Date_Str": "Jun 30", "Home_Team": "Ivory Coast", "Away_Team": "Norway", "Home_Win_Odds": 2.4, "Draw_Odds": 3.1, "Away_Win_Odds": 3.1},
+        {"Match_Num": 79, "Date_Str": "Jun 30", "Home_Team": "Mexico", "Away_Team": "Ecuador", "Home_Win_Odds": 1.95, "Draw_Odds": 3.3, "Away_Win_Odds": 4.0},
+        {"Match_Num": 80, "Date_Str": "Jul 01", "Home_Team": "England", "Away_Team": "Congo DR", "Home_Win_Odds": 1.28, "Draw_Odds": 5.4, "Away_Win_Odds": 12.0},
+        {"Match_Num": 81, "Date_Str": "Jul 01", "Home_Team": "USA", "Away_Team": "Bosnia and Herzegovina", "Home_Win_Odds": 1.65, "Draw_Odds": 3.75, "Away_Win_Odds": 5.5},
+        {"Match_Num": 82, "Date_Str": "Jul 01", "Home_Team": "Belgium", "Away_Team": "Senegal", "Home_Win_Odds": 2.05, "Draw_Odds": 3.2, "Away_Win_Odds": 3.8},
+        {"Match_Num": 83, "Date_Str": "Jul 02", "Home_Team": "Portugal", "Away_Team": "Croatia", "Home_Win_Odds": 1.8, "Draw_Odds": 3.5, "Away_Win_Odds": 4.5},
+        {"Match_Num": 84, "Date_Str": "Jul 02", "Home_Team": "Spain", "Away_Team": "Austria", "Home_Win_Odds": 1.5, "Draw_Odds": 4.1, "Away_Win_Odds": 6.5},
+        {"Match_Num": 85, "Date_Str": "Jul 02", "Home_Team": "Switzerland", "Away_Team": "Algeria", "Home_Win_Odds": 1.65, "Draw_Odds": 3.6, "Away_Win_Odds": 5.5},
+        {"Match_Num": 86, "Date_Str": "Jul 03", "Home_Team": "Argentina", "Away_Team": "Cape Verde", "Home_Win_Odds": 1.15, "Draw_Odds": 7.5, "Away_Win_Odds": 17.0},
+        {"Match_Num": 87, "Date_Str": "Jul 03", "Home_Team": "Colombia", "Away_Team": "Ghana", "Home_Win_Odds": 1.6, "Draw_Odds": 3.8, "Away_Win_Odds": 5.8},
+        {"Match_Num": 88, "Date_Str": "Jul 03", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
@@ -126,7 +119,6 @@ def get_match_data(year):
             dates_list.append(datetime.now().date())
     df['Match_Date_Obj'] = dates_list
     return df
-
 match_data = get_match_data(current_year)
 
 # 🔄 AUTOMATIC PERMANENT STORAGE HOOKS (Ensures data survives refreshes and syncs globally)

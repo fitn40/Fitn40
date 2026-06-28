@@ -156,4 +156,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 183,Peteza,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,,Open,False
 184,Laakha,84,Spain vs Austria,Jul 02,Spain,400.0,100.0,TenWall,Matched,False
 185,Laakha,74,Germany vs Paraguay,Jun 29,Germany,100.0,30.0,TenWall,Matched,False
-186,Laakha,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,,Open,False
+186,Laakha,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,TenWall,Matched,False

@@ -152,3 +152,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 179,Yogi,76,Brazil vs Japan,Jun 29,Brazil,400.0,100.0,Arjun,Matched,False
 180,Arjun,76,Brazil vs Japan,Jun 29,Japan,100.0,495.0,,Open,False
 181,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,TenWall,Matched,False
+182,Peteza,76,Brazil vs Japan,Jun 29,Brazil,100.0,40.0,,Open,False

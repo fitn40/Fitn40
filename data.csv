@@ -135,3 +135,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 159,Himadri,73,South Africa vs Canada,Jun 28,South Africa,100.0,130.0,,Open,False
 160,Himadri,82,Belgium vs Senegal,Jul 01,Senegal,100.0,150.0,,Open,False
 161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,,Open,False
+162,Himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,90.0,58.0,,Open,False

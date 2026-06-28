@@ -154,4 +154,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 181,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,TenWall,Matched,False
 182,Peteza,76,Brazil vs Japan,Jun 29,Brazil,100.0,40.0,TenWall,Matched,False
 183,Peteza,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,,Open,False
-184,Laakha,84,Spain vs Austria,Jul 02,Spain,400.0,100.0,,Open,False
+184,Laakha,84,Spain vs Austria,Jul 02,Spain,400.0,100.0,TenWall,Matched,False

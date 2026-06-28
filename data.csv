@@ -130,3 +130,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 154,Laakha,73,South Africa vs Canada,Jun 28,Canada,100.0,75.0,,Open,False
 155,TenWall,74,Germany vs Paraguay,Jun 29,Germany,400.0,100.0,,Open,False
 156,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,,Open,False
+157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,,Open,False

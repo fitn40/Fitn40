@@ -132,7 +132,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 156,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,,Open,False
 157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,,Open,False
 158,TenWall,77,France vs Sweden,Jun 30,France,400.0,100.0,,Open,False
-161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,,Open,False
+161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,TenWall,Matched,False
 162,Himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,90.0,58.0,,Open,False
 163,Himadri,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False
 165,Himadri,73,South Africa vs Canada,Jun 28,South Africa,150.0,120.0,TenWall,Matched,False

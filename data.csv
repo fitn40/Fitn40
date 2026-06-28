@@ -142,7 +142,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 169,TenWall,80,England vs Congo DR,Jul 01,England,500.0,125.0,Arjun,Matched,False
 170,TenWall,86,Argentina vs Cape Verde,Jul 03,Argentina,1000.0,140.0,Arjun,Matched,False
 171,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False
-172,Arjun,73,South Africa vs Canada,Jun 28,Canada,100.0,85.0,,Open,False
 173,Arjun,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,200.0,,Open,False
 174,Arjun,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,90.0,,Open,False
 175,Peteza,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,False

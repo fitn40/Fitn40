@@ -169,4 +169,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 198,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,195.0,Vimal,Matched,False
 199,TenWall,76,Brazil vs Japan,Jun 29,Japan,50.0,250.0,,Open,False
 200,Vimal,74,Germany vs Paraguay,Jun 29,Germany,100.0,25.0,,Open,False
-201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,,Open,False

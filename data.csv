@@ -163,7 +163,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 191,TenWall,76,Brazil vs Japan,Jun 29,Draw,50.0,180.0,,Open,False
 192,TenWall,76,Brazil vs Japan,Jun 29,Japan,50.0,300.0,,Open,False
 193,TenWall,74,Germany vs Paraguay,Jun 29,Germany,200.0,50.0,,Open,False
-194,TenWall,75,Netherlands vs Morocco,Jun 29,Morocco,50.0,130.0,,Open,False
+194,TenWall,75,Netherlands vs Morocco,Jun 29,Morocco,50.0,130.0,Laltu,Matched,False
 195,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,Laakha,Matched,False
 196,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,295.0,Yogi,Matched,False
 197,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,,Open,False

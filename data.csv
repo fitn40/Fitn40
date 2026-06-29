@@ -167,3 +167,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 195,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,Laakha,Matched,False
 196,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,295.0,Yogi,Matched,False
 197,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,,Open,False
+198,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,195.0,,Open,False

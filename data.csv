@@ -159,3 +159,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 187,Arjun,73,South Africa vs Canada,Jun 28,Canada,100.0,80.0,,Open,True
 188,Arjun,74,Germany vs Paraguay,Jun 29,Paraguay,100.0,495.0,,Open,False
 189,Ankur,74,Germany vs Paraguay,Jun 29,Germany,100.0,35.0,,Open,False
+190,Ankur,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,,Open,False

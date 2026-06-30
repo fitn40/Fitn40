@@ -129,7 +129,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 153,Laakha,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,50.0,TenWall,Matched,False
 154,Laakha,73,South Africa vs Canada,Jun 28,Canada,100.0,75.0,TenWall,Matched,True
 155,TenWall,74,Germany vs Paraguay,Jun 29,Germany,400.0,100.0,Ashu,Matched,True
-156,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,,Open,False
 157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,Vimal,Matched,True
 158,TenWall,77,France vs Sweden,Jun 30,France,400.0,100.0,Laltu,Matched,False
 161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,TenWall,Matched,False

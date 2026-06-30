@@ -180,3 +180,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 211,TenWall,77,France vs Sweden,Jun 30,France,350.0,90.0,Ashu,Matched,False
 212,Yogi,88,Australia vs Egypt,Jul 03,Egypt,100.0,160.0,,Open,False
 213,TenWall,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,160.0,,Open,False
+214,Vimal,77,France vs Sweden,Jun 30,France,100.0,30.0,,Open,False

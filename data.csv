@@ -171,3 +171,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 200,Vimal,74,Germany vs Paraguay,Jun 29,Germany,100.0,25.0,,Open,True
 201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,50.0,110.0,,Open,True
 202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,,Open,False
+203,TenWall,78,Ivory Coast vs Norway,Jun 30,Draw,100.0,200.0,,Open,False

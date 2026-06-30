@@ -128,9 +128,9 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 152,Laakha,88,Australia vs Egypt,Jul 03,Australia,100.0,180.0,TenWall,Matched,False
 153,Laakha,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,50.0,TenWall,Matched,False
 154,Laakha,73,South Africa vs Canada,Jun 28,Canada,100.0,75.0,TenWall,Matched,True
-155,TenWall,74,Germany vs Paraguay,Jun 29,Germany,400.0,100.0,Ashu,Matched,False
+155,TenWall,74,Germany vs Paraguay,Jun 29,Germany,400.0,100.0,Ashu,Matched,True
 156,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,,Open,False
-157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,Vimal,Matched,False
+157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,Vimal,Matched,True
 158,TenWall,77,France vs Sweden,Jun 30,France,400.0,100.0,,Open,False
 161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,TenWall,Matched,False
 162,Himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,90.0,58.0,,Open,False
@@ -148,25 +148,26 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 176,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,False
 177,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,Laltu,Matched,False
 178,Arjun,85,Switzerland vs Algeria,Jul 02,Switzerland,100.0,65.0,Ankur,Matched,False
-179,Yogi,76,Brazil vs Japan,Jun 29,Brazil,400.0,100.0,Arjun,Matched,False
-180,Arjun,76,Brazil vs Japan,Jun 29,Japan,100.0,495.0,Ashu,Matched,False
+179,Yogi,76,Brazil vs Japan,Jun 29,Brazil,400.0,100.0,Arjun,Matched,True
+180,Arjun,76,Brazil vs Japan,Jun 29,Japan,100.0,495.0,Ashu,Matched,True
 181,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,TenWall,Matched,False
-182,Peteza,76,Brazil vs Japan,Jun 29,Brazil,100.0,40.0,TenWall,Matched,False
+182,Peteza,76,Brazil vs Japan,Jun 29,Brazil,100.0,40.0,TenWall,Matched,True
 183,Peteza,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,,Open,False
 184,Laakha,84,Spain vs Austria,Jul 02,Spain,400.0,100.0,TenWall,Matched,False
-185,Laakha,74,Germany vs Paraguay,Jun 29,Germany,100.0,30.0,TenWall,Matched,False
-186,Laakha,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,TenWall,Matched,False
+185,Laakha,74,Germany vs Paraguay,Jun 29,Germany,100.0,30.0,TenWall,Matched,True
+186,Laakha,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,TenWall,Matched,True
 187,Arjun,73,South Africa vs Canada,Jun 28,Canada,100.0,80.0,,Open,True
-188,Arjun,74,Germany vs Paraguay,Jun 29,Paraguay,100.0,495.0,Himadri,Matched,False
-189,Ankur,74,Germany vs Paraguay,Jun 29,Germany,100.0,35.0,,Open,False
-190,Ankur,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,Laltu,Matched,False
-191,TenWall,76,Brazil vs Japan,Jun 29,Draw,50.0,180.0,,Open,False
-193,TenWall,74,Germany vs Paraguay,Jun 29,Germany,200.0,50.0,,Open,False
-194,TenWall,75,Netherlands vs Morocco,Jun 29,Morocco,50.0,130.0,Laltu,Matched,False
-195,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,Laakha,Matched,False
-196,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,295.0,Yogi,Matched,False
-197,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,,Open,False
-198,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,195.0,Vimal,Matched,False
-199,TenWall,76,Brazil vs Japan,Jun 29,Japan,50.0,250.0,,Open,False
-200,Vimal,74,Germany vs Paraguay,Jun 29,Germany,100.0,25.0,,Open,False
-201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,50.0,110.0,,Open,False
+188,Arjun,74,Germany vs Paraguay,Jun 29,Paraguay,100.0,495.0,Himadri,Matched,True
+189,Ankur,74,Germany vs Paraguay,Jun 29,Germany,100.0,35.0,,Open,True
+190,Ankur,75,Netherlands vs Morocco,Jun 29,Netherlands,100.0,100.0,Laltu,Matched,True
+191,TenWall,76,Brazil vs Japan,Jun 29,Draw,50.0,180.0,,Open,True
+193,TenWall,74,Germany vs Paraguay,Jun 29,Germany,200.0,50.0,,Open,True
+194,TenWall,75,Netherlands vs Morocco,Jun 29,Morocco,50.0,130.0,Laltu,Matched,True
+195,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,Laakha,Matched,True
+196,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,295.0,Yogi,Matched,True
+197,Arjun,75,Netherlands vs Morocco,Jun 29,Morocco,100.0,195.0,,Open,True
+198,Arjun,76,Brazil vs Japan,Jun 29,Japan,50.0,195.0,Vimal,Matched,True
+199,TenWall,76,Brazil vs Japan,Jun 29,Japan,50.0,250.0,,Open,True
+200,Vimal,74,Germany vs Paraguay,Jun 29,Germany,100.0,25.0,,Open,True
+201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,50.0,110.0,,Open,True
+202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,,Open,False

@@ -179,3 +179,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 213,TenWall,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,160.0,Laltu,Matched,False
 214,Vimal,77,France vs Sweden,Jun 30,France,100.0,30.0,TenWall,Matched,False
 215,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,Himadri,Matched,False
+216,himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,150.0,75.0,,Open,False

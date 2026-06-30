@@ -172,6 +172,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,50.0,110.0,,Open,True
 202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,,Open,False
 203,TenWall,78,Ivory Coast vs Norway,Jun 30,Draw,100.0,200.0,Arjun,Matched,False
-204,TenWall,79,Mexico vs Ecuador,Jun 30,Draw,100.0,200.0,,Open,False
+204,TenWall,79,Mexico vs Ecuador,Jun 30,Draw,100.0,200.0,Arjun,Matched,False
 205,Arjun,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,200.0,,Open,False
 206,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,,Open,False

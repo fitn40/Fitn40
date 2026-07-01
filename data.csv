@@ -171,7 +171,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,Peteza,Matched,False
 203,TenWall,78,Ivory Coast vs Norway,Jun 30,Draw,100.0,200.0,Arjun,Matched,True
 204,TenWall,79,Mexico vs Ecuador,Jun 30,Draw,100.0,200.0,Arjun,Matched,True
-206,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,,Open,False
 209,Abhroz,82,Belgium vs Senegal,Jul 01,Belgium,100.0,130.0,Laltu,Matched,False
 210,Laakha,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,85.0,TenWall,Matched,True
 211,TenWall,77,France vs Sweden,Jun 30,France,350.0,90.0,Ashu,Matched,True

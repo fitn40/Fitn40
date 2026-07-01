@@ -185,3 +185,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 219,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,,Open,False
 220,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,,Open,False
 221,Arjun,87,Colombia vs Ghana,Jul 03,Draw,100.0,250.0,,Open,False
+222,TenWall,80,England vs Congo DR,Jul 01,England,350.0,90.0,,Open,False

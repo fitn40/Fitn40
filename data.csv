@@ -193,5 +193,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 228,Peteza,83,Portugal vs Croatia,Jul 02,Croatia,50.0,175.0,Arjun,Matched,False
 229,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,100.0,,Open,False
 230,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,,Open,False
-231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,,Open,False
+231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,Ashu,Matched,False
 232,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,Draw,50.0,135.0,,Open,False

@@ -143,7 +143,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 173,Arjun,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,200.0,,Open,True
 174,Arjun,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,90.0,Laltu,Matched,True
 175,Peteza,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,False
-176,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,False
+176,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,Laltu,Matched,False
 177,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,Laltu,Matched,False
 178,Arjun,85,Switzerland vs Algeria,Jul 02,Switzerland,100.0,65.0,Ankur,Matched,False
 179,Yogi,76,Brazil vs Japan,Jun 29,Brazil,400.0,100.0,Arjun,Matched,True

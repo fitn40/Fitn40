@@ -188,5 +188,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 222,TenWall,80,England vs Congo DR,Jul 01,England,350.0,90.0,Vimal,Matched,False
 223,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Laakha,Matched,False
 224,TenWall,82,Belgium vs Senegal,Jul 01,Draw,100.0,200.0,Ashu,Matched,False
-226,Laakha,80,England vs Congo DR,Jul 01,Congo DR,15.0,165.0,,Open,False
+226,Laakha,80,England vs Congo DR,Jul 01,Congo DR,15.0,165.0,Yogi,Matched,False
 227,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,,Open,False

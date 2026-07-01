@@ -180,7 +180,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 215,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,Himadri,Matched,True
 216,himadri,85,Switzerland vs Algeria,Jul 02,Switzerland,150.0,75.0,Ankur,Matched,False
 217,Arjun,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,,Open,False
-218,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,,Open,False
+218,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,himadri,Matched,False
 219,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,Laltu,Matched,False
 220,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,,Open,False
 221,Arjun,87,Colombia vs Ghana,Jul 03,Draw,100.0,250.0,Yogi,Matched,False

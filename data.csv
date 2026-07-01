@@ -191,3 +191,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 226,Laakha,80,England vs Congo DR,Jul 01,Congo DR,15.0,165.0,Yogi,Matched,False
 227,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Yogi,Matched,False
 228,Peteza,83,Portugal vs Croatia,Jul 02,Croatia,50.0,175.0,,Open,False
+229,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,100.0,,Open,False

@@ -187,3 +187,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 221,Arjun,87,Colombia vs Ghana,Jul 03,Draw,100.0,250.0,,Open,False
 222,TenWall,80,England vs Congo DR,Jul 01,England,350.0,90.0,,Open,False
 223,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,,Open,False
+224,TenWall,82,Belgium vs Senegal,Jul 01,Draw,100.0,200.0,,Open,False

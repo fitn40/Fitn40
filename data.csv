@@ -174,7 +174,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 209,Abhroz,82,Belgium vs Senegal,Jul 01,Belgium,100.0,130.0,Laltu,Matched,False
 210,Laakha,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,85.0,TenWall,Matched,True
 211,TenWall,77,France vs Sweden,Jun 30,France,350.0,90.0,Ashu,Matched,True
-212,Yogi,88,Australia vs Egypt,Jul 03,Egypt,100.0,160.0,,Open,False
+212,Yogi,88,Australia vs Egypt,Jul 03,Egypt,100.0,160.0,himadri,Matched,False
 213,TenWall,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,160.0,Laltu,Matched,True
 214,Vimal,77,France vs Sweden,Jun 30,France,100.0,30.0,TenWall,Matched,True
 215,TenWall,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,95.0,Himadri,Matched,True

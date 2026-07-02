@@ -197,3 +197,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 235,TenWall,85,Switzerland vs Algeria,Jul 02,Draw,80.0,200.0,Laakha,Matched,False
 236,Laakha,87,Colombia vs Ghana,Jul 03,Colombia,200.0,110.0,,Open,False
 237,Peteza,86,Argentina vs Cape Verde,Jul 03,Argentina,100.0,15.0,,Open,False
+238,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False

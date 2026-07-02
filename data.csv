@@ -126,7 +126,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 150,Arjun,69,Colombia vs Portugal,Jun 27,Portugal,200.0,200.0,Laltu,Matched,True
 151,Peteza,70,Congo DR vs Uzbekistan,Jun 27,Congo DR,100.0,53.0,Laltu,Matched,True
 152,Laakha,88,Australia vs Egypt,Jul 03,Australia,100.0,180.0,TenWall,Matched,False
-153,Laakha,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,50.0,TenWall,Matched,False
+153,Laakha,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,50.0,TenWall,Matched,True
 154,Laakha,73,South Africa vs Canada,Jun 28,Canada,100.0,75.0,TenWall,Matched,True
 155,TenWall,74,Germany vs Paraguay,Jun 29,Germany,400.0,100.0,Ashu,Matched,True
 157,TenWall,75,Netherlands vs Morocco,Jun 29,Draw,100.0,220.0,Vimal,Matched,True
@@ -134,16 +134,16 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 161,Himadri,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,100.0,TenWall,Matched,True
 163,Himadri,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,Laltu,Matched,False
 165,Himadri,73,South Africa vs Canada,Jun 28,South Africa,150.0,120.0,TenWall,Matched,True
-166,Himadri,82,Belgium vs Senegal,Jul 01,Senegal,150.0,100.0,TenWall,Matched,False
+166,Himadri,82,Belgium vs Senegal,Jul 01,Senegal,150.0,100.0,TenWall,Matched,True
 167,Himadri,88,Australia vs Egypt,Jul 03,Australia,150.0,80.0,TenWall,Matched,False
 168,TenWall,73,South Africa vs Canada,Jun 28,Draw,100.0,220.0,Vimal,Matched,True
-169,TenWall,80,England vs Congo DR,Jul 01,England,500.0,125.0,Arjun,Matched,False
+169,TenWall,80,England vs Congo DR,Jul 01,England,500.0,125.0,Arjun,Matched,True
 170,TenWall,86,Argentina vs Cape Verde,Jul 03,Argentina,1000.0,140.0,Arjun,Matched,False
 171,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,90.0,,Open,False
 173,Arjun,78,Ivory Coast vs Norway,Jun 30,Norway,100.0,200.0,,Open,True
 174,Arjun,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,90.0,Laltu,Matched,True
-175,Peteza,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,False
-176,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,Laltu,Matched,False
+175,Peteza,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,,Open,True
+176,Arjun,81,USA vs Bosnia and Herzegovina,Jul 01,USA,100.0,65.0,Laltu,Matched,True
 177,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,Laltu,Matched,False
 178,Arjun,85,Switzerland vs Algeria,Jul 02,Switzerland,100.0,65.0,Ankur,Matched,False
 179,Yogi,76,Brazil vs Japan,Jun 29,Brazil,400.0,100.0,Arjun,Matched,True
@@ -168,10 +168,10 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 199,TenWall,76,Brazil vs Japan,Jun 29,Japan,50.0,250.0,,Open,True
 200,Vimal,74,Germany vs Paraguay,Jun 29,Germany,100.0,25.0,,Open,True
 201,Peteza,75,Netherlands vs Morocco,Jun 29,Draw,50.0,110.0,,Open,True
-202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,Peteza,Matched,False
+202,Vimal,80,England vs Congo DR,Jul 01,England,100.0,28.0,Peteza,Matched,True
 203,TenWall,78,Ivory Coast vs Norway,Jun 30,Draw,100.0,200.0,Arjun,Matched,True
 204,TenWall,79,Mexico vs Ecuador,Jun 30,Draw,100.0,200.0,Arjun,Matched,True
-209,Abhroz,82,Belgium vs Senegal,Jul 01,Belgium,100.0,130.0,Laltu,Matched,False
+209,Abhroz,82,Belgium vs Senegal,Jul 01,Belgium,100.0,130.0,Laltu,Matched,True
 210,Laakha,79,Mexico vs Ecuador,Jun 30,Mexico,100.0,85.0,TenWall,Matched,True
 211,TenWall,77,France vs Sweden,Jun 30,France,350.0,90.0,Ashu,Matched,True
 212,Yogi,88,Australia vs Egypt,Jul 03,Egypt,100.0,160.0,himadri,Matched,False
@@ -184,13 +184,13 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 219,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,Laltu,Matched,False
 220,Arjun,84,Spain vs Austria,Jul 02,Spain,200.0,100.0,,Open,False
 221,Arjun,87,Colombia vs Ghana,Jul 03,Draw,100.0,250.0,Yogi,Matched,False
-222,TenWall,80,England vs Congo DR,Jul 01,England,350.0,90.0,Vimal,Matched,False
-223,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Laakha,Matched,False
-224,TenWall,82,Belgium vs Senegal,Jul 01,Draw,100.0,200.0,Ashu,Matched,False
-226,Laakha,80,England vs Congo DR,Jul 01,Congo DR,15.0,165.0,Yogi,Matched,False
-227,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Yogi,Matched,False
+222,TenWall,80,England vs Congo DR,Jul 01,England,350.0,90.0,Vimal,Matched,True
+223,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Laakha,Matched,True
+224,TenWall,82,Belgium vs Senegal,Jul 01,Draw,100.0,200.0,Ashu,Matched,True
+226,Laakha,80,England vs Congo DR,Jul 01,Congo DR,15.0,165.0,Yogi,Matched,True
+227,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Yogi,Matched,True
 228,Peteza,83,Portugal vs Croatia,Jul 02,Croatia,50.0,175.0,Arjun,Matched,False
-229,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,100.0,Laltu,Matched,False
+229,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,100.0,Laltu,Matched,True
 230,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,,Open,False
-231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,Ashu,Matched,False
-233,Arjun,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,,Open,False
+231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,Ashu,Matched,True
+233,Arjun,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,TenWall,Matched,False

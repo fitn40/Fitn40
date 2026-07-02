@@ -195,4 +195,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,Ashu,Matched,True
 233,Arjun,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,TenWall,Matched,False
 234,TenWall,85,Switzerland vs Algeria,Jul 02,Algeria,50.0,200.0,,Open,False
-235,TenWall,85,Switzerland vs Algeria,Jul 02,Draw,80.0,200.0,,Open,False
+235,TenWall,85,Switzerland vs Algeria,Jul 02,Draw,80.0,200.0,Laakha,Matched,False

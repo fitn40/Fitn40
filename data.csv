@@ -191,7 +191,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 227,TenWall,82,Belgium vs Senegal,Jul 01,Senegal,50.0,120.0,Yogi,Matched,True
 228,Peteza,83,Portugal vs Croatia,Jul 02,Croatia,50.0,175.0,Arjun,Matched,False
 229,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,100.0,Laltu,Matched,True
-230,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,,Open,False
+230,Arjun,83,Portugal vs Croatia,Jul 02,Portugal,100.0,80.0,TenWall,Matched,False
 231,Arjun,82,Belgium vs Senegal,Jul 01,Belgium,100.0,90.0,Ashu,Matched,True
 233,Arjun,84,Spain vs Austria,Jul 02,Spain,100.0,50.0,TenWall,Matched,False
 234,TenWall,85,Switzerland vs Algeria,Jul 02,Algeria,50.0,200.0,,Open,False

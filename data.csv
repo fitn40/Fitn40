@@ -198,3 +198,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 236,Laakha,87,Colombia vs Ghana,Jul 03,Colombia,200.0,110.0,,Open,False
 237,Peteza,86,Argentina vs Cape Verde,Jul 03,Argentina,100.0,15.0,Arjun,Matched,False
 238,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,80.0,,Open,False
+239,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,,Open,False

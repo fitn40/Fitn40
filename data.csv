@@ -202,4 +202,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 240,Fifa@2026,91,Brazil vs Norway,Jul 06,Brazil,100.0,45.0,Ashu,Matched,False
 241,Fifa@2026,90,Paraguay vs France,Jul 05,Paraguay,100.0,240.0,Ashu,Matched,False
 242,Fifa@2026,89,Canada vs Morocco,Jul 04,Canada,100.0,95.0,,Open,False
-243,Fifa@2026,89,Canada vs Morocco,Jul 04,Morocco,100.0,85.0,,Open,False
+243,Fifa@2026,89,Canada vs Morocco,Jul 04,Morocco,100.0,85.0,Ashu,Matched,False

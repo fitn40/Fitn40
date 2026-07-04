@@ -200,3 +200,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 238,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,80.0,,Open,True
 239,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,Ashu,Matched,True
 240,Fifa@2026,91,Brazil vs Norway,Jul 06,Brazil,100.0,45.0,,Open,False
+241,Fifa@2026,90,Paraguay vs France,Jul 05,Paraguay,100.0,240.0,,Open,False

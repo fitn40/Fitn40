@@ -414,7 +414,13 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
             st.markdown("---")
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses/draws)*")
+            # 🔮 Clear breakout presentation for 2-Way knockout rules vs Group Draws
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses)*")
+            if int(bet.get('Match_Num', 0)) >= 89:
+                st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
+            else:
+                st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
+
             
             try:
                 st.write(f"📊 **Market odds for the bet is:** {market_payout} (you lose) / {creator_risk} (you win)")

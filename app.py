@@ -111,15 +111,19 @@ combined_bets = load_permanent_bets()
 for bet in combined_bets:
     try:
         m_num = int(bet['Match_Num'])
-        m_lookup = match_data[match_data['Match_Num'] == m_num]
-        if not m_lookup.empty:
-            # Hard cutoff: Force any match number below the new Round of 16 (Match 89) to expire automatically
-            if m_num < 89:
-                bet["Is_Expired"] = True
-            else:
-                bet["Is_Expired"] = current_date.date() > m_lookup.iloc[0]['Match_Date_Obj']
     except:
-        bet["Is_Expired"] = False
+        bet["Is_Expired"] = True
+        continue
+
+    m_lookup = match_data[match_data['Match_Num'] == m_num]
+    if not m_lookup.empty:
+        if m_num < 89:
+            bet["Is_Expired"] = True
+        else:
+            bet["Is_Expired"] = current_date.date() > m_lookup.iloc[0]['Match_Date_Obj']
+    else:
+        # Match no longer defined in current fixture list -> treat as expired
+        bet["Is_Expired"] = True
 
 is_admin = (st.session_state.player_name == "Fifa@2026")
 

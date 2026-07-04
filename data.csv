@@ -199,4 +199,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 237,Peteza,86,Argentina vs Cape Verde,Jul 03,Argentina,100.0,15.0,Arjun,Matched,True
 238,TenWall,87,Colombia vs Ghana,Jul 03,Colombia,150.0,80.0,,Open,True
 239,Arjun,88,Australia vs Egypt,Jul 03,Egypt,100.0,150.0,Ashu,Matched,True
-240,Fifa@2026,91,Brazil vs Norway,Jul 06,Brazil,100.0,45.0,Ashu,Matched,False

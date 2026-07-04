@@ -18,7 +18,7 @@ def get_match_data(year):
         # --- ⏳ RECENTLY EXPIRED ROUND OF 32 STAGE ---
         {"Match_Num": 73, "Date_Str": "Jun 28", "Home_Team": "South Africa", "Away_Team": "Canada", "Home_Win_Odds": 4.2, "Draw_Odds": 3.4, "Away_Win_Odds": 1.85},
         # ... [Keep your matches 74 to 88 here to preserve their historical entries] ...
-        {"Match_Num": 88, "Date_Str": "Jul 03", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6},
+        {"Match_Num": 88, "Date_Str": "Jul 3", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6},
         
         # --- 🏆 UPCOMING ROUND OF 16 FIXTURES (2-WAY "TO ADVANCE" MARKET) ---
         {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85},

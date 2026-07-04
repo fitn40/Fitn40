@@ -37,14 +37,12 @@ def get_match_data(year):
     dates_list = []
     for idx, row in df.iterrows():
         try:
-            # Clean up double spaces or padding variants like "Jul 03" vs "Jul 3"
             clean_date_str = " ".join(row['Date_Str'].split())
             try:
                 dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %d %Y").date())
             except:
                 dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %m %Y").date())
         except:
-            # Fallback to the absolute earliest epoch default so past bugs drop directly to history folder
             dates_list.append(datetime(2000, 1, 1).date())
     df['Match_Date_Obj'] = dates_list
     return df
@@ -92,12 +90,10 @@ def save_all_bets_permanently(bets_list):
             pass
             
 def execute_backend_deletion(bet_id_to_remove):
-    # Filter out the targeted bet ID from the master list
     updated_bets = [b for b in combined_bets if int(b.get("Bet_ID", 0)) != int(bet_id_to_remove)]
     save_all_bets_permanently(updated_bets)
     st.success(f"🗑️ Bet #{bet_id_to_remove} deleted successfully from backend!")
     st.rerun()
-    
 
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
@@ -110,12 +106,18 @@ if "user" in st.query_params and st.session_state.player_name == "":
 
 combined_bets = load_permanent_bets()
 
-# Auto Expiry Processing Loop
+# 🛠️ TIMEZONE-SAFE EXPIRY EVALUATOR
+# Evaluates expiration using your local date targets safely instead of relying on unstable server time fields
 for bet in combined_bets:
     try:
-        m_lookup = match_data[match_data['Match_Num'] == int(bet['Match_Num'])]
+        m_num = int(bet['Match_Num'])
+        m_lookup = match_data[match_data['Match_Num'] == m_num]
         if not m_lookup.empty:
-            bet["Is_Expired"] = current_date.date() > m_lookup.iloc[0]['Match_Date_Obj']
+            # Hard cutoff: Force any match number below the new Round of 16 (Match 89) to expire automatically
+            if m_num < 89:
+                bet["Is_Expired"] = True
+            else:
+                bet["Is_Expired"] = current_date.date() > m_lookup.iloc[0]['Match_Date_Obj']
     except:
         bet["Is_Expired"] = False
 
@@ -139,7 +141,7 @@ if st.session_state.current_page == "login":
 # 🏆 UI SCREEN 2: MAIN USER APP INTERFACE
 # ==========================================
 elif st.session_state.current_page == "dashboard":
-    st.title("🏆 Predction Dashboard")
+    st.title("🏆 Prediction Dashboard")
     st.write(f"Logged in as: **{st.session_state.player_name}**")
     
     if is_admin:
@@ -169,11 +171,9 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
-    # Pull directly from your permanent data.csv rows
     open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
-     # 🔄 CHRONOLOGICAL DATE-SORTING ENGINE (Date Ascending + Newest Bet ID First)
     def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
@@ -185,21 +185,16 @@ elif st.session_state.current_page == "dashboard":
         except:
             sort_date = current_date.date()
         
-        # Extract numerical Bet_ID safely
         try:
             b_id = int(b.get("Bet_ID", 0))
         except:
             b_id = 0
             
-        # Returning -b_id forces the newest bet submissions to bubble to the top of that specific date
         return (sort_date, -b_id)
 
-    # Sort both lists dynamically to show your newest creations first
     open_bets = sorted(open_bets, key=get_bet_sort_key)
     live_bets = sorted(live_bets, key=get_bet_sort_key)
 
-
-    
     # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")
     if not open_bets:
@@ -207,7 +202,6 @@ elif st.session_state.current_page == "dashboard":
     else:
         for bet in open_bets:
             with st.container(border=True):
-                # 🔍 1. Background lookup to grab original market baseline payout
                 try:
                     m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
                     prediction_type = bet.get('Prediction')
@@ -219,21 +213,18 @@ elif st.session_state.current_page == "dashboard":
                     else:
                         m_odds = m_lookup['Draw_Odds']
                     
-                    # Calculate what the market payout would have been for this risk amount
                     b_pts = float(bet.get('Points', 100))
                     market_payout = float(round(b_pts * (m_odds - 1), 1))
                     market_str = f"Market Odds - {market_payout} pts"
                 except:
                     market_str = "Market Odds - N/A"
 
-        # 📊 2. Read current offer numbers
                 b_creator = bet.get('Creator')
                 b_pred = bet.get('Prediction')
                 b_match = bet.get('Match_Name')
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                # 📱 3. Render the Name-Specific Layout
                 st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
                 st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
                 st.markdown(f"🔹 **{b_creator} Risks:** {b_risk} pts to win {b_payout} pts")
@@ -251,7 +242,7 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-                # 🔥 2. Live Matched Locked Block
+    # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -356,8 +347,6 @@ elif st.session_state.current_page == "dashboard":
                     if st.button(f"🚨 Admin Override: Clear Expired #{bet.get('Bet_ID')}", key=f"del_exp_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
                         execute_backend_deletion(bet.get('Bet_ID'))
 
-
-
 # ==========================================
 # 📊 UI SCREEN: TOURNAMENT BOARD (LIVE EXCEL)
 # ==========================================
@@ -365,7 +354,6 @@ elif st.session_state.current_page == "view_excel":
     st.title("📊 Live Tournament Board")
     st.write("This table updates dynamically whenever results are committed to the backend repository.")
     
-    import os
     if os.path.exists("results.xlsx"):
         try:
             df_excel = pd.read_excel("results.xlsx")
@@ -393,7 +381,6 @@ elif st.session_state.current_page == "confirm_match":
             st.session_state.current_page = "dashboard"
             st.rerun()
     else:
-        # 🔍 Look up original market odds for reference summary
         try:
             m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
             prediction_type = bet.get('Prediction')
@@ -410,14 +397,12 @@ elif st.session_state.current_page == "confirm_match":
         except:
             market_str = "N/A"
 
-        # 📊 Extract exact stakes values
         creator_name = bet.get('Creator')
         match_title = bet.get('Match_Name')
         prediction = bet.get('Prediction')
         creator_risk = float(bet.get('Points', 0))
         your_risk = float(bet.get('Opponent_Payout', 0))
 
-        # 📋 Summary Breakdown Card Display
         with st.container(border=True):
             st.subheader("📊 Bet Transaction Summary")
             st.write(f"📅 **Match Date:** {bet.get('Match_Date')}")
@@ -427,17 +412,13 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses/draws)*")
             
-            # 🏛️ Calculate and show the market odds equivalent (Opponent Risk / Opponent Win)
             try:
-                # market_payout is what the market says the opponent's risk SHOULD be for the creator's stake
                 st.write(f"📊 **Market odds for the bet is:** {market_payout} (you lose) / {creator_risk} (you win)")
             except:
                 st.write(f"📊 **Market odds for the bet is:** N/A")
 
-
         st.warning("⚠️ Once confirmed, this transaction is locked and cannot be deleted by either player.")
 
-        # 🛑 Execution Buttons
         if st.button("✅ Confirm & Lock Bet", use_container_width=True, type="primary"):
             for b in combined_bets:
                 if int(b.get("Bet_ID", 0)) == int(bet.get("Bet_ID", 0)):
@@ -464,7 +445,6 @@ elif st.session_state.current_page == "new_bet":
     if selected_match_str != "-- Select --":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         
-        # 🔄 Dynamic dropdown removes 'Draw' automatically for 2-way elimination fixtures
         if pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
         else:
@@ -472,17 +452,13 @@ elif st.session_state.current_page == "new_bet":
             
         selected_prediction = st.selectbox("🔮 Outcome Selection:", options=prediction_options)        
         if selected_prediction != "-- Select --":
-        # 💰 UNLOCKED RISK & WIN SELECTION EXCHANGE
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
-            # Use the matrix odds to calculate a smart initial recommendation
             odds = float(match_row['Home_Win_Odds'] if selected_prediction == match_row['Home_Team'] else (match_row['Away_Win_Odds'] if selected_prediction == match_row['Away_Team'] else match_row['Draw_Odds']))
             default_payout = int(round(points * (odds - 1), 0))
             
-            # Fully unlocked win input box with adjusters (+ / -)
             payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)
             
-            # Display information layout for the player
             custom_odds = round((payout / points) + 1, 2) if points > 0 else 0
             st.caption(f"💡 Implied custom odds layout: {custom_odds}x (Your opponent risks {payout} pts to win {points} pts)")
 

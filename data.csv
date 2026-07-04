@@ -215,3 +215,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 257,Arjun,93,Portugal vs Spain,Jul 07,Portugal,200.0,250.0,Laltu,Matched,False
 258,TenWall,89,Canada vs Morocco,Jul 04,Morocco,250.0,200.0,,Open,False
 259,Ashu,90,Paraguay vs France,Jul 05,France,750.0,100.0,Laltu,Matched,False
+260,Arjun,89,Canada vs Morocco,Jul 04,Morocco,200.0,150.0,,Open,False

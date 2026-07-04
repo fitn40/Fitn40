@@ -209,3 +209,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 249,Arjun,92,Mexico vs England,Jul 06,England,250.0,150.0,TenWall,Matched,False
 250,TenWall,89,Canada vs Morocco,Jul 04,Morocco,250.0,200.0,,Open,False
 251,TenWall,91,Brazil vs Norway,Jul 06,Brazil,500.0,300.0,,Open,False
+252,TenWall,96,Switzerland vs Colombia,Jul 08,Colombia,250.0,195.0,,Open,False

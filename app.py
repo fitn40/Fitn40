@@ -37,9 +37,15 @@ def get_match_data(year):
     dates_list = []
     for idx, row in df.iterrows():
         try:
-            dates_list.append(datetime.strptime(f"{row['Date_Str']} {year}", "%b %d %Y").date())
+            # Clean up double spaces or padding variants like "Jul 03" vs "Jul 3"
+            clean_date_str = " ".join(row['Date_Str'].split())
+            try:
+                dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %d %Y").date())
+            except:
+                dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %m %Y").date())
         except:
-            dates_list.append(datetime.now().date())
+            # Fallback to the absolute earliest epoch default so past bugs drop directly to history folder
+            dates_list.append(datetime(2000, 1, 1).date())
     df['Match_Date_Obj'] = dates_list
     return df
 match_data = get_match_data(current_year)

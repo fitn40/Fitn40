@@ -209,7 +209,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 252,TenWall,96,Switzerland vs Colombia,Jul 08,Colombia,250.0,195.0,Yogi,Matched,False
 253,TenWall,94,United States vs Belgium,Jul 07,United States,300.0,250.0,Yogi,Matched,False
 254,TenWall,93,Portugal vs Spain,Jul 07,Spain,300.0,250.0,Laltu,Matched,False
-255,TenWall,90,Paraguay vs France,Jul 05,France,1000.0,200.0,,Open,False
 256,TenWall,95,Argentina vs Egypt,Jul 07,Egypt,100.0,300.0,Ankur,Matched,False
 257,Arjun,93,Portugal vs Spain,Jul 07,Portugal,200.0,250.0,Laltu,Matched,False
 259,Ashu,90,Paraguay vs France,Jul 05,France,750.0,100.0,Laltu,Matched,False

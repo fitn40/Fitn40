@@ -218,3 +218,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 272,Peteza,95,Argentina vs Egypt,Jul 07,Argentina,100.0,50.0,,Open,False
 273,Laakha,95,Argentina vs Egypt,Jul 07,Argentina,150.0,60.0,,Open,False
 274,Laakha,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,170.0,,Open,False
+275,Arjun,95,Argentina vs Egypt,Jul 07,Argentina,1000.0,200.0,,Open,False

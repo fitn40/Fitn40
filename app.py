@@ -39,7 +39,6 @@ def get_match_data(year):
         try:
             clean_date_str = " ".join(row['Date_Str'].split())
             time_part = row.get('Time_Str', '00:00')
-            # Parses the full date string with the exact hour and minute
             dates_list.append(datetime.strptime(f"{clean_date_str} {year} {time_part}", "%b %d %Y %H:%M"))
         except:
             dates_list.append(datetime(2000, 1, 1, 0, 0))
@@ -48,7 +47,7 @@ def get_match_data(year):
 match_data = get_match_data(current_year)
 
 
-# 🔄 AUTOMATIC PERMANENT STORAGE HOOKS (Ensures data survives refreshes and syncs globally)
+# 🔄 AUTOMATIC PERMANENT STORAGE HOOKS
 def get_github_repo():
     try:
         gh = Github(st.secrets["GITHUB_TOKEN"])
@@ -123,13 +122,11 @@ for bet in combined_bets:
             m_lookup = match_data[match_data['Match_Num'] == m_num]
             if not m_lookup.empty:
                 kickoff_time = m_lookup.iloc[0]['Match_Date_Obj']
-                # The bet automatically expires and hides 3 hours after the match kicks off
                 bet["Is_Expired"] = true_india_now >= (kickoff_time + dt.timedelta(hours=3))
             else:
                 bet["Is_Expired"] = False
     except:
         bet["Is_Expired"] = False
-
 
 is_admin = (st.session_state.player_name == "Fifa@2026")
 
@@ -187,10 +184,8 @@ elif st.session_state.current_page == "dashboard":
     def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
-            
             if m_num in [999, 1000]:
                 return datetime(2026, 7, 30, 0, 0)
-                
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
                 return match_row.iloc[0]['Match_Date_Obj']
@@ -198,14 +193,6 @@ elif st.session_state.current_page == "dashboard":
                 return datetime(2026, 6, 1, 0, 0)
         except:
             return datetime(2026, 6, 1, 0, 0)
-
-        
-        try:
-            b_id = int(b.get("Bet_ID", 0))
-        except:
-            b_id = 0
-            
-        return (sort_date, -b_id)
 
     open_bets = sorted(open_bets, key=get_bet_sort_key)
     live_bets = sorted(live_bets, key=get_bet_sort_key)
@@ -270,7 +257,6 @@ elif st.session_state.current_page == "dashboard":
                 risk_pts = 100.0
                 win_pts = 55.0
 
-            # 🟢 Live Matched Bets - Emerald Green HTML Card (Auto-adaptive Contrast)
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -304,29 +290,17 @@ elif st.session_state.current_page == "dashboard":
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
 
     def get_expired_sort_key(b):
-        def get_expired_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
-            
-            # Handle long-term outrights cleanly so they don't crash the sorter
             if m_num in [999, 1000]:
                 return datetime(2026, 7, 30, 0, 0)
-                
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
-                # Returns the full timestamp object
                 return match_row.iloc[0]['Match_Date_Obj']
             else:
                 return datetime(2026, 6, 1, 0, 0)
         except:
             return datetime(2026, 6, 1, 0, 0)
-
-            
-        try:
-            b_id = int(b.get("Bet_ID", 0))
-        except:
-            b_id = 0
-        return (sort_date, b_id)
 
     expired_matched_bets = sorted(expired_matched_bets, key=get_expired_sort_key, reverse=True)
 
@@ -342,7 +316,6 @@ elif st.session_state.current_page == "dashboard":
                     risk_pts = 100.0
                     win_pts = 55.0
 
-                # 🔴 Expired Matched Bets - Crimson Red HTML Card (Auto-adaptive Contrast)
                 st.markdown(
                     f"""
                     <div style="background-color: rgba(192, 57, 43, 0.06); 
@@ -433,14 +406,12 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
             st.markdown("---")
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
-            # 🔮 Clear breakout presentation for 2-Way knockout rules vs Group Draws
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses)*")
             if int(bet.get('Match_Num', 0)) >= 89:
                 st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
             else:
                 st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
 
-            
             try:
                 st.write(f"📊 **Market odds for the bet is:** {market_payout} (you lose) / {creator_risk} (you win)")
             except:
@@ -468,7 +439,6 @@ elif st.session_state.current_page == "confirm_match":
 # ==========================================
 elif st.session_state.current_page == "new_bet":
     st.title("🎲 Create New Prediction Offer")
-    # Hide the match from the creation menu the exact minute it starts
     active_fixtures = match_data[match_data['Match_Date_Obj'] > true_india_now]
     selected_match_str = st.selectbox("👉 Target Match Fixture:", options=["-- Select --"] + active_fixtures['Match_Display'].tolist())
     

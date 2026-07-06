@@ -106,24 +106,34 @@ if "user" in st.query_params and st.session_state.player_name == "":
 
 combined_bets = load_permanent_bets()
 
-# 🛠️ TIMEZONE-SAFE EXPIRY EVALUATOR
-# Evaluates expiration using your local date targets safely instead of relying on unstable server time fields
+# 🛠️ AUTOMATED TIMEZONE-AWARE EXPIRY ENGINE
+# Force calculations based on true India Standard Time (IST) 
+import datetime as dt
+true_india_date = (datetime.utcnow() + dt.timedelta(hours=5, minutes=30)).date()
+
 for bet in combined_bets:
     try:
-        m_num = int(bet['Match_Num'])
-    except:
-        bet["Is_Expired"] = True
-        continue
-
-    m_lookup = match_data[match_data['Match_Num'] == m_num]
-    if not m_lookup.empty:
-        if m_num < 89:
+        raw_num = str(bet.get('Match_Num', '0')).strip()
+        m_num = int(float(raw_num)) if '.' in raw_num else int(raw_num)
+        
+        # 1. Long-term tournament outrights (999 & 1000) stay active until the final
+        if m_num in [999, 1000]:
+            bet["Is_Expired"] = False
+            
+        # 2. Hard archive rule for previous tournament phases
+        elif m_num < 89:
             bet["Is_Expired"] = True
+            
+        # 3. Dynamic auto-archive for current knockout phase matches
         else:
-            bet["Is_Expired"] = current_date.date() > m_lookup.iloc[0]['Match_Date_Obj']
-    else:
-        # Match no longer defined in current fixture list -> treat as expired
-        bet["Is_Expired"] = True
+            m_lookup = match_data[match_data['Match_Num'] == m_num]
+            if not m_lookup.empty:
+                bet["Is_Expired"] = true_india_date > m_lookup.iloc[0]['Match_Date_Obj']
+            else:
+                bet["Is_Expired"] = False
+    except:
+        bet["Is_Expired"] = False
+
 
 is_admin = (st.session_state.player_name == "Fifa@2026")
 

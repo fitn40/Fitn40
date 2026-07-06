@@ -221,3 +221,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 275,Arjun,95,Argentina vs Egypt,Jul 07,Argentina,1000.0,200.0,TenWall,Matched,False
 276,Arjun,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,150.0,,Open,False
 277,Ankur,94,United States vs Belgium,Jul 07,Belgium,100.0,90.0,,Open,False
+278,Ankur,93,Portugal vs Spain,Jul 07,Spain,100.0,90.0,,Open,False

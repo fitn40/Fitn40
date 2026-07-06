@@ -184,16 +184,21 @@ elif st.session_state.current_page == "dashboard":
     open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
-    def get_bet_sort_key(b):
+        def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
+            
+            if m_num in [999, 1000]:
+                return datetime(2026, 7, 30, 0, 0)
+                
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
-                sort_date = match_row.iloc[0]['Match_Date_Obj']
+                return match_row.iloc[0]['Match_Date_Obj']
             else:
-                sort_date = current_date.date()
+                return datetime(2026, 6, 1, 0, 0)
         except:
-            sort_date = current_date.date()
+            return datetime(2026, 6, 1, 0, 0)
+
         
         try:
             b_id = int(b.get("Bet_ID", 0))
@@ -299,15 +304,23 @@ elif st.session_state.current_page == "dashboard":
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
     
     def get_expired_sort_key(b):
+        def get_expired_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
+            
+            # Handle long-term outrights cleanly so they don't crash the sorter
+            if m_num in [999, 1000]:
+                return datetime(2026, 7, 30, 0, 0)
+                
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
-                sort_date = match_row.iloc[0]['Match_Date_Obj']
+                # Returns the full timestamp object
+                return match_row.iloc[0]['Match_Date_Obj']
             else:
-                sort_date = current_date.date()
+                return datetime(2026, 6, 1, 0, 0)
         except:
-            sort_date = current_date.date()
+            return datetime(2026, 6, 1, 0, 0)
+
             
         try:
             b_id = int(b.get("Bet_ID", 0))

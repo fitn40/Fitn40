@@ -184,7 +184,7 @@ elif st.session_state.current_page == "dashboard":
     open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
-        def get_bet_sort_key(b):
+    def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
             
@@ -302,7 +302,7 @@ elif st.session_state.current_page == "dashboard":
 
     # 🛑 3. Expired Matched Bets Block (Hidden inside an Expander link)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
-    
+
     def get_expired_sort_key(b):
         def get_expired_sort_key(b):
         try:

@@ -178,7 +178,22 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
-    open_bets = [b for b in combined_bets if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False)]
+    # 🔐 ANTI-CHEAT FILTER SPLIT
+    # 1. Open offers vanish the exact minute kickoff happens so nobody can match an in-play game
+    open_bets = []
+    for b in combined_bets:
+        if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False):
+            m_num = int(b.get("Match_Num", 0))
+            if m_num in [999, 1000]:
+                open_bets.append(b)
+            else:
+                m_lookup = match_data[match_data['Match_Num'] == m_num]
+                # If the true current time in India has passed the kickoff time, hide it from being matched!
+                if not m_lookup.empty and true_india_now >= m_lookup.iloc[0]['Match_Date_Obj']:
+                    continue
+                open_bets.append(b)
+
+    # 2. Locked bets stay on the dashboard for 3 hours so players can see them while watching
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
     def get_bet_sort_key(b):

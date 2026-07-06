@@ -213,7 +213,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 259,Ashu,90,Paraguay vs France,Jul 05,France,750.0,100.0,Laltu,Matched,True
 261,Arjun,92,Mexico vs England,Jul 06,England,250.0,160.0,TenWall,Matched,False
 263,Peteza,89,Canada vs Morocco,Jul 04,Canada,30.0,100.0,Ankur,Matched,True
-266,TenWall,91,Brazil vs Norway,Jul 06,Brazil,300.0,180.0,,Open,False
 267,TenWall,91,Brazil vs Norway,Jul 06,Brazil,500.0,300.0,Laakha,Matched,False
 269,Laakha,94,United States vs Belgium,Jul 07,United States,200.0,180.0,,Open,False
 270,Arjun,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,180.0,,Open,False

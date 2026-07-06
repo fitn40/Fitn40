@@ -11,24 +11,24 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Round of 16 Data Matrix (Sourced from FIFA_WC_2026_Round_of_16_Odds.xlsx)
+# 📋 Official Round of 16 Data Matrix (With explicit 24-hour IST Kickoff Timings)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
         # --- ⏳ RECENTLY EXPIRED ROUND OF 32 STAGE ---
-        {"Match_Num": 73, "Date_Str": "Jun 28", "Home_Team": "South Africa", "Away_Team": "Canada", "Home_Win_Odds": 4.2, "Draw_Odds": 3.4, "Away_Win_Odds": 1.85},
+        {"Match_Num": 73, "Date_Str": "Jun 28", "Home_Team": "South Africa", "Away_Team": "Canada", "Home_Win_Odds": 4.2, "Draw_Odds": 3.4, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
         # ... [Keep your matches 74 to 88 here to preserve their historical entries] ...
-        {"Match_Num": 88, "Date_Str": "Jul 3", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6},
+        {"Match_Num": 88, "Date_Str": "Jul 3", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6, "Time_Str": "20:00"},
         
-        # --- 🏆 UPCOMING ROUND OF 16 FIXTURES (2-WAY "TO ADVANCE" MARKET) ---
-        {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85},
-        {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32},
-        {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75},
-        {"Match_Num": 92, "Date_Str": "Jul 06", "Home_Team": "Mexico", "Away_Team": "England", "Home_Win_Odds": 2.25, "Draw_Odds": None, "Away_Win_Odds": 1.65},
-        {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75},
-        {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9},
-        {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0},
-        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78}
+        # --- 🏆 UPCOMING ROUND OF 16 FIXTURES (WITH LOCAL IST KICKOFF TIME) ---
+        {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
+        {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
+        {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
+        {"Match_Num": 92, "Date_Str": "Jul 06", "Home_Team": "Mexico", "Away_Team": "England", "Home_Win_Odds": 2.25, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "05:30"},
+        {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75, "Time_Str": "00:30"},
+        {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
+        {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
+        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
@@ -38,15 +38,15 @@ def get_match_data(year):
     for idx, row in df.iterrows():
         try:
             clean_date_str = " ".join(row['Date_Str'].split())
-            try:
-                dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %d %Y").date())
-            except:
-                dates_list.append(datetime.strptime(f"{clean_date_str} {year}", "%b %m %Y").date())
+            time_part = row.get('Time_Str', '00:00')
+            # Parses the full date string with the exact hour and minute
+            dates_list.append(datetime.strptime(f"{clean_date_str} {year} {time_part}", "%b %d %Y %H:%M"))
         except:
-            dates_list.append(datetime(2000, 1, 1).date())
+            dates_list.append(datetime(2000, 1, 1, 0, 0))
     df['Match_Date_Obj'] = dates_list
     return df
 match_data = get_match_data(current_year)
+
 
 # 🔄 AUTOMATIC PERMANENT STORAGE HOOKS (Ensures data survives refreshes and syncs globally)
 def get_github_repo():
@@ -106,29 +106,25 @@ if "user" in st.query_params and st.session_state.player_name == "":
 
 combined_bets = load_permanent_bets()
 
-# 🛠️ AUTOMATED TIMEZONE-AWARE EXPIRY ENGINE
-# Force calculations based on true India Standard Time (IST) 
+# 🛠️ AUTOMATED TIME-SPECIFIC EXPIRY ENGINE (Includes 3-Hour Match Window Buffer)
 import datetime as dt
-true_india_date = (datetime.utcnow() + dt.timedelta(hours=5, minutes=30)).date()
+true_india_now = datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 
 for bet in combined_bets:
     try:
         raw_num = str(bet.get('Match_Num', '0')).strip()
         m_num = int(float(raw_num)) if '.' in raw_num else int(raw_num)
         
-        # 1. Long-term tournament outrights (999 & 1000) stay active until the final
         if m_num in [999, 1000]:
             bet["Is_Expired"] = False
-            
-        # 2. Hard archive rule for previous tournament phases
         elif m_num < 89:
             bet["Is_Expired"] = True
-            
-        # 3. Dynamic auto-archive for current knockout phase matches
         else:
             m_lookup = match_data[match_data['Match_Num'] == m_num]
             if not m_lookup.empty:
-                bet["Is_Expired"] = true_india_date > m_lookup.iloc[0]['Match_Date_Obj']
+                kickoff_time = m_lookup.iloc[0]['Match_Date_Obj']
+                # The bet automatically expires and hides 3 hours after the match kicks off
+                bet["Is_Expired"] = true_india_now >= (kickoff_time + dt.timedelta(hours=3))
             else:
                 bet["Is_Expired"] = False
     except:
@@ -459,7 +455,8 @@ elif st.session_state.current_page == "confirm_match":
 # ==========================================
 elif st.session_state.current_page == "new_bet":
     st.title("🎲 Create New Prediction Offer")
-    active_fixtures = match_data[match_data['Match_Date_Obj'] >= current_date.date()]
+    # Hide the match from the creation menu the exact minute it starts
+    active_fixtures = match_data[match_data['Match_Date_Obj'] > true_india_now]
     selected_match_str = st.selectbox("👉 Target Match Fixture:", options=["-- Select --"] + active_fixtures['Match_Display'].tolist())
     
     if selected_match_str != "-- Select --":

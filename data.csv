@@ -222,4 +222,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 277,Ankur,94,United States vs Belgium,Jul 07,Belgium,100.0,90.0,Ashu,Matched,False
 278,Ankur,93,Portugal vs Spain,Jul 07,Spain,100.0,90.0,,Open,False
 279,Laakha,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,146.0,Himadri,Matched,False
-280,Ashu,95,Argentina vs Egypt,Jul 07,Argentina,200.0,50.0,,Open,False
+280,Ashu,95,Argentina vs Egypt,Jul 07,Argentina,200.0,50.0,TenWall,Matched,False

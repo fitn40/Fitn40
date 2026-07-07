@@ -223,4 +223,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 278,Ankur,93,Portugal vs Spain,Jul 07,Spain,100.0,90.0,,Open,True
 279,Laakha,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,146.0,Himadri,Matched,False
 280,Ashu,95,Argentina vs Egypt,Jul 07,Argentina,200.0,50.0,TenWall,Matched,False
-281,Peteza,96,Switzerland vs Colombia,Jul 08,Switzerland,150.0,202.0,,Open,False
+281,Peteza,96,Switzerland vs Colombia,Jul 08,Switzerland,150.0,202.0,Ankur,Matched,False

@@ -202,24 +202,25 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 243,Arjun,89,Canada vs Morocco,Jul 04,Morocco,250.0,200.0,Laakha,Matched,True
 244,himadri,92,Mexico vs England,Jul 06,England,140.0,80.0,Abhroz,Matched,True
 247,himadri,91,Brazil vs Norway,Jul 06,Norway,250.0,150.0,Arjun,Matched,True
-248,himadri,93,Portugal vs Spain,Jul 07,Portugal,250.0,150.0,Laakha,Matched,False
+248,himadri,93,Portugal vs Spain,Jul 07,Portugal,250.0,150.0,Laakha,Matched,True
 249,Arjun,92,Mexico vs England,Jul 06,England,250.0,150.0,TenWall,Matched,True
 250,TenWall,89,Canada vs Morocco,Jul 04,Morocco,250.0,200.0,Himadri,Matched,True
 252,TenWall,96,Switzerland vs Colombia,Jul 08,Colombia,250.0,195.0,Yogi,Matched,False
 253,TenWall,94,United States vs Belgium,Jul 07,United States,300.0,250.0,Yogi,Matched,False
-254,TenWall,93,Portugal vs Spain,Jul 07,Spain,300.0,250.0,Laltu,Matched,False
+254,TenWall,93,Portugal vs Spain,Jul 07,Spain,300.0,250.0,Laltu,Matched,True
 256,TenWall,95,Argentina vs Egypt,Jul 07,Egypt,100.0,300.0,Ankur,Matched,False
-257,Arjun,93,Portugal vs Spain,Jul 07,Portugal,200.0,250.0,Laltu,Matched,False
+257,Arjun,93,Portugal vs Spain,Jul 07,Portugal,200.0,250.0,Laltu,Matched,True
 259,Ashu,90,Paraguay vs France,Jul 05,France,750.0,100.0,Laltu,Matched,True
 261,Arjun,92,Mexico vs England,Jul 06,England,250.0,160.0,TenWall,Matched,True
 263,Peteza,89,Canada vs Morocco,Jul 04,Canada,30.0,100.0,Ankur,Matched,True
 269,Laakha,94,United States vs Belgium,Jul 07,United States,200.0,180.0,Peteza,Matched,False
-271,Peteza,93,Portugal vs Spain,Jul 07,Spain,250.0,200.0,,Open,False
+271,Peteza,93,Portugal vs Spain,Jul 07,Spain,250.0,200.0,,Open,True
 272,Peteza,95,Argentina vs Egypt,Jul 07,Argentina,100.0,50.0,,Open,False
 273,Laakha,95,Argentina vs Egypt,Jul 07,Argentina,150.0,60.0,,Open,False
 275,Arjun,95,Argentina vs Egypt,Jul 07,Argentina,1000.0,200.0,TenWall,Matched,False
 276,Arjun,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,150.0,Himadri,Matched,False
 277,Ankur,94,United States vs Belgium,Jul 07,Belgium,100.0,90.0,Ashu,Matched,False
-278,Ankur,93,Portugal vs Spain,Jul 07,Spain,100.0,90.0,,Open,False
+278,Ankur,93,Portugal vs Spain,Jul 07,Spain,100.0,90.0,,Open,True
 279,Laakha,96,Switzerland vs Colombia,Jul 08,Colombia,200.0,146.0,Himadri,Matched,False
 280,Ashu,95,Argentina vs Egypt,Jul 07,Argentina,200.0,50.0,TenWall,Matched,False
+281,Peteza,96,Switzerland vs Colombia,Jul 08,Switzerland,150.0,202.0,,Open,False

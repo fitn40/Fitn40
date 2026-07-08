@@ -450,9 +450,70 @@ elif st.session_state.current_page == "confirm_match":
             else:
                 st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
 
-            try:
-                st.write(f"📊 **Market odds for the bet is:** {market_payout} (you lose) / {creator_risk} (you win)")
-            except:
+# ==========================================
+# 🤝 UI SCREEN: CONFIRM TO MATCH OFFER
+# ==========================================
+elif st.session_state.current_page == "confirm_match":
+    st.title("🤝 Confirm Your Match Selection")
+    
+    bet = st.session_state.get("selected_bet_to_match", {})
+    if not bet:
+        st.error("No bet selected.")
+        if st.button("⬅ Return to Dashboard", use_container_width=True):
+            st.session_state.current_page = "dashboard"
+            st.rerun()
+    else:
+        m_num = int(bet.get('Match_Num', 0))
+        is_outright = m_num in [999, 1000]
+        
+        try:
+            m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
+            prediction_type = bet.get('Prediction')
+            
+            # Account for custom long-term outright odds mappings
+            if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
+                m_odds = m_lookup['Home_Win_Odds']
+            elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
+                m_odds = m_lookup['Away_Win_Odds']
+            else:
+                m_odds = m_lookup['Draw_Odds']
+            
+            b_pts = float(bet.get('Points', 100))
+            market_payout = float(round(b_pts * (m_odds - 1), 1))
+        except:
+            market_payout = None
+
+        creator_name = bet.get('Creator')
+        match_title = bet.get('Match_Name')
+        prediction = bet.get('Prediction')
+        creator_risk = float(bet.get('Points', 0))
+        your_risk = float(bet.get('Opponent_Payout', 0))
+
+        with st.container(border=True):
+            st.subheader("📊 Bet Transaction Summary")
+            st.write(f"📅 **Target Date:** {bet.get('Match_Date')}")
+            
+            if is_outright:
+                st.write(f"🏆 **Market Category:** {match_title}")
+                st.write(f"🔮 **{creator_name}’s Outright Pick:** Backing **{prediction}** to win the market")
+            else:
+                st.write(f"⚽ **Fixture:** {match_title}")
+                st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
+                
+            st.markdown("---")
+            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} fails)*")
+            
+            if m_num in [999, 1000]:
+                st.caption("ℹ️ *Result reflects official final tournament awards data.*")
+            elif m_num >= 89:
+                st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
+            else:
+                st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
+
+            if market_payout is not None:
+                st.write(f"📊 **Implied Platform Parity Layout:** Creator baseline dictates a {market_payout} pts market offset adjustment.")
+            else:
                 st.write(f"📊 **Market odds for the bet is:** N/A")
 
         st.warning("⚠️ Once confirmed, this transaction is locked and cannot be deleted by either player.")
@@ -471,6 +532,7 @@ elif st.session_state.current_page == "confirm_match":
         if st.button("⬅ Cancel & Go Back", use_container_width=True):
             st.session_state.current_page = "dashboard"
             st.rerun()
+
 
 # ==========================================
 # 🎲 UI SCREEN: CREATE NEW BET OFFERS

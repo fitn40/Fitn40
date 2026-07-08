@@ -233,5 +233,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 288,TenWall,98,Spain vs Belgium,Jul 11,Belgium,200.0,400.0,Yogi,Matched,False
 289,TenWall,99,Norway vs England,Jul 12,Norway,200.0,400.0,,Open,False
 290,TenWall,100,Argentina vs Switzerland,Jul 12,Argentina,750.0,300.0,,Open,False
-291,Himadri,98,Spain vs Belgium,Jul 11,Belgium,200.0,160.0,Peteza,Matched,False
+291,Himadri,98,Spain vs Belgium,Jul 11,Belgium,200.0,160.0,Arjun,Matched,False
 292,Himadri,99,Norway vs England,Jul 12,England,200.0,150.0,,Open,False

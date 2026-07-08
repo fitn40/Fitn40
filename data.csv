@@ -226,3 +226,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 281,Peteza,96,Switzerland vs Colombia,Jul 08,Switzerland,150.0,202.0,Ankur,Matched,True
 282,Arjun,95,Argentina vs Egypt,Jul 07,Argentina,600.0,150.0,Laakha,Matched,True
 283,Ankur,99,Norway vs England,Jul 12,England,100.0,81.0,,Open,False
+284,Ankur,97,France vs Morocco,Jul 10,France,100.0,70.0,,Open,False

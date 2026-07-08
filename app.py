@@ -529,10 +529,10 @@ elif st.session_state.current_page == "confirm_match":
             st.session_state.current_page = "dashboard"
             st.rerun()
 
+        # Fixed Indentation: Aligned perfectly back out with the confirmation button block
         if st.button("⬅ Cancel & Go Back", use_container_width=True):
             st.session_state.current_page = "dashboard"
             st.rerun()
-
 
 # ==========================================
 # 🎲 UI SCREEN: CREATE NEW BET OFFERS

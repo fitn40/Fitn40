@@ -11,16 +11,11 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Round of 16 Data Matrix (With explicit 24-hour IST Kickoff Timings)
+# 📋 Official Live Tournament Data Matrix (Quarter-Finals & Tournament Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
-        # --- ⏳ RECENTLY EXPIRED ROUND OF 32 STAGE ---
-        {"Match_Num": 73, "Date_Str": "Jun 28", "Home_Team": "South Africa", "Away_Team": "Canada", "Home_Win_Odds": 4.2, "Draw_Odds": 3.4, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
-        # ... [Keep your matches 74 to 88 here to preserve their historical entries] ...
-        {"Match_Num": 88, "Date_Str": "Jul 3", "Home_Team": "Australia", "Away_Team": "Egypt", "Home_Win_Odds": 2.8, "Draw_Odds": 3.0, "Away_Win_Odds": 2.6, "Time_Str": "20:00"},
-        
-        # --- 🏆 UPCOMING ROUND OF 16 FIXTURES (WITH LOCAL IST KICKOFF TIME) ---
+        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 MATCHES ---
         {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
         {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
         {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
@@ -28,11 +23,33 @@ def get_match_data(year):
         {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75, "Time_Str": "00:30"},
         {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
         {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
-        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"}
+        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"},
+
+        # --- 🏆 LIVE UPCOMING QUARTER-FINAL MATCHES (2-WAY OUTRIGHT MARKETS) ---
+        {"Match_Num": 97, "Date_Str": "Jul 10", "Home_Team": "France", "Away_Team": "Morocco", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "01:30"},
+        {"Match_Num": 98, "Date_Str": "Jul 11", "Home_Team": "Spain", "Away_Team": "Belgium", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.54, "Time_Str": "00:30"},
+        {"Match_Num": 99, "Date_Str": "Jul 12", "Home_Team": "Norway", "Away_Team": "England", "Home_Win_Odds": 2.8, "Draw_Odds": None, "Away_Win_Odds": 1.56, "Time_Str": "02:30"},
+        {"Match_Num": 100, "Date_Str": "Jul 12", "Home_Team": "Argentina", "Away_Team": "Switzerland", "Home_Win_Odds": 1.4, "Draw_Odds": None, "Away_Win_Odds": 3.5, "Time_Str": "06:30"},
+
+        # --- 🌟 SEASONAL TOURNAMENT LONG-TERM OUTRIGHTS (STAYS ACTIVE UNTIL FINAL WHISTLE) ---
+        {"Match_Num": 999, "Date_Str": "Jul 19", "Home_Team": "France (2.9)", "Away_Team": "Spain (4.5)", "Home_Win_Odds": 2.9, "Draw_Odds": 5.0, "Away_Win_Odds": 4.5, "Time_Str": "23:59"},
+        {"Match_Num": 1000, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe (2.63)", "Away_Team": "Lionel Messi (2.63)", "Home_Win_Odds": 2.63, "Draw_Odds": 8.0, "Away_Win_Odds": 2.63, "Time_Str": "23:59"}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
-    df['Match_Display'] = "Match " + df['Match_Num'].astype(str) + " (" + df['Date_Str'] + "): " + df['Home_Team'] + " vs " + df['Away_Team']
+    
+    # Custom display titles to distinguish outright markets cleanly inside selection lists
+    display_titles = []
+    for idx, row in df.iterrows():
+        n = row['Match_Num']
+        if n == 999:
+            display_titles.append("🏆 Seasonal Outright: World Cup 2026 Winner Team Market")
+        elif n == 1000:
+            display_titles.append("🥇 Seasonal Outright: Golden Boot (Top Goalscorer) Market")
+        else:
+            display_titles.append(f"Match {n} ({row['Date_Str']}): {row['Home_Team']} vs {row['Away_Team']}")
+            
+    df['Match_Display'] = display_titles
     
     dates_list = []
     for idx, row in df.iterrows():

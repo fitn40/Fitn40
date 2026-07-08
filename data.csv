@@ -237,3 +237,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 292,Himadri,99,Norway vs England,Jul 12,England,200.0,150.0,,Open,False
 293,Arjun,100,Argentina vs Switzerland,Jul 12,Argentina,1000.0,300.0,,Open,False
 294,Peteza,100,Argentina vs Switzerland,Jul 12,Argentina,160.0,60.0,,Open,False
+295,Ashu,999,France (2.9) vs Spain (4.5),Jul 19,Argentina,100.0,400.0,,Open,False

@@ -239,13 +239,12 @@ elif st.session_state.current_page == "dashboard":
                 try:
                     m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
                     prediction_type = bet.get('Prediction')
-                    
-                    if prediction_type == m_lookup['Home_Team']:
-                        m_odds = m_lookup['Home_Win_Odds']
-                    elif prediction_type == m_lookup['Away_Team']:
-                        m_odds = m_lookup['Away_Win_Odds']
-                    else:
-                        m_odds = m_lookup['Draw_Odds']
+            if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
+                m_odds = m_lookup['Home_Win_Odds']
+            elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
+                m_odds = m_lookup['Away_Win_Odds']
+            else:
+                m_odds = m_lookup['Draw_Odds']
                     
                     b_pts = float(bet.get('Points', 100))
                     market_payout = float(round(b_pts * (m_odds - 1), 1))
@@ -439,7 +438,9 @@ elif st.session_state.current_page == "confirm_match":
             st.markdown("---")
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses)*")
-            if int(bet.get('Match_Num', 0)) >= 89:
+             if int(bet.get('Match_Num', 0)) in [999, 1000]:
+                st.caption("ℹ️ *Result reflects official final tournament awards data.*")
+            elif int(bet.get('Match_Num', 0)) >= 89:
                 st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
             else:
                 st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
@@ -477,16 +478,28 @@ elif st.session_state.current_page == "new_bet":
     if selected_match_str != "-- Select --":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         
-        if pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
+          # 🌟 Custom Option Naming for Long-Term Outrights instead of "Draw"
+        if match_row['Match_Num'] == 999:
+            prediction_options = ["-- Select --", "France", "Spain", "Argentina"]
+        elif match_row['Match_Num'] == 1000:
+            prediction_options = ["-- Select --", "Kylian Mbappe", "Lionel Messi", "Erling Haaland"]
+        elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
         else:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team'], "Draw"]
+
             
         selected_prediction = st.selectbox("🔮 Outcome Selection:", options=prediction_options)        
         if selected_prediction != "-- Select --":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
-            odds = float(match_row['Home_Win_Odds'] if selected_prediction == match_row['Home_Team'] else (match_row['Away_Win_Odds'] if selected_prediction == match_row['Away_Team'] else match_row['Draw_Odds']))
+            # 📊 Map odds accurately to custom selections
+            if selected_prediction in [match_row['Home_Team'], "France", "Kylian Mbappe"]:
+                odds = float(match_row['Home_Win_Odds'])
+            elif selected_prediction in [match_row['Away_Team'], "Spain", "Lionel Messi"]:
+                odds = float(match_row['Away_Win_Odds'])
+            else:
+                odds = float(match_row['Draw_Odds']) # Maps to Argentina (5.0) or Haaland (8.0)
             default_payout = int(round(points * (odds - 1), 0))
             
             payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)

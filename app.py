@@ -443,7 +443,7 @@ elif st.session_state.current_page == "confirm_match":
             st.markdown("---")
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses)*")
-             if int(bet.get('Match_Num', 0)) in [999, 1000]:
+            if int(bet.get('Match_Num', 0)) in [999, 1000]:
                 st.caption("ℹ️ *Result reflects official final tournament awards data.*")
             elif int(bet.get('Match_Num', 0)) >= 89:
                 st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")

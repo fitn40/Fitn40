@@ -38,7 +38,6 @@ def get_match_data(year):
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
     
-    # Custom display titles to distinguish outright markets cleanly inside selection lists
     display_titles = []
     for idx, row in df.iterrows():
         n = row['Match_Num']
@@ -122,7 +121,6 @@ if "user" in st.query_params and st.session_state.player_name == "":
 
 combined_bets = load_permanent_bets()
 
-# 🛠️ AUTOMATED TIME-SPECIFIC EXPIRY ENGINE (Includes 3-Hour Match Window Buffer)
 import datetime as dt
 true_india_now = datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 
@@ -195,8 +193,6 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
-    # 🔐 ANTI-CHEAT FILTER SPLIT
-    # 1. Open offers vanish the exact minute kickoff happens so nobody can match an in-play game
     open_bets = []
     for b in combined_bets:
         if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False):
@@ -205,12 +201,10 @@ elif st.session_state.current_page == "dashboard":
                 open_bets.append(b)
             else:
                 m_lookup = match_data[match_data['Match_Num'] == m_num]
-                # If the true current time in India has passed the kickoff time, hide it from being matched!
                 if not m_lookup.empty and true_india_now >= m_lookup.iloc[0]['Match_Date_Obj']:
                     continue
                 open_bets.append(b)
 
-    # 2. Locked bets stay on the dashboard for 3 hours so players can see them while watching
     live_bets = [b for b in combined_bets if b.get("Status") == "Matched" and not b.get("Is_Expired", False)]
 
     def get_bet_sort_key(b):
@@ -229,8 +223,6 @@ elif st.session_state.current_page == "dashboard":
     open_bets = sorted(open_bets, key=get_bet_sort_key)
     live_bets = sorted(live_bets, key=get_bet_sort_key)
 
-    # 📋 1. Unmatched Open Block
-        # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")
     if not open_bets:
         st.info("No open offers available.")
@@ -241,7 +233,6 @@ elif st.session_state.current_page == "dashboard":
                     m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
                     prediction_type = bet.get('Prediction')
                     
-                    # Indented inside the try block so it has access to m_lookup safely
                     if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                         m_odds = m_lookup['Home_Win_Odds']
                     elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
@@ -253,7 +244,6 @@ elif st.session_state.current_page == "dashboard":
                     market_payout = float(round(b_pts * (m_odds - 1), 1))
                     market_str = f"Market Odds - {market_payout} pts"
                 except Exception as e:
-                    # Added the missing exception handling block here
                     market_str = "Market Odds - N/A"
 
                 b_creator = bet.get('Creator')
@@ -279,8 +269,6 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-
-    # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -322,7 +310,6 @@ elif st.session_state.current_page == "dashboard":
 
     st.markdown("---")
 
-    # 🛑 3. Expired Matched Bets Block (Hidden inside an Expander link)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
 
     def get_expired_sort_key(b):
@@ -401,57 +388,7 @@ elif st.session_state.current_page == "view_excel":
         st.rerun()
 
 # ==========================================
-# 🤝 UI SCREEN: CONFIRM TO MATCH OFFER
-# ==========================================
-elif st.session_state.current_page == "confirm_match":
-    st.title("🤝 Confirm Your Match Selection")
-    
-    bet = st.session_state.get("selected_bet_to_match", {})
-    if not bet:
-        st.error("No bet selected.")
-        if st.button("⬅ Return to Dashboard", use_container_width=True):
-            st.session_state.current_page = "dashboard"
-            st.rerun()
-    else:
-        try:
-            m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
-            prediction_type = bet.get('Prediction')
-            if prediction_type == m_lookup['Home_Team']:
-                m_odds = m_lookup['Home_Win_Odds']
-            elif prediction_type == m_lookup['Away_Team']:
-                m_odds = m_lookup['Away_Win_Odds']
-            else:
-                m_odds = m_lookup['Draw_Odds']
-            
-            b_pts = float(bet.get('Points', 100))
-            market_payout = float(round(b_pts * (m_odds - 1), 1))
-            market_str = f"{market_payout} pts"
-        except:
-            market_str = "N/A"
-
-        creator_name = bet.get('Creator')
-        match_title = bet.get('Match_Name')
-        prediction = bet.get('Prediction')
-        creator_risk = float(bet.get('Points', 0))
-        your_risk = float(bet.get('Opponent_Payout', 0))
-
-        with st.container(border=True):
-            st.subheader("📊 Bet Transaction Summary")
-            st.write(f"📅 **Match Date:** {bet.get('Match_Date')}")
-            st.write(f"⚽ **Fixture:** {match_title}")
-            st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
-            st.markdown("---")
-            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} loses)*")
-            if int(bet.get('Match_Num', 0)) in [999, 1000]:
-                st.caption("ℹ️ *Result reflects official final tournament awards data.*")
-            elif int(bet.get('Match_Num', 0)) >= 89:
-                st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
-            else:
-                st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
-
-# ==========================================
-# 🤝 UI SCREEN: CONFIRM TO MATCH OFFER
+# 🤝 UI SCREEN: CONFIRM TO MATCH OFFER (DUPLICATE REMOVED & FIX APPLIED)
 # ==========================================
 elif st.session_state.current_page == "confirm_match":
     st.title("🤝 Confirm Your Match Selection")
@@ -470,7 +407,6 @@ elif st.session_state.current_page == "confirm_match":
             m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
             prediction_type = bet.get('Prediction')
             
-            # Account for custom long-term outright odds mappings
             if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                 m_odds = m_lookup['Home_Win_Odds']
             elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
@@ -529,7 +465,6 @@ elif st.session_state.current_page == "confirm_match":
             st.session_state.current_page = "dashboard"
             st.rerun()
 
-        # Fixed Indentation: Aligned perfectly back out with the confirmation button block
         if st.button("⬅ Cancel & Go Back", use_container_width=True):
             st.session_state.current_page = "dashboard"
             st.rerun()
@@ -545,7 +480,6 @@ elif st.session_state.current_page == "new_bet":
     if selected_match_str != "-- Select --":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         
-          # 🌟 Custom Option Naming for Long-Term Outrights instead of "Draw"
         if match_row['Match_Num'] == 999:
             prediction_options = ["-- Select --", "France", "Spain", "Argentina"]
         elif match_row['Match_Num'] == 1000:
@@ -555,18 +489,16 @@ elif st.session_state.current_page == "new_bet":
         else:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team'], "Draw"]
 
-            
         selected_prediction = st.selectbox("🔮 Outcome Selection:", options=prediction_options)        
         if selected_prediction != "-- Select --":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
-            # 📊 Map odds accurately to custom selections
             if selected_prediction in [match_row['Home_Team'], "France", "Kylian Mbappe"]:
                 odds = float(match_row['Home_Win_Odds'])
             elif selected_prediction in [match_row['Away_Team'], "Spain", "Lionel Messi"]:
                 odds = float(match_row['Away_Win_Odds'])
             else:
-                odds = float(match_row['Draw_Odds']) # Maps to Argentina (5.0) or Haaland (8.0)
+                odds = float(match_row['Draw_Odds'])
             default_payout = int(round(points * (odds - 1), 0))
             
             payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)

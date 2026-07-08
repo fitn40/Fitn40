@@ -230,6 +230,7 @@ elif st.session_state.current_page == "dashboard":
     live_bets = sorted(live_bets, key=get_bet_sort_key)
 
     # 📋 1. Unmatched Open Block
+        # 📋 1. Unmatched Open Block
     st.subheader("📋 1. Active Open Offers")
     if not open_bets:
         st.info("No open offers available.")
@@ -239,17 +240,20 @@ elif st.session_state.current_page == "dashboard":
                 try:
                     m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
                     prediction_type = bet.get('Prediction')
-            if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
-                m_odds = m_lookup['Home_Win_Odds']
-            elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
-                m_odds = m_lookup['Away_Win_Odds']
-            else:
-                m_odds = m_lookup['Draw_Odds']
+                    
+                    # Indented inside the try block so it has access to m_lookup safely
+                    if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
+                        m_odds = m_lookup['Home_Win_Odds']
+                    elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
+                        m_odds = m_lookup['Away_Win_Odds']
+                    else:
+                        m_odds = m_lookup['Draw_Odds']
                     
                     b_pts = float(bet.get('Points', 100))
                     market_payout = float(round(b_pts * (m_odds - 1), 1))
                     market_str = f"Market Odds - {market_payout} pts"
-                except:
+                except Exception as e:
+                    # Added the missing exception handling block here
                     market_str = "Market Odds - N/A"
 
                 b_creator = bet.get('Creator')
@@ -274,6 +278,7 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.selected_bet_to_match = bet
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
+
 
     # 🔥 2. Live Matched Locked Block
     st.subheader("🔥 2. Live Matched Bets (Locked)")

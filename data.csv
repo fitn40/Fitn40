@@ -243,3 +243,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 300,Peteza,99,Norway vs England,Jul 12,Norway,100.0,260.0,,Open,False
 301,Arjun,97,France vs Morocco,Jul 10,Morocco,100.0,300.0,,Open,False
 302,Ankur,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Lionel Messi,100.0,198.0,,Open,False
+303,Ankur,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Kylian Mbappe,100.0,198.0,,Open,False

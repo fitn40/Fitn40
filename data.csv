@@ -242,5 +242,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 299,Peteza,98,Spain vs Belgium,Jul 11,Spain,150.0,120.0,,Open,False
 300,Peteza,99,Norway vs England,Jul 12,Norway,100.0,260.0,,Open,False
 301,Arjun,97,France vs Morocco,Jul 10,Morocco,100.0,300.0,,Open,False
-302,Ashu,999,World Cup 2026 Winner Team Market,Jul 19,France,1.0,2.0,Fifa@2026,Matched,False
 303,Ashu,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Kylian Mbappe,1.0,2.0,Fifa@2026,Matched,False

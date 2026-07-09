@@ -246,4 +246,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 303,Ankur,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Kylian Mbappe,100.0,198.0,,Open,False
 304,Yogi,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Kylian Mbappe,250.0,350.0,,Open,False
 305,Yogi,999,World Cup 2026 Winner Team Market,Jul 19,Spain,100.0,300.0,,Open,False
-306,Himadri,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Lionel Messi,250.0,170.0,,Open,False
+306,Himadri,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Lionel Messi,250.0,170.0,Ankur,Matched,False

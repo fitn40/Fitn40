@@ -249,6 +249,13 @@ elif st.session_state.current_page == "dashboard":
                 b_creator = bet.get('Creator')
                 b_pred = bet.get('Prediction')
                 b_match = bet.get('Match_Name')
+                
+                # Clean up display text for open offers on dashboard
+                if int(bet.get('Match_Num', 0)) == 999:
+                    b_match = "World Cup 2026 Winner Team Market"
+                elif int(bet.get('Match_Num', 0)) == 1000:
+                    b_match = "Golden Boot (Top Goalscorer) Market"
+                    
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
@@ -281,6 +288,12 @@ elif st.session_state.current_page == "dashboard":
                 risk_pts = 100.0
                 win_pts = 55.0
 
+            b_match = bet.get('Match_Name')
+            if int(bet.get('Match_Num', 0)) == 999:
+                b_match = "World Cup 2026 Winner Team Market"
+            elif int(bet.get('Match_Num', 0)) == 1000:
+                b_match = "Golden Boot (Top Goalscorer) Market"
+
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -293,7 +306,7 @@ elif st.session_state.current_page == "dashboard":
                         🔒 {bet.get('Creator')} <span style="opacity: 0.7; font-weight: normal; font-size: 0.85rem;">VS</span> {bet.get('Opponent')}
                     </div>
                     <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
-                        📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
+                        📅 <b>Target Date:</b> {bet.get('Match_Date')} | <b>Market:</b> {b_match}
                     </div>
                     <div style="font-size: 0.9rem; line-height: 1.4;">
                         📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
@@ -339,6 +352,12 @@ elif st.session_state.current_page == "dashboard":
                     risk_pts = 100.0
                     win_pts = 55.0
 
+                b_match = bet.get('Match_Name')
+                if int(bet.get('Match_Num', 0)) == 999:
+                    b_match = "World Cup 2026 Winner Team Market"
+                elif int(bet.get('Match_Num', 0)) == 1000:
+                    b_match = "Golden Boot (Top Goalscorer) Market"
+
                 st.markdown(
                     f"""
                     <div style="background-color: rgba(192, 57, 43, 0.06); 
@@ -351,7 +370,7 @@ elif st.session_state.current_page == "dashboard":
                             ⌛ [EXPIRED] {bet.get('Creator')} VS {bet.get('Opponent')}
                         </div>
                         <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
-                            📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {bet.get('Match_Name')}
+                            📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {b_match}
                         </div>
                         <div style="font-size: 0.9rem; line-height: 1.4;">
                             📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
@@ -403,6 +422,14 @@ elif st.session_state.current_page == "confirm_match":
         m_num = int(bet.get('Match_Num', 0))
         is_outright = m_num in [999, 1000]
         
+        # Intercept and override the raw match titles with official clean market names
+        if m_num == 999:
+            clean_market_title = "World Cup 2026 Winner Team Market"
+        elif m_num == 1000:
+            clean_market_title = "Golden Boot (Top Goalscorer) Market"
+        else:
+            clean_market_title = bet.get('Match_Name')
+        
         try:
             m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
             prediction_type = bet.get('Prediction')
@@ -420,7 +447,6 @@ elif st.session_state.current_page == "confirm_match":
             market_payout = None
 
         creator_name = bet.get('Creator')
-        match_title = bet.get('Match_Name')
         prediction = bet.get('Prediction')
         creator_risk = float(bet.get('Points', 0))
         your_risk = float(bet.get('Opponent_Payout', 0))
@@ -430,10 +456,10 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"📅 **Target Date:** {bet.get('Match_Date')}")
             
             if is_outright:
-                st.write(f"🏆 **Market Category:** {match_title}")
+                st.write(f"🏆 **Market Category:** {clean_market_title}")
                 st.write(f"🔮 **{creator_name}’s Outright Pick:** Backing **{prediction}** to win the market")
             else:
-                st.write(f"⚽ **Fixture:** {match_title}")
+                st.write(f"⚽ **Fixture:** {clean_market_title}")
                 st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
                 
             st.markdown("---")
@@ -514,10 +540,18 @@ elif st.session_state.current_page == "new_bet":
                         next_id = max([int(b["Bet_ID"]) for b in combined_bets]) + 1
                     except:
                         next_id = len(combined_bets) + 1
+                
+                # Assign clean descriptive names in the data payload if it's an outright
+                if match_row['Match_Num'] == 999:
+                    saved_match_name = "World Cup 2026 Winner Team Market"
+                elif match_row['Match_Num'] == 1000:
+                    saved_match_name = "Golden Boot (Top Goalscorer) Market"
+                else:
+                    saved_match_name = f"{match_row['Home_Team']} vs {match_row['Away_Team']}"
                         
                 combined_bets.append({
                     "Bet_ID": int(next_id), "Creator": str(st.session_state.player_name), "Match_Num": int(match_row['Match_Num']),
-                    "Match_Name": f"{match_row['Home_Team']} vs {match_row['Away_Team']}", "Match_Date": str(match_row['Date_Str']),
+                    "Match_Name": saved_match_name, "Match_Date": str(match_row['Date_Str']),
                     "Prediction": str(selected_prediction), "Points": float(points), "Opponent_Payout": float(payout), "Opponent": "", "Status": "Open", "Is_Expired": False
                 })
                 save_all_bets_permanently(combined_bets)

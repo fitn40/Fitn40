@@ -227,7 +227,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 282,Arjun,95,Argentina vs Egypt,Jul 07,Argentina,600.0,150.0,Laakha,Matched,True
 283,Ankur,99,Norway vs England,Jul 12,England,100.0,81.0,,Open,False
 284,Ankur,97,France vs Morocco,Jul 10,France,100.0,70.0,,Open,False
-285,Ankur,98,Spain vs Belgium,Jul 11,Spain,100.0,70.0,,Open,False
+285,Ankur,98,Spain vs Belgium,Jul 11,Spain,100.0,70.0,Laakha,Matched,False
 286,Ankur,100,Argentina vs Switzerland,Jul 12,Argentina,100.0,65.0,,Open,False
 287,TenWall,97,France vs Morocco,Jul 10,Morocco,200.0,500.0,Yogi,Matched,False
 288,TenWall,98,Spain vs Belgium,Jul 11,Belgium,200.0,400.0,Yogi,Matched,False

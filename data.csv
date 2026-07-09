@@ -247,3 +247,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 306,Himadri,1000,Golden Boot (Top Goalscorer) Market,Jul 19,Lionel Messi,250.0,170.0,Ankur,Matched,False
 307,Laakha,97,France vs Morocco,Jul 10,Morocco,100.0,250.0,Ashu,Matched,False
 308,Arjun,97,France vs Morocco,Jul 10,Morocco,100.0,300.0,,Open,False
+309,Himadri,99,Norway vs England,Jul 12,England,180.0,101.0,,Open,False

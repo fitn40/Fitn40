@@ -250,4 +250,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 310,Abhroz,100,Argentina vs Switzerland,Jul 12,Switzerland,200.0,500.0,Laakha,Matched,False
 311,Ashu,98,Spain vs Belgium,Jul 11,Spain,200.0,100.0,himadri,Matched,True
 313,TenWall,100,Argentina vs Switzerland,Jul 12,Argentina,500.0,200.0,,Open,False
-314,Arjun,100,Argentina vs Switzerland,Jul 12,Argentina,1000.0,300.0,,Open,False

@@ -236,7 +236,6 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 291,Himadri,98,Spain vs Belgium,Jul 11,Belgium,200.0,160.0,Arjun,Matched,True
 294,Peteza,100,Argentina vs Switzerland,Jul 12,Argentina,160.0,60.0,Laakha,Matched,False
 295,Arjun,98,Spain vs Belgium,Jul 11,Spain,200.0,150.0,,Open,True
-298,Arjun,99,Norway vs England,Jul 12,England,300.0,200.0,,Open,False
 299,Peteza,98,Spain vs Belgium,Jul 11,Spain,150.0,120.0,,Open,True
 300,Peteza,99,Norway vs England,Jul 12,Norway,100.0,260.0,Himadri,Matched,False
 301,Arjun,97,France vs Morocco,Jul 10,Morocco,100.0,300.0,Himadri,Matched,True

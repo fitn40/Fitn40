@@ -259,7 +259,6 @@ elif st.session_state.current_page == "dashboard":
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                # 🛠️ DEEP LEGACY FIELD TRANSLATOR - Intercepts any formatting variants from database rows
                 if 901 <= m_num <= 904 or m_num == 999:
                     clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
                     if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
@@ -429,7 +428,7 @@ elif st.session_state.current_page == "view_excel":
         st.info("📢 Standings spreadsheet is currently being updated. Check back shortly or view your WhatsApp group chat for the latest scores!")
         
     st.markdown("---")
-    if st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
+    if f st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
         st.session_state.current_page = "dashboard"
         st.rerun()
 
@@ -449,19 +448,30 @@ elif st.session_state.current_page == "confirm_match":
         m_num = int(bet.get('Match_Num', 0))
         is_outright = (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]
         
+        # Extract target item cleanly for old combined fields as well
+        b_match = bet.get('Match_Name', '')
+        b_pred = bet.get('Prediction', '')
+        
         if m_num == 999 or (901 <= m_num <= 904):
             clean_market_title = "World Cup 2026 Winner Team Market"
             display_date = "Jul 20"
+            target_selection = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
+            if "vs" in target_selection or target_selection == "Field" or "Market" in target_selection:
+                target_selection = b_pred if b_pred not in ["Yes", "No"] else "Tournament Winner Selection"
         elif m_num == 1000 or (1001 <= m_num <= 1005):
             clean_market_title = "Golden Boot (Top Goalscorer) Market"
             display_date = "Jul 20"
+            target_selection = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
+            if "vs" in target_selection or target_selection == "Field" or "Market" in target_selection:
+                target_selection = b_pred if b_pred not in ["Yes", "No"] else "Kylian Mbappe"
         else:
-            clean_market_title = bet.get('Match_Name')
+            clean_market_title = b_match
             display_date = bet.get('Match_Date')
+            target_selection = b_pred
         
         try:
             m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
-            prediction_type = bet.get('Prediction')
+            prediction_type = b_pred
             
             if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
                 m_odds = m_lookup['Home_Win_Odds']
@@ -478,24 +488,23 @@ elif st.session_state.current_page == "confirm_match":
             market_payout = None
 
         creator_name = bet.get('Creator')
-        prediction = bet.get('Prediction')
         creator_risk = float(bet.get('Points', 0))
         your_risk = float(bet.get('Opponent_Payout', 0))
 
         with st.container(border=True):
             st.subheader("📊 Bet Transaction Summary")
             st.write(f"📅 **Target Date:** {display_date}")
+            st.write(f"🏆 **Market Target:** {clean_market_title}")
             
             if is_outright:
-                st.write(f"🏆 **Market Target:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Choice:** Backing market execution parameters")
+                st.write(f"🔮 **{creator_name}’s Choice:** Backing **{target_selection}**")
             else:
-                st.write(f"⚽ **Fixture:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
+                st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{target_selection}**")
                 
             st.markdown("---")
-            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if target selection wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if target selection fails)*")
+            # Clean plain-English replacements for structural logic lines
+            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {target_selection} wins)*")
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {target_selection} fails)*")
             
             if is_outright:
                 st.caption("ℹ️ *Result reflects official final tournament awards data.*")
@@ -505,7 +514,7 @@ elif st.session_state.current_page == "confirm_match":
                 st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
 
             if market_payout is not None:
-                st.write(f"📊 **Implied Platform Parity Layout:** Creator baseline dictates a {market_payout} pts market offset adjustment.")
+                st.write(f"📊 **Market Adjustment:** Creator baseline dictates a {market_payout} pts market offset adjustment.")
             else:
                 st.write(f"📊 **Market odds for the bet is:** N/A")
 

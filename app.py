@@ -11,19 +11,11 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Semi-Finals & Active Tournament Outrights)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
-        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 & QUARTER-FINAL MATCHES ---
-        {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
-        {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
-        {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
-        {"Match_Num": 92, "Date_Str": "Jul 06", "Home_Team": "Mexico", "Away_Team": "England", "Home_Win_Odds": 2.25, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "05:30"},
-        {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75, "Time_Str": "00:30"},
-        {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
-        {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
-        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"},
+        # --- ⏳ PREVIOUSLY EXPIRED KNOCKOUT FIXTURES ---
         {"Match_Num": 97, "Date_Str": "Jul 10", "Home_Team": "France", "Away_Team": "Morocco", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "01:30"},
         {"Match_Num": 98, "Date_Str": "Jul 11", "Home_Team": "Spain", "Away_Team": "Belgium", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.54, "Time_Str": "00:30"},
         {"Match_Num": 99, "Date_Str": "Jul 12", "Home_Team": "Norway", "Away_Team": "England", "Home_Win_Odds": 2.8, "Draw_Odds": None, "Away_Win_Odds": 1.56, "Time_Str": "02:30"},
@@ -39,10 +31,9 @@ def get_match_data(year):
         {"Match_Num": 903, "Date_Str": "Jul 19", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "23:59"},
         {"Match_Num": 904, "Date_Str": "Jul 19", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "23:59"},
 
-        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005) ---
+        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1004 - HAALAND REMOVED) ---
         {"Match_Num": 1001, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "23:59"},
         {"Match_Num": 1002, "Date_Str": "Jul 19", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "23:59"},
-        {"Match_Num": 1003, "Date_Str": "Jul 19", "Home_Team": "Erling Haaland for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 8.00, "Draw_Odds": None, "Away_Win_Odds": 1.08, "Time_Str": "23:59"},
         {"Match_Num": 1004, "Date_Str": "Jul 19", "Home_Team": "Harry Kane for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 9.50, "Draw_Odds": None, "Away_Win_Odds": 1.05, "Time_Str": "23:59"},
         {"Match_Num": 1005, "Date_Str": "Jul 19", "Home_Team": "Jude Bellingham for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 12.00, "Draw_Odds": None, "Away_Win_Odds": 1.03, "Time_Str": "23:59"}
     ]
@@ -141,13 +132,10 @@ for bet in combined_bets:
         raw_num = str(bet.get('Match_Num', '0')).strip()
         m_num = int(float(raw_num)) if '.' in raw_num else int(raw_num)
         
-        # 1. Active Outrights are kept unexpired
         if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
             bet["Is_Expired"] = False
-        # 2. Hard code any match number less than 101 (completed stages) as expired
         elif m_num < 101:
             bet["Is_Expired"] = True
-        # 3. Dynamic evaluations for active matches
         else:
             m_lookup = match_data[match_data['Match_Num'] == m_num]
             if not m_lookup.empty:
@@ -208,7 +196,6 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
-    # 📋 1. Active Unmatched Open Offers (Hides any expired offers completely)
     open_bets = []
     for b in combined_bets:
         if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False):
@@ -294,7 +281,6 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
-    # 🔥 2. Live Matched Locked Block (Only displays current active locked bets)
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -337,7 +323,6 @@ elif st.session_state.current_page == "dashboard":
 
     st.markdown("---")
 
-    # 🛑 3. Expired Matched Bets Block (Only contains Matched Expired wagers)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
 
     def get_expired_sort_key(b):
@@ -512,8 +497,9 @@ elif st.session_state.current_page == "new_bet":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         m_num = int(match_row['Match_Num'])
         
+        # 🔐 Force outrights to only have "Yes" since backing a specific player/team is an implicit offer
         if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-            prediction_options = ["-- Select --", "Yes", "No"]
+            prediction_options = ["-- Select --", "Yes"]
         elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
         else:
@@ -524,7 +510,7 @@ elif st.session_state.current_page == "new_bet":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
             if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-                odds = float(match_row['Home_Win_Odds']) if selected_prediction == "Yes" else float(match_row['Away_Win_Odds'])
+                odds = float(match_row['Home_Win_Odds']) # Always Yes (Home Win parameter maps the market odds)
             elif selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
             elif selected_prediction == match_row['Away_Team']:

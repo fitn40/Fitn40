@@ -11,11 +11,19 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal Outrights)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Active Tournament Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
-        # --- ⏳ PREVIOUSLY EXPIRED KNOCKOUT FIXTURES ---
+        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 & QUARTER-FINAL MATCHES ---
+        {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
+        {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
+        {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
+        {"Match_Num": 92, "Date_Str": "Jul 06", "Home_Team": "Mexico", "Away_Team": "England", "Home_Win_Odds": 2.25, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "05:30"},
+        {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75, "Time_Str": "00:30"},
+        {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
+        {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
+        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"},
         {"Match_Num": 97, "Date_Str": "Jul 10", "Home_Team": "France", "Away_Team": "Morocco", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "01:30"},
         {"Match_Num": 98, "Date_Str": "Jul 11", "Home_Team": "Spain", "Away_Team": "Belgium", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.54, "Time_Str": "00:30"},
         {"Match_Num": 99, "Date_Str": "Jul 12", "Home_Team": "Norway", "Away_Team": "England", "Home_Win_Odds": 2.8, "Draw_Odds": None, "Away_Win_Odds": 1.56, "Time_Str": "02:30"},
@@ -127,24 +135,28 @@ combined_bets = load_permanent_bets()
 import datetime as dt
 true_india_now = datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 
+# 🛠️ SYSTEM-WIDE EXPIRY RULES ENGINE
 for bet in combined_bets:
     try:
         raw_num = str(bet.get('Match_Num', '0')).strip()
         m_num = int(float(raw_num)) if '.' in raw_num else int(raw_num)
         
+        # 1. Active Outrights are kept unexpired
         if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
             bet["Is_Expired"] = False
-        elif m_num < 89:
+        # 2. Hard code any match number less than 101 (completed stages) as expired
+        elif m_num < 101:
             bet["Is_Expired"] = True
+        # 3. Dynamic evaluations for active matches
         else:
             m_lookup = match_data[match_data['Match_Num'] == m_num]
             if not m_lookup.empty:
                 kickoff_time = m_lookup.iloc[0]['Match_Date_Obj']
                 bet["Is_Expired"] = true_india_now >= (kickoff_time + dt.timedelta(hours=3))
             else:
-                bet["Is_Expired"] = False
+                bet["Is_Expired"] = True
     except:
-        bet["Is_Expired"] = False
+        bet["Is_Expired"] = True
 
 is_admin = (st.session_state.player_name == "Fifa@2026")
 
@@ -196,6 +208,7 @@ elif st.session_state.current_page == "dashboard":
             
     st.markdown("---")
     
+    # 📋 1. Active Unmatched Open Offers (Hides any expired offers completely)
     open_bets = []
     for b in combined_bets:
         if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False):
@@ -281,6 +294,7 @@ elif st.session_state.current_page == "dashboard":
                         st.session_state.current_page = "confirm_match"
                         st.rerun()
 
+    # 🔥 2. Live Matched Locked Block (Only displays current active locked bets)
     st.subheader("🔥 2. Live Matched Bets (Locked)")
     if not live_bets:
         st.caption("No matched transactions are locked right now.")
@@ -323,6 +337,7 @@ elif st.session_state.current_page == "dashboard":
 
     st.markdown("---")
 
+    # 🛑 3. Expired Matched Bets Block (Only contains Matched Expired wagers)
     expired_matched_bets = [b for b in combined_bets if b.get("Status") == "Matched" and b.get("Is_Expired", False)]
 
     def get_expired_sort_key(b):
@@ -497,7 +512,6 @@ elif st.session_state.current_page == "new_bet":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         m_num = int(match_row['Match_Num'])
         
-        # Outright selections now split to structured 2-Way (Yes/No) options
         if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
             prediction_options = ["-- Select --", "Yes", "No"]
         elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:

@@ -11,7 +11,7 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal OutRIGHTS)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
@@ -25,13 +25,13 @@ def get_match_data(year):
         {"Match_Num": 101, "Date_Str": "Jul 15", "Home_Team": "France", "Away_Team": "Spain", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "01:30"},
         {"Match_Num": 102, "Date_Str": "Jul 16", "Home_Team": "England", "Away_Team": "Argentina", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "01:30"},
 
-        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904 - SHIFTED TO TRUE IST DATELINE JUL 20) ---
+        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904 - TRUE IST DATELINE JUL 20) ---
         {"Match_Num": 901, "Date_Str": "Jul 20", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "04:30"},
         {"Match_Num": 902, "Date_Str": "Jul 20", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "04:30"},
         {"Match_Num": 903, "Date_Str": "Jul 20", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "04:30"},
         {"Match_Num": 904, "Date_Str": "Jul 20", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "04:30"},
 
-        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005 - SHIFTED TO TRUE IST DATELINE JUL 20) ---
+        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005 - TRUE IST DATELINE JUL 20) ---
         {"Match_Num": 1001, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "04:30"},
         {"Match_Num": 1002, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "04:30"},
         {"Match_Num": 1004, "Date_Str": "Jul 20", "Home_Team": "Harry Kane for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 9.50, "Draw_Odds": None, "Away_Win_Odds": 1.05, "Time_Str": "04:30"},
@@ -259,15 +259,19 @@ elif st.session_state.current_page == "dashboard":
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                # 🌟 Restored Classic Clean Phrasing Format ("Ankur backs Kylian Mbappe")
-                if 901 <= m_num <= 904:
-                    clean_item_name = b_match.replace(" to win WC", "")
-                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}** to win WC")
-                    st.write(f"📅 **Target Deadline:** {bet.get('Match_Date')} | Market Outright Entry")
-                elif 1001 <= m_num <= 1005:
-                    clean_item_name = b_match.replace(" for Golden Boot", "")
+                # 🛠️ UNIFIED DRILLDOWN FOR PHRASING AND TRUE INDIA DATELINES (FOR BOTH OLD AND NEW ENTRIES)
+                if 901 <= m_num <= 904 or m_num == 999:
+                    clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
+                    if "vs" in clean_item_name:
+                        clean_item_name = "Tournament Winner Outright"
                     st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
-                    st.write(f"📅 **Target Deadline:** {bet.get('Match_Date')} | Market Outright Entry")
+                    st.write(f"📅 **Date:** Jul 20 | Fixture: World Cup 2026 Winner Team Market")
+                elif 1001 <= m_num <= 1005 or m_num == 1000:
+                    clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
+                    if "vs" in clean_item_name:
+                        clean_item_name = "Kylian Mbappe"
+                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
+                    st.write(f"📅 **Date:** Jul 20 | Fixture: Golden Boot (Top Goalscorer) Market")
                 else:
                     st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
                     st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
@@ -302,15 +306,25 @@ elif st.session_state.current_page == "dashboard":
             b_match = bet.get('Match_Name')
             m_num = int(bet.get('Match_Num', 0))
             
-            # Restored classic phrasing rendering inside the matched cards
-            if 901 <= m_num <= 904:
-                clean_item_name = b_match.replace(" to win WC", "")
+            # Dynamic text adjustment for matched long-term outright card view layers
+            if 901 <= m_num <= 904 or m_num == 999:
+                clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
+                if "vs" in clean_item_name:
+                    clean_item_name = "Tournament Winner"
                 action_text = f"backed <b>{clean_item_name} to win WC</b>"
-            elif 1001 <= m_num <= 1005:
-                clean_item_name = b_match.replace(" for Golden Boot", "")
+                display_match_name = "World Cup 2026 Winner Team Market"
+                display_date = "Jul 20"
+            elif 1001 <= m_num <= 1005 or m_num == 1000:
+                clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
+                if "vs" in clean_item_name:
+                    clean_item_name = "Kylian Mbappe"
                 action_text = f"backed <b>{clean_item_name} for Golden Boot</b>"
+                display_match_name = "Golden Boot (Top Goalscorer) Market"
+                display_date = "Jul 20"
             else:
                 action_text = f"bet on <b>{bet.get('Prediction')}</b>"
+                display_match_name = b_match
+                display_date = bet.get('Match_Date')
 
             st.markdown(
                 f"""
@@ -324,7 +338,7 @@ elif st.session_state.current_page == "dashboard":
                         🔒 {bet.get('Creator')} <span style="opacity: 0.7; font-weight: normal; font-size: 0.85rem;">VS</span> {bet.get('Opponent')}
                     </div>
                     <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
-                        📅 <b>Target Date:</b> {bet.get('Match_Date')} | <b>Market:</b> {b_match}
+                        📅 <b>Target Date:</b> {display_date} | <b>Market:</b> {display_match_name}
                     </div>
                     <div style="font-size: 0.9rem; line-height: 1.4;">
                         📢 <b>{bet.get('Creator')}</b> {action_text} 
@@ -433,15 +447,24 @@ elif st.session_state.current_page == "confirm_match":
             st.rerun()
     else:
         m_num = int(bet.get('Match_Num', 0))
-        is_outright = (901 <= m_num <= 904) or (1001 <= m_num <= 1005)
-        clean_market_title = bet.get('Match_Name')
+        is_outright = (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]
+        
+        if m_num == 999 or (901 <= m_num <= 904):
+            clean_market_title = "World Cup 2026 Winner Team Market"
+            display_date = "Jul 20"
+        elif m_num == 1000 or (1001 <= m_num <= 1005):
+            clean_market_title = "Golden Boot (Top Goalscorer) Market"
+            display_date = "Jul 20"
+        else:
+            clean_market_title = bet.get('Match_Name')
+            display_date = bet.get('Match_Date')
         
         try:
             m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
             prediction_type = bet.get('Prediction')
             
-            if is_outright:
-                m_odds = m_lookup['Home_Win_Odds'] if prediction_type == "Yes" else m_lookup['Away_Win_Odds']
+            if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
+                m_odds = m_lookup['Home_Win_Odds']
             elif prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                 m_odds = m_lookup['Home_Win_Odds']
             elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
@@ -461,18 +484,18 @@ elif st.session_state.current_page == "confirm_match":
 
         with st.container(border=True):
             st.subheader("📊 Bet Transaction Summary")
-            st.write(f"📅 **Target Date:** {bet.get('Match_Date')}")
+            st.write(f"📅 **Target Date:** {display_date}")
             
             if is_outright:
                 st.write(f"🏆 **Market Target:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Choice:** Backing **{prediction}** execution parameters")
+                st.write(f"🔮 **{creator_name}’s Choice:** Backing market execution parameters")
             else:
                 st.write(f"⚽ **Fixture:** {clean_market_title}")
                 st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
                 
             st.markdown("---")
-            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} fails)*")
+            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if target selection wins)*")
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if target selection fails)*")
             
             if is_outright:
                 st.caption("ℹ️ *Result reflects official final tournament awards data.*")

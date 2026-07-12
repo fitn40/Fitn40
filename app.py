@@ -11,7 +11,7 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal Outrights)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal OutRIGHTS)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
@@ -25,17 +25,17 @@ def get_match_data(year):
         {"Match_Num": 101, "Date_Str": "Jul 15", "Home_Team": "France", "Away_Team": "Spain", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "01:30"},
         {"Match_Num": 102, "Date_Str": "Jul 16", "Home_Team": "England", "Away_Team": "Argentina", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "01:30"},
 
-        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904) ---
-        {"Match_Num": 901, "Date_Str": "Jul 19", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "23:59"},
-        {"Match_Num": 902, "Date_Str": "Jul 19", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "23:59"},
-        {"Match_Num": 903, "Date_Str": "Jul 19", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "23:59"},
-        {"Match_Num": 904, "Date_Str": "Jul 19", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "23:59"},
+        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904 - SHIFTED TO TRUE IST DATELINE JUL 20) ---
+        {"Match_Num": 901, "Date_Str": "Jul 20", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "04:30"},
+        {"Match_Num": 902, "Date_Str": "Jul 20", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "04:30"},
+        {"Match_Num": 903, "Date_Str": "Jul 20", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "04:30"},
+        {"Match_Num": 904, "Date_Str": "Jul 20", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "04:30"},
 
-        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1004 - HAALAND REMOVED) ---
-        {"Match_Num": 1001, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "23:59"},
-        {"Match_Num": 1002, "Date_Str": "Jul 19", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "23:59"},
-        {"Match_Num": 1004, "Date_Str": "Jul 19", "Home_Team": "Harry Kane for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 9.50, "Draw_Odds": None, "Away_Win_Odds": 1.05, "Time_Str": "23:59"},
-        {"Match_Num": 1005, "Date_Str": "Jul 19", "Home_Team": "Jude Bellingham for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 12.00, "Draw_Odds": None, "Away_Win_Odds": 1.03, "Time_Str": "23:59"}
+        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005 - SHIFTED TO TRUE IST DATELINE JUL 20) ---
+        {"Match_Num": 1001, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "04:30"},
+        {"Match_Num": 1002, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "04:30"},
+        {"Match_Num": 1004, "Date_Str": "Jul 20", "Home_Team": "Harry Kane for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 9.50, "Draw_Odds": None, "Away_Win_Odds": 1.05, "Time_Str": "04:30"},
+        {"Match_Num": 1005, "Date_Str": "Jul 20", "Home_Team": "Jude Bellingham for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 12.00, "Draw_Odds": None, "Away_Win_Odds": 1.03, "Time_Str": "04:30"}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
@@ -259,9 +259,15 @@ elif st.session_state.current_page == "dashboard":
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-                    st.markdown(f"🗓️ **{b_creator}** acts on market option")
-                    st.write(f"📅 **Market:** {b_match} | **Prediction:** Picked **{b_pred}**")
+                # 🌟 Restored Classic Clean Phrasing Format ("Ankur backs Kylian Mbappe")
+                if 901 <= m_num <= 904:
+                    clean_item_name = b_match.replace(" to win WC", "")
+                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}** to win WC")
+                    st.write(f"📅 **Target Deadline:** {bet.get('Match_Date')} | Market Outright Entry")
+                elif 1001 <= m_num <= 1005:
+                    clean_item_name = b_match.replace(" for Golden Boot", "")
+                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
+                    st.write(f"📅 **Target Deadline:** {bet.get('Match_Date')} | Market Outright Entry")
                 else:
                     st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
                     st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
@@ -294,6 +300,18 @@ elif st.session_state.current_page == "dashboard":
                 win_pts = 55.0
 
             b_match = bet.get('Match_Name')
+            m_num = int(bet.get('Match_Num', 0))
+            
+            # Restored classic phrasing rendering inside the matched cards
+            if 901 <= m_num <= 904:
+                clean_item_name = b_match.replace(" to win WC", "")
+                action_text = f"backed <b>{clean_item_name} to win WC</b>"
+            elif 1001 <= m_num <= 1005:
+                clean_item_name = b_match.replace(" for Golden Boot", "")
+                action_text = f"backed <b>{clean_item_name} for Golden Boot</b>"
+            else:
+                action_text = f"bet on <b>{bet.get('Prediction')}</b>"
+
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -309,7 +327,7 @@ elif st.session_state.current_page == "dashboard":
                         📅 <b>Target Date:</b> {bet.get('Match_Date')} | <b>Market:</b> {b_match}
                     </div>
                     <div style="font-size: 0.9rem; line-height: 1.4;">
-                        📢 <b>{bet.get('Creator')}</b> picked <b>{bet.get('Prediction')}</b> 
+                        📢 <b>{bet.get('Creator')}</b> {action_text} 
                         (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
                     </div>
                 </div>
@@ -497,7 +515,6 @@ elif st.session_state.current_page == "new_bet":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         m_num = int(match_row['Match_Num'])
         
-        # 🔐 Force outrights to only have "Yes" since backing a specific player/team is an implicit offer
         if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
             prediction_options = ["-- Select --", "Yes"]
         elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
@@ -510,7 +527,7 @@ elif st.session_state.current_page == "new_bet":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
             if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-                odds = float(match_row['Home_Win_Odds']) # Always Yes (Home Win parameter maps the market odds)
+                odds = float(match_row['Home_Win_Odds'])
             elif selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
             elif selected_prediction == match_row['Away_Team']:

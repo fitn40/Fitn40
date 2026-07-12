@@ -11,19 +11,11 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Semi-Finals & Active Tournament Outrights)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Individual Seasonal Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
-        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 & QUARTER-FINAL MATCHES ---
-        {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
-        {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
-        {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
-        {"Match_Num": 92, "Date_Str": "Jul 06", "Home_Team": "Mexico", "Away_Team": "England", "Home_Win_Odds": 2.25, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "05:30"},
-        {"Match_Num": 93, "Date_Str": "Jul 07", "Home_Team": "Portugal", "Away_Team": "Spain", "Home_Win_Odds": 2.1, "Draw_Odds": None, "Away_Win_Odds": 1.75, "Time_Str": "00:30"},
-        {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
-        {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
-        {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"},
+        # --- ⏳ PREVIOUSLY EXPIRED KNOCKOUT FIXTURES ---
         {"Match_Num": 97, "Date_Str": "Jul 10", "Home_Team": "France", "Away_Team": "Morocco", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "01:30"},
         {"Match_Num": 98, "Date_Str": "Jul 11", "Home_Team": "Spain", "Away_Team": "Belgium", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.54, "Time_Str": "00:30"},
         {"Match_Num": 99, "Date_Str": "Jul 12", "Home_Team": "Norway", "Away_Team": "England", "Home_Win_Odds": 2.8, "Draw_Odds": None, "Away_Win_Odds": 1.56, "Time_Str": "02:30"},
@@ -33,9 +25,18 @@ def get_match_data(year):
         {"Match_Num": 101, "Date_Str": "Jul 15", "Home_Team": "France", "Away_Team": "Spain", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "01:30"},
         {"Match_Num": 102, "Date_Str": "Jul 16", "Home_Team": "England", "Away_Team": "Argentina", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "01:30"},
 
-        # --- 🌟 SEASONAL TOURNAMENT LONG-TERM OUTRIGHTS (STAYS ACTIVE UNTIL FINAL WHISTLE) ---
-        {"Match_Num": 999, "Date_Str": "Jul 19", "Home_Team": "France (2.20)", "Away_Team": "Spain (3.50)", "Home_Win_Odds": 2.20, "Draw_Odds": 3.80, "Away_Win_Odds": 3.50, "Time_Str": "23:59"},
-        {"Match_Num": 1000, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe (1.85)", "Away_Team": "Lionel Messi (2.10)", "Home_Win_Odds": 1.85, "Draw_Odds": 5.50, "Away_Win_Odds": 2.10, "Time_Str": "23:59"}
+        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904) ---
+        {"Match_Num": 901, "Date_Str": "Jul 19", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "23:59"},
+        {"Match_Num": 902, "Date_Str": "Jul 19", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "23:59"},
+        {"Match_Num": 903, "Date_Str": "Jul 19", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "23:59"},
+        {"Match_Num": 904, "Date_Str": "Jul 19", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "23:59"},
+
+        # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005) ---
+        {"Match_Num": 1001, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "23:59"},
+        {"Match_Num": 1002, "Date_Str": "Jul 19", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "23:59"},
+        {"Match_Num": 1003, "Date_Str": "Jul 19", "Home_Team": "Erling Haaland for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 8.00, "Draw_Odds": None, "Away_Win_Odds": 1.08, "Time_Str": "23:59"},
+        {"Match_Num": 1004, "Date_Str": "Jul 19", "Home_Team": "Harry Kane for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 9.50, "Draw_Odds": None, "Away_Win_Odds": 1.05, "Time_Str": "23:59"},
+        {"Match_Num": 1005, "Date_Str": "Jul 19", "Home_Team": "Jude Bellingham for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 12.00, "Draw_Odds": None, "Away_Win_Odds": 1.03, "Time_Str": "23:59"}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
@@ -43,10 +44,10 @@ def get_match_data(year):
     display_titles = []
     for idx, row in df.iterrows():
         n = row['Match_Num']
-        if n == 999:
-            display_titles.append("🏆 Seasonal Outright: World Cup 2026 Winner Team Market")
-        elif n == 1000:
-            display_titles.append("🥇 Seasonal Outright: Golden Boot (Top Goalscorer) Market")
+        if 901 <= n <= 904:
+            display_titles.append(f"🏆 WC Winner: {row['Home_Team'].split(' to ')[0]}")
+        elif 1001 <= n <= 1005:
+            display_titles.append(f"🥇 Golden Boot: {row['Home_Team'].split(' for ')[0]}")
         else:
             display_titles.append(f"Match {n} ({row['Date_Str']}): {row['Home_Team']} vs {row['Away_Team']}")
             
@@ -131,7 +132,7 @@ for bet in combined_bets:
         raw_num = str(bet.get('Match_Num', '0')).strip()
         m_num = int(float(raw_num)) if '.' in raw_num else int(raw_num)
         
-        if m_num in [999, 1000]:
+        if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
             bet["Is_Expired"] = False
         elif m_num < 89:
             bet["Is_Expired"] = True
@@ -199,7 +200,7 @@ elif st.session_state.current_page == "dashboard":
     for b in combined_bets:
         if b.get("Status", "Open") == "Open" and not b.get("Is_Expired", False):
             m_num = int(b.get("Match_Num", 0))
-            if m_num in [999, 1000]:
+            if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
                 open_bets.append(b)
             else:
                 m_lookup = match_data[match_data['Match_Num'] == m_num]
@@ -212,7 +213,7 @@ elif st.session_state.current_page == "dashboard":
     def get_bet_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
-            if m_num in [999, 1000]:
+            if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
                 return datetime(2026, 7, 30, 0, 0)
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
@@ -231,11 +232,14 @@ elif st.session_state.current_page == "dashboard":
     else:
         for bet in open_bets:
             with st.container(border=True):
+                m_num = int(bet.get('Match_Num', 0))
                 try:
-                    m_lookup = match_data[match_data['Match_Num'] == int(bet.get('Match_Num'))].iloc[0]
+                    m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
                     prediction_type = bet.get('Prediction')
                     
-                    if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
+                    if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
+                        m_odds = m_lookup['Home_Win_Odds'] if prediction_type == "Yes" else m_lookup['Away_Win_Odds']
+                    elif prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                         m_odds = m_lookup['Home_Win_Odds']
                     elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
                         m_odds = m_lookup['Away_Win_Odds']
@@ -252,16 +256,16 @@ elif st.session_state.current_page == "dashboard":
                 b_pred = bet.get('Prediction')
                 b_match = bet.get('Match_Name')
                 
-                if int(bet.get('Match_Num', 0)) == 999:
-                    b_match = "World Cup 2026 Winner Team Market"
-                elif int(bet.get('Match_Num', 0)) == 1000:
-                    b_match = "Golden Boot (Top Goalscorer) Market"
-                    
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
-                st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
+                if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
+                    st.markdown(f"🗓️ **{b_creator}** acts on market option")
+                    st.write(f"📅 **Market:** {b_match} | **Prediction:** Picked **{b_pred}**")
+                else:
+                    st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
+                    st.write(f"📅 **Date:** {bet.get('Match_Date')} | Fixture: {b_match}")
+                    
                 st.markdown(f"🔹 **{b_creator} Risks:** {b_risk} pts to win {b_payout} pts")
                 st.markdown(f"🔸 **You Must Risk:** {b_payout} pts to win {b_risk} pts *({market_str})*")
     
@@ -290,11 +294,6 @@ elif st.session_state.current_page == "dashboard":
                 win_pts = 55.0
 
             b_match = bet.get('Match_Name')
-            if int(bet.get('Match_Num', 0)) == 999:
-                b_match = "World Cup 2026 Winner Team Market"
-            elif int(bet.get('Match_Num', 0)) == 1000:
-                b_match = "Golden Boot (Top Goalscorer) Market"
-
             st.markdown(
                 f"""
                 <div style="background-color: rgba(39, 174, 96, 0.08); 
@@ -310,7 +309,7 @@ elif st.session_state.current_page == "dashboard":
                         📅 <b>Target Date:</b> {bet.get('Match_Date')} | <b>Market:</b> {b_match}
                     </div>
                     <div style="font-size: 0.9rem; line-height: 1.4;">
-                        📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
+                        📢 <b>{bet.get('Creator')}</b> picked <b>{bet.get('Prediction')}</b> 
                         (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
                     </div>
                 </div>
@@ -329,7 +328,7 @@ elif st.session_state.current_page == "dashboard":
     def get_expired_sort_key(b):
         try:
             m_num = int(b.get("Match_Num", 0))
-            if m_num in [999, 1000]:
+            if (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
                 return datetime(2026, 7, 30, 0, 0)
             match_row = match_data[match_data['Match_Num'] == m_num]
             if not match_row.empty:
@@ -354,11 +353,6 @@ elif st.session_state.current_page == "dashboard":
                     win_pts = 55.0
 
                 b_match = bet.get('Match_Name')
-                if int(bet.get('Match_Num', 0)) == 999:
-                    b_match = "World Cup 2026 Winner Team Market"
-                elif int(bet.get('Match_Num', 0)) == 1000:
-                    b_match = "Golden Boot (Top Goalscorer) Market"
-
                 st.markdown(
                     f"""
                     <div style="background-color: rgba(192, 57, 43, 0.06); 
@@ -374,7 +368,7 @@ elif st.session_state.current_page == "dashboard":
                             📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {b_match}
                         </div>
                         <div style="font-size: 0.9rem; line-height: 1.4;">
-                            📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
+                            📢 <b>{bet.get('Creator')}</b> picked <b>{bet.get('Prediction')}</b> 
                             (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
                         </div>
                     </div>
@@ -421,20 +415,16 @@ elif st.session_state.current_page == "confirm_match":
             st.rerun()
     else:
         m_num = int(bet.get('Match_Num', 0))
-        is_outright = m_num in [999, 1000]
-        
-        if m_num == 999:
-            clean_market_title = "World Cup 2026 Winner Team Market"
-        elif m_num == 1000:
-            clean_market_title = "Golden Boot (Top Goalscorer) Market"
-        else:
-            clean_market_title = bet.get('Match_Name')
+        is_outright = (901 <= m_num <= 904) or (1001 <= m_num <= 1005)
+        clean_market_title = bet.get('Match_Name')
         
         try:
             m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
             prediction_type = bet.get('Prediction')
             
-            if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
+            if is_outright:
+                m_odds = m_lookup['Home_Win_Odds'] if prediction_type == "Yes" else m_lookup['Away_Win_Odds']
+            elif prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                 m_odds = m_lookup['Home_Win_Odds']
             elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
                 m_odds = m_lookup['Away_Win_Odds']
@@ -456,8 +446,8 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"📅 **Target Date:** {bet.get('Match_Date')}")
             
             if is_outright:
-                st.write(f"🏆 **Market Category:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Outright Pick:** Backing **{prediction}** to win the market")
+                st.write(f"🏆 **Market Target:** {clean_market_title}")
+                st.write(f"🔮 **{creator_name}’s Choice:** Backing **{prediction}** execution parameters")
             else:
                 st.write(f"⚽ **Fixture:** {clean_market_title}")
                 st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
@@ -466,7 +456,7 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
             st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} fails)*")
             
-            if m_num in [999, 1000]:
+            if is_outright:
                 st.caption("ℹ️ *Result reflects official final tournament awards data.*")
             elif m_num >= 89:
                 st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
@@ -505,11 +495,11 @@ elif st.session_state.current_page == "new_bet":
     
     if selected_match_str != "-- Select --":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
+        m_num = int(match_row['Match_Num'])
         
-        if match_row['Match_Num'] == 999:
-            prediction_options = ["-- Select --", "France", "Spain", "Argentina"]
-        elif match_row['Match_Num'] == 1000:
-            prediction_options = ["-- Select --", "Kylian Mbappe", "Lionel Messi", "Erling Haaland"]
+        # Outright selections now split to structured 2-Way (Yes/No) options
+        if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
+            prediction_options = ["-- Select --", "Yes", "No"]
         elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
         else:
@@ -519,14 +509,16 @@ elif st.session_state.current_page == "new_bet":
         if selected_prediction != "-- Select --":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
-            if selected_prediction in [match_row['Home_Team'], "France", "Kylian Mbappe"]:
+            if (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
+                odds = float(match_row['Home_Win_Odds']) if selected_prediction == "Yes" else float(match_row['Away_Win_Odds'])
+            elif selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
-            elif selected_prediction in [match_row['Away_Team'], "Spain", "Lionel Messi"]:
+            elif selected_prediction == match_row['Away_Team']:
                 odds = float(match_row['Away_Win_Odds'])
             else:
                 odds = float(match_row['Draw_Odds'])
+                
             default_payout = int(round(points * (odds - 1), 0))
-            
             payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)
             
             custom_odds = round((payout / points) + 1, 2) if points > 0 else 0
@@ -541,15 +533,10 @@ elif st.session_state.current_page == "new_bet":
                     except:
                         next_id = len(combined_bets) + 1
                 
-                if match_row['Match_Num'] == 999:
-                    saved_match_name = "World Cup 2026 Winner Team Market"
-                elif match_row['Match_Num'] == 1000:
-                    saved_match_name = "Golden Boot (Top Goalscorer) Market"
-                else:
-                    saved_match_name = f"{match_row['Home_Team']} vs {match_row['Away_Team']}"
+                saved_match_name = match_row['Home_Team'] if ((901 <= m_num <= 904) or (1001 <= m_num <= 1005)) else f"{match_row['Home_Team']} vs {match_row['Away_Team']}"
                         
                 combined_bets.append({
-                    "Bet_ID": int(next_id), "Creator": str(st.session_state.player_name), "Match_Num": int(match_row['Match_Num']),
+                    "Bet_ID": int(next_id), "Creator": str(st.session_state.player_name), "Match_Num": int(m_num),
                     "Match_Name": saved_match_name, "Match_Date": str(match_row['Date_Str']),
                     "Prediction": str(selected_prediction), "Points": float(points), "Opponent_Payout": float(payout), "Opponent": "", "Status": "Open", "Is_Expired": False
                 })

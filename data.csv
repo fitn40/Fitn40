@@ -251,3 +251,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 311,Ashu,98,Spain vs Belgium,Jul 11,Spain,200.0,100.0,himadri,Matched,True
 313,TenWall,100,Argentina vs Switzerland,Jul 12,Argentina,500.0,200.0,Arjun,Matched,True
 314,Ashu,1001,Kylian Mbappe for Golden Boot,Jul 19,Yes,100.0,85.0,,Open,False
+315,Ankur,1002,Lionel Messi for Golden Boot,Jul 20,Yes,100.0,198.0,,Open,False

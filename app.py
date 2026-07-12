@@ -11,11 +11,11 @@ DATA_FILE = "data.csv"
 current_date = datetime.now()
 current_year = current_date.year
 
-# 📋 Official Live Tournament Data Matrix (Quarter-Finals & Tournament Outrights)
+# 📋 Official Live Tournament Data Matrix (Semi-Finals & Active Tournament Outrights)
 @st.cache_data
 def get_match_data(year):
     raw_data = [
-        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 MATCHES ---
+        # --- ⏳ PREVIOUSLY EXPIRED ROUND OF 16 & QUARTER-FINAL MATCHES ---
         {"Match_Num": 89, "Date_Str": "Jul 04", "Home_Team": "Canada", "Away_Team": "Morocco", "Home_Win_Odds": 1.95, "Draw_Odds": None, "Away_Win_Odds": 1.85, "Time_Str": "22:30"},
         {"Match_Num": 90, "Date_Str": "Jul 05", "Home_Team": "Paraguay", "Away_Team": "France", "Home_Win_Odds": 3.4, "Draw_Odds": None, "Away_Win_Odds": 1.32, "Time_Str": "02:30"},
         {"Match_Num": 91, "Date_Str": "Jul 06", "Home_Team": "Brazil", "Away_Team": "Norway", "Home_Win_Odds": 1.45, "Draw_Odds": None, "Away_Win_Odds": 2.75, "Time_Str": "01:30"},
@@ -24,16 +24,18 @@ def get_match_data(year):
         {"Match_Num": 94, "Date_Str": "Jul 07", "Home_Team": "United States", "Away_Team": "Belgium", "Home_Win_Odds": 1.9, "Draw_Odds": None, "Away_Win_Odds": 1.9, "Time_Str": "05:30"},
         {"Match_Num": 95, "Date_Str": "Jul 07", "Home_Team": "Argentina", "Away_Team": "Egypt", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "21:30"},
         {"Match_Num": 96, "Date_Str": "Jul 08", "Home_Team": "Switzerland", "Away_Team": "Colombia", "Home_Win_Odds": 2.05, "Draw_Odds": None, "Away_Win_Odds": 1.78, "Time_Str": "01:30"},
-
-        # --- 🏆 LIVE UPCOMING QUARTER-FINAL MATCHES (2-WAY OUTRIGHT MARKETS) ---
         {"Match_Num": 97, "Date_Str": "Jul 10", "Home_Team": "France", "Away_Team": "Morocco", "Home_Win_Odds": 1.25, "Draw_Odds": None, "Away_Win_Odds": 4.0, "Time_Str": "01:30"},
         {"Match_Num": 98, "Date_Str": "Jul 11", "Home_Team": "Spain", "Away_Team": "Belgium", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.54, "Time_Str": "00:30"},
         {"Match_Num": 99, "Date_Str": "Jul 12", "Home_Team": "Norway", "Away_Team": "England", "Home_Win_Odds": 2.8, "Draw_Odds": None, "Away_Win_Odds": 1.56, "Time_Str": "02:30"},
         {"Match_Num": 100, "Date_Str": "Jul 12", "Home_Team": "Argentina", "Away_Team": "Switzerland", "Home_Win_Odds": 1.4, "Draw_Odds": None, "Away_Win_Odds": 3.5, "Time_Str": "06:30"},
 
+        # --- 🏆 LIVE UPCOMING SEMI-FINAL MATCHES (2-WAY "TO ADVANCE" OUTRIGHT MARKETS) ---
+        {"Match_Num": 101, "Date_Str": "Jul 15", "Home_Team": "France", "Away_Team": "Spain", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "01:30"},
+        {"Match_Num": 102, "Date_Str": "Jul 16", "Home_Team": "England", "Away_Team": "Argentina", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "01:30"},
+
         # --- 🌟 SEASONAL TOURNAMENT LONG-TERM OUTRIGHTS (STAYS ACTIVE UNTIL FINAL WHISTLE) ---
-        {"Match_Num": 999, "Date_Str": "Jul 19", "Home_Team": "France (2.9)", "Away_Team": "Spain (4.5)", "Home_Win_Odds": 2.9, "Draw_Odds": 5.0, "Away_Win_Odds": 4.5, "Time_Str": "23:59"},
-        {"Match_Num": 1000, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe (2.63)", "Away_Team": "Lionel Messi (2.63)", "Home_Win_Odds": 2.63, "Draw_Odds": 8.0, "Away_Win_Odds": 2.63, "Time_Str": "23:59"}
+        {"Match_Num": 999, "Date_Str": "Jul 19", "Home_Team": "France (2.20)", "Away_Team": "Spain (3.50)", "Home_Win_Odds": 2.20, "Draw_Odds": 3.80, "Away_Win_Odds": 3.50, "Time_Str": "23:59"},
+        {"Match_Num": 1000, "Date_Str": "Jul 19", "Home_Team": "Kylian Mbappe (1.85)", "Away_Team": "Lionel Messi (2.10)", "Home_Win_Odds": 1.85, "Draw_Odds": 5.50, "Away_Win_Odds": 2.10, "Time_Str": "23:59"}
     ]
     df = pd.DataFrame(raw_data)
     df = df.sort_values(by="Match_Num").reset_index(drop=True)
@@ -250,7 +252,6 @@ elif st.session_state.current_page == "dashboard":
                 b_pred = bet.get('Prediction')
                 b_match = bet.get('Match_Name')
                 
-                # Clean up display text for open offers on dashboard
                 if int(bet.get('Match_Num', 0)) == 999:
                     b_match = "World Cup 2026 Winner Team Market"
                 elif int(bet.get('Match_Num', 0)) == 1000:
@@ -327,247 +328,4 @@ elif st.session_state.current_page == "dashboard":
 
     def get_expired_sort_key(b):
         try:
-            m_num = int(b.get("Match_Num", 0))
-            if m_num in [999, 1000]:
-                return datetime(2026, 7, 30, 0, 0)
-            match_row = match_data[match_data['Match_Num'] == m_num]
-            if not match_row.empty:
-                return match_row.iloc[0]['Match_Date_Obj']
-            else:
-                return datetime(2026, 6, 1, 0, 0)
-        except:
-            return datetime(2026, 6, 1, 0, 0)
-
-    expired_matched_bets = sorted(expired_matched_bets, key=get_expired_sort_key, reverse=True)
-
-    with st.expander("📁 View Expired Matched Bets History", expanded=False):
-        if not expired_matched_bets:
-            st.caption("No expired matched bets found in history.")
-        else:
-            for bet in expired_matched_bets:
-                try:
-                    risk_pts = float(bet.get('Points', 100))
-                    win_pts = float(bet.get('Opponent_Payout', 55))
-                except:
-                    risk_pts = 100.0
-                    win_pts = 55.0
-
-                b_match = bet.get('Match_Name')
-                if int(bet.get('Match_Num', 0)) == 999:
-                    b_match = "World Cup 2026 Winner Team Market"
-                elif int(bet.get('Match_Num', 0)) == 1000:
-                    b_match = "Golden Boot (Top Goalscorer) Market"
-
-                st.markdown(
-                    f"""
-                    <div style="background-color: rgba(192, 57, 43, 0.06); 
-                                border: 2px solid #c0392b; 
-                                padding: 15px; 
-                                border-radius: 6px; 
-                                margin-bottom: 12px;
-                                font-family: sans-serif;">
-                        <div style="font-weight: bold; font-size: 1.05rem; margin-bottom: 6px; color: #c0392b;">
-                            ⌛ [EXPIRED] {bet.get('Creator')} VS {bet.get('Opponent')}
-                        </div>
-                        <div style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
-                            📅 <b>Kickoff Date:</b> {bet.get('Match_Date')} | <b>Match:</b> {b_match}
-                        </div>
-                        <div style="font-size: 0.9rem; line-height: 1.4;">
-                            📢 <b>{bet.get('Creator')}</b> bet on <b>{bet.get('Prediction')}</b> 
-                            (Risking: {risk_pts} pts / Winning: {win_pts} pts) with <b>{bet.get('Opponent')}</b>.
-                        </div>
-                    </div>
-                    """, 
-                    unsafe_allow_html=True
-                )
-                
-                if is_admin:
-                    if st.button(f"🚨 Admin Override: Clear Expired #{bet.get('Bet_ID')}", key=f"del_exp_{bet.get('Bet_ID')}", use_container_width=True, type="secondary"):
-                        execute_backend_deletion(bet.get('Bet_ID'))
-
-# ==========================================
-# 📊 UI SCREEN: TOURNAMENT BOARD (LIVE EXCEL)
-# ==========================================
-elif st.session_state.current_page == "view_excel":
-    st.title("📊 Live Tournament Board")
-    st.write("This table updates dynamically whenever results are committed to the backend repository.")
-    
-    if os.path.exists("results.xlsx"):
-        try:
-            df_excel = pd.read_excel("results.xlsx")
-            st.dataframe(df_excel, use_container_width=True, hide_index=True)
-        except Exception as e:
-            st.error("⚠️ Found results.xlsx but could not read its formatting. Ensure it is a standard data grid layout!")
-    else:
-        st.info("📢 Standings spreadsheet is currently being updated. Check back shortly or view your WhatsApp group chat for the latest scores!")
-        
-    st.markdown("---")
-    if st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
-        st.session_state.current_page = "dashboard"
-        st.rerun()
-
-# ==========================================
-# 🤝 UI SCREEN: CONFIRM TO MATCH OFFER
-# ==========================================
-elif st.session_state.current_page == "confirm_match":
-    st.title("🤝 Confirm Your Match Selection")
-    
-    bet = st.session_state.get("selected_bet_to_match", {})
-    if not bet:
-        st.error("No bet selected.")
-        if st.button("⬅ Return to Dashboard", use_container_width=True):
-            st.session_state.current_page = "dashboard"
-            st.rerun()
-    else:
-        m_num = int(bet.get('Match_Num', 0))
-        is_outright = m_num in [999, 1000]
-        
-        # Intercept and override the raw match titles with official clean market names
-        if m_num == 999:
-            clean_market_title = "World Cup 2026 Winner Team Market"
-        elif m_num == 1000:
-            clean_market_title = "Golden Boot (Top Goalscorer) Market"
-        else:
-            clean_market_title = bet.get('Match_Name')
-        
-        try:
-            m_lookup = match_data[match_data['Match_Num'] == m_num].iloc[0]
-            prediction_type = bet.get('Prediction')
-            
-            if prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
-                m_odds = m_lookup['Home_Win_Odds']
-            elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
-                m_odds = m_lookup['Away_Win_Odds']
-            else:
-                m_odds = m_lookup['Draw_Odds']
-            
-            b_pts = float(bet.get('Points', 100))
-            market_payout = float(round(b_pts * (m_odds - 1), 1))
-        except:
-            market_payout = None
-
-        creator_name = bet.get('Creator')
-        prediction = bet.get('Prediction')
-        creator_risk = float(bet.get('Points', 0))
-        your_risk = float(bet.get('Opponent_Payout', 0))
-
-        with st.container(border=True):
-            st.subheader("📊 Bet Transaction Summary")
-            st.write(f"📅 **Target Date:** {bet.get('Match_Date')}")
-            
-            if is_outright:
-                st.write(f"🏆 **Market Category:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Outright Pick:** Backing **{prediction}** to win the market")
-            else:
-                st.write(f"⚽ **Fixture:** {clean_market_title}")
-                st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{prediction}**")
-                
-            st.markdown("---")
-            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {prediction} wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {prediction} fails)*")
-            
-            if m_num in [999, 1000]:
-                st.caption("ℹ️ *Result reflects official final tournament awards data.*")
-            elif m_num >= 89:
-                st.caption("ℹ️ *Result includes Regulation Time, Extra Time, and Penalty Shootouts.*")
-            else:
-                st.caption("ℹ️ *Result reflects 90 minutes of standard regulation play plus injury time.*")
-
-            if market_payout is not None:
-                st.write(f"📊 **Implied Platform Parity Layout:** Creator baseline dictates a {market_payout} pts market offset adjustment.")
-            else:
-                st.write(f"📊 **Market odds for the bet is:** N/A")
-
-        st.warning("⚠️ Once confirmed, this transaction is locked and cannot be deleted by either player.")
-
-        if st.button("✅ Confirm & Lock Bet", use_container_width=True, type="primary"):
-            for b in combined_bets:
-                if int(b.get("Bet_ID", 0)) == int(bet.get("Bet_ID", 0)):
-                    b["Status"] = "Matched"
-                    b["Opponent"] = str(st.session_state.player_name)
-            
-            save_all_bets_permanently(combined_bets)
-            st.success("🔒 Bet matched and locked into ledger permanently!")
-            st.session_state.current_page = "dashboard"
-            st.rerun()
-
-        if st.button("⬅ Cancel & Go Back", use_container_width=True):
-            st.session_state.current_page = "dashboard"
-            st.rerun()
-
-# ==========================================
-# 🎲 UI SCREEN: CREATE NEW BET OFFERS
-# ==========================================
-elif st.session_state.current_page == "new_bet":
-    st.title("🎲 Create New Prediction Offer")
-    active_fixtures = match_data[match_data['Match_Date_Obj'] > true_india_now]
-    selected_match_str = st.selectbox("👉 Target Match Fixture:", options=["-- Select --"] + active_fixtures['Match_Display'].tolist())
-    
-    if selected_match_str != "-- Select --":
-        match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
-        
-        if match_row['Match_Num'] == 999:
-            prediction_options = ["-- Select --", "France", "Spain", "Argentina"]
-        elif match_row['Match_Num'] == 1000:
-            prediction_options = ["-- Select --", "Kylian Mbappe", "Lionel Messi", "Erling Haaland"]
-        elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
-            prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
-        else:
-            prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team'], "Draw"]
-
-        selected_prediction = st.selectbox("🔮 Outcome Selection:", options=prediction_options)        
-        if selected_prediction != "-- Select --":
-            points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
-            
-            if selected_prediction in [match_row['Home_Team'], "France", "Kylian Mbappe"]:
-                odds = float(match_row['Home_Win_Odds'])
-            elif selected_prediction in [match_row['Away_Team'], "Spain", "Lionel Messi"]:
-                odds = float(match_row['Away_Win_Odds'])
-            else:
-                odds = float(match_row['Draw_Odds'])
-            default_payout = int(round(points * (odds - 1), 0))
-            
-            payout = st.number_input("Points You Want to Win (Adjustable):", min_value=1, value=default_payout, step=5)
-            
-            custom_odds = round((payout / points) + 1, 2) if points > 0 else 0
-            st.caption(f"💡 Implied custom odds layout: {custom_odds}x (Your opponent risks {payout} pts to win {points} pts)")
-
-            if st.button("🚀 Publish Offer to Board", use_container_width=True, type="primary"):
-                if not combined_bets:
-                    next_id = 1
-                else:
-                    try:
-                        next_id = max([int(b["Bet_ID"]) for b in combined_bets]) + 1
-                    except:
-                        next_id = len(combined_bets) + 1
-                
-                # Assign clean descriptive names in the data payload if it's an outright
-                if match_row['Match_Num'] == 999:
-                    saved_match_name = "World Cup 2026 Winner Team Market"
-                elif match_row['Match_Num'] == 1000:
-                    saved_match_name = "Golden Boot (Top Goalscorer) Market"
-                else:
-                    saved_match_name = f"{match_row['Home_Team']} vs {match_row['Away_Team']}"
-                        
-                combined_bets.append({
-                    "Bet_ID": int(next_id), "Creator": str(st.session_state.player_name), "Match_Num": int(match_row['Match_Num']),
-                    "Match_Name": saved_match_name, "Match_Date": str(match_row['Date_Str']),
-                    "Prediction": str(selected_prediction), "Points": float(points), "Opponent_Payout": float(payout), "Opponent": "", "Status": "Open", "Is_Expired": False
-                })
-                save_all_bets_permanently(combined_bets)
-                st.session_state.current_page = "dashboard"
-                st.rerun()
-                
-    if st.button("⬅ Cancel", use_container_width=True):
-        st.session_state.current_page = "dashboard"
-        st.rerun()
-
-# ==========================================
-# ⚙️ UI SCREEN: MASTER DATABASE LOOKOVER
-# ==========================================
-elif st.session_state.current_page == "view_db":
-    st.title("📊 Running Memory Dump Instance")
-    st.dataframe(pd.DataFrame(combined_bets), use_container_width=True, hide_index=True)
-    if st.button("⬅ Back", use_container_width=True):
-        st.session_state.current_page = "dashboard"
-        st.rerun()
+            m_num = int(b.get("Match_Num",

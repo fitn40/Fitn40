@@ -258,4 +258,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 326,TenWall,102,England vs Argentina,Jul 16,England,250.0,300.0,,Open,False
 327,TenWall,904,England to win WC,Jul 20,Yes,150.0,500.0,,Open,False
 328,TenWall,902,Spain to win WC,Jul 20,Yes,150.0,350.0,,Open,False
-329,TenWall,903,Argentina to win WC,Jul 20,Yes,200.0,480.0,,Open,False

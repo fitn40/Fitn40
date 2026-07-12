@@ -259,17 +259,17 @@ elif st.session_state.current_page == "dashboard":
                 b_risk = float(bet.get('Points', 0))
                 b_payout = float(bet.get('Opponent_Payout', 0))
 
-                # 🛠️ SMART PARSER: Intercepts generic legacy strings and overrides fallback labels dynamically
+                # 🛠️ DEEP LEGACY FIELD TRANSLATOR - Intercepts any formatting variants from database rows
                 if 901 <= m_num <= 904 or m_num == 999:
                     clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
-                    if "vs" in clean_item_name or clean_item_name == "Field":
-                        clean_item_name = b_pred if b_pred != "Yes" else "Tournament Winner Selection"
+                    if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
+                        clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Tournament Winner Selection"
                     st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}** to win WC")
                     st.write(f"📅 **Date:** Jul 20 | Fixture: World Cup 2026 Winner Team Market")
                 elif 1001 <= m_num <= 1005 or m_num == 1000:
                     clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
-                    if "vs" in clean_item_name or clean_item_name == "Field":
-                        clean_item_name = b_pred if b_pred != "Yes" else "Kylian Mbappe"
+                    if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
+                        clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Kylian Mbappe"
                     st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
                     st.write(f"📅 **Date:** Jul 20 | Fixture: Golden Boot (Top Goalscorer) Market")
                 else:
@@ -309,15 +309,15 @@ elif st.session_state.current_page == "dashboard":
             
             if 901 <= m_num <= 904 or m_num == 999:
                 clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
-                if "vs" in clean_item_name or clean_item_name == "Field":
-                    clean_item_name = b_pred if b_pred != "Yes" else "Tournament Winner"
+                if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
+                    clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Tournament Winner"
                 action_text = f"backed <b>{clean_item_name} to win WC</b>"
                 display_match_name = "World Cup 2026 Winner Team Market"
                 display_date = "Jul 20"
             elif 1001 <= m_num <= 1005 or m_num == 1000:
                 clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
-                if "vs" in clean_item_name or clean_item_name == "Field":
-                    clean_item_name = b_pred if b_pred != "Yes" else "Kylian Mbappe"
+                if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
+                    clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Kylian Mbappe"
                 action_text = f"backed <b>{clean_item_name} for Golden Boot</b>"
                 display_match_name = "Golden Boot (Top Goalscorer) Market"
                 display_date = "Jul 20"

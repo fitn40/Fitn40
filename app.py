@@ -428,7 +428,7 @@ elif st.session_state.current_page == "view_excel":
         st.info("📢 Standings spreadsheet is currently being updated. Check back shortly or view your WhatsApp group chat for the latest scores!")
         
     st.markdown("---")
-    if f st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
+    if st.button("⬅ Back to Dashboard", use_container_width=True, type="secondary"):
         st.session_state.current_page = "dashboard"
         st.rerun()
 

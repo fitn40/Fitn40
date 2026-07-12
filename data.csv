@@ -254,5 +254,5 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 315,Ankur,1002,Lionel Messi for Golden Boot,Jul 20,Yes,100.0,198.0,Peteza,Matched,False
 316,Ankur,1001,Kylian Mbappe for Golden Boot,Jul 20,Yes,100.0,198.0,,Open,False
 317,Yogi,1001,Kylian Mbappe for Golden Boot,Jul 20,Yes,250.0,350.0,Ashu,Matched,False
-318,Yogi,902,Spain to win WC,Jul 20,Yes,100.0,300.0,,Open,False
+318,Yogi,902,Spain to win WC,Jul 20,Yes,100.0,300.0,Ashu,Matched,False
 319,Himadri,1002,Lionel Messi for Golden Boot,Jul 20,Yes,250.0,170.0,,Open,False

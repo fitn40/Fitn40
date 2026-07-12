@@ -251,3 +251,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 318,Yogi,902,Spain to win WC,Jul 20,Yes,100.0,300.0,Ashu,Matched,False
 319,Himadri,1002,Lionel Messi for Golden Boot,Jul 20,Yes,250.0,170.0,Ankur,Matched,False
 320,Fifa@2026,901,France to win WC,Jul 20,Yes,100.0,120.0,,Open,False
+321,Ashu,902,Spain to win WC,Jul 20,Yes,100.0,250.0,,Open,False

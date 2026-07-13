@@ -257,7 +257,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 328,TenWall,902,Spain to win WC,Jul 20,Yes,150.0,350.0,Ankur,Matched,False
 329,TenWall,903,Argentina to win WC,Jul 20,Yes,190.0,480.0,Ankur,Matched,False
 330,TenWall,102,England vs Argentina,Jul 16,England,225.0,300.0,,Open,False
-331,Himadri,101,France vs Spain,Jul 15,France,175.0,120.0,,Open,False
+331,Himadri,101,France vs Spain,Jul 15,France,175.0,120.0,Ankur,Matched,False
 332,Himadri,904,England to win WC,Jul 20,Yes,300.0,175.0,Ankur,Matched,False
 333,Ankur,904,England to win WC,Jul 20,Yes,100.0,300.0,,Open,False
 334,Ankur,102,England vs Argentina,Jul 16,England,120.0,152.0,,Open,False

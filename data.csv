@@ -263,3 +263,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 334,Ankur,102,England vs Argentina,Jul 16,England,120.0,152.0,,Open,False
 335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,Laakha,Matched,False
 336,Ankur,102,England vs Argentina,Jul 16,England,100.0,110.0,,Open,False
+337,Ankur,101,France vs Spain,Jul 15,France,100.0,90.0,,Open,False

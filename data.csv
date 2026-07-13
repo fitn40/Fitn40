@@ -261,4 +261,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 332,Himadri,904,England to win WC,Jul 20,Yes,300.0,175.0,Ankur,Matched,False
 333,Ankur,904,England to win WC,Jul 20,Yes,100.0,300.0,,Open,False
 334,Ankur,102,England vs Argentina,Jul 16,England,120.0,152.0,,Open,False
-335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,,Open,False
+335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,Laakha,Matched,False

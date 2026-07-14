@@ -265,3 +265,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 336,Ankur,102,England vs Argentina,Jul 16,England,100.0,110.0,Arjun,Matched,False
 337,Ankur,101,France vs Spain,Jul 15,France,100.0,90.0,,Open,False
 338,Arjun,904,England to win WC,Jul 20,Yes,100.0,400.0,,Open,False
+339,Arjun,902,Spain to win WC,Jul 20,Yes,100.0,250.0,,Open,False

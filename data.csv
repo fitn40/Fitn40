@@ -250,19 +250,18 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 318,Yogi,902,Spain to win WC,Jul 20,Yes,100.0,300.0,Ashu,Matched,False
 319,Himadri,1002,Lionel Messi for Golden Boot,Jul 20,Yes,250.0,170.0,Ankur,Matched,False
 320,Fifa@2026,901,France to win WC,Jul 20,Yes,100.0,120.0,Arjun,Matched,False
-323,TenWall,101,France vs Spain,Jul 15,Spain,300.0,275.0,Arjun,Matched,False
+323,TenWall,101,France vs Spain,Jul 15,Spain,300.0,275.0,Arjun,Matched,True
 324,Arjun,102,England vs Argentina,Jul 16,Argentina,500.0,350.0,TenWall,Matched,False
-325,Arjun,101,France vs Spain,Jul 15,France,300.0,275.0,Ashu,Matched,False
+325,Arjun,101,France vs Spain,Jul 15,France,300.0,275.0,Ashu,Matched,True
 327,TenWall,904,England to win WC,Jul 20,Yes,150.0,500.0,Ankur,Matched,False
 328,TenWall,902,Spain to win WC,Jul 20,Yes,150.0,350.0,Ankur,Matched,False
 329,TenWall,903,Argentina to win WC,Jul 20,Yes,190.0,480.0,Ankur,Matched,False
-330,TenWall,102,England vs Argentina,Jul 16,England,225.0,300.0,,Open,False
-331,Himadri,101,France vs Spain,Jul 15,France,175.0,120.0,Ankur,Matched,False
+331,Himadri,101,France vs Spain,Jul 15,France,175.0,120.0,Ankur,Matched,True
 332,Himadri,904,England to win WC,Jul 20,Yes,300.0,175.0,Ankur,Matched,False
 333,Ankur,904,England to win WC,Jul 20,Yes,100.0,300.0,Yogi,Matched,False
-335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,Laakha,Matched,False
+335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,Laakha,Matched,True
 336,Ankur,102,England vs Argentina,Jul 16,England,100.0,110.0,Arjun,Matched,False
-337,Ankur,101,France vs Spain,Jul 15,France,100.0,90.0,Peteza,Matched,False
+337,Ankur,101,France vs Spain,Jul 15,France,100.0,90.0,Peteza,Matched,True
 338,Arjun,904,England to win WC,Jul 20,Yes,100.0,400.0,,Open,False
 339,Arjun,902,Spain to win WC,Jul 20,Yes,100.0,250.0,,Open,False
 340,Arjun,1004,Harry Kane for Golden Boot,Jul 20,Yes,100.0,850.0,,Open,False

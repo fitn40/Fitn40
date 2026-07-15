@@ -266,3 +266,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 339,Arjun,902,Spain to win WC,Jul 20,Yes,100.0,250.0,,Open,False
 340,Arjun,1004,Harry Kane for Golden Boot,Jul 20,Yes,100.0,850.0,TenWall,Matched,False
 341,Arjun,1005,Jude Bellingham for Golden Boot,Jul 20,Yes,100.0,950.0,TenWall,Matched,False
+342,Yogi,102,England vs Argentina,Jul 16,Argentina,300.0,150.0,,Open,False

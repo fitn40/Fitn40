@@ -269,3 +269,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,himadri,Matched,False
 347,himadri,902,Spain to win WC,Jul 20,Yes,250.0,175.0,Ankur,Matched,False
 348,himadri,1001,Kylian Mbappe for Golden Boot,Jul 20,Yes,200.0,120.0,Arjun,Matched,False
+349,Arjun,903,Argentina to win WC,Jul 20,Yes,500.0,500.0,,Open,False

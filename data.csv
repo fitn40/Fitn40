@@ -267,4 +267,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 341,Arjun,1005,Jude Bellingham for Golden Boot,Jul 20,Yes,100.0,950.0,TenWall,Matched,False
 342,Yogi,102,England vs Argentina,Jul 16,Argentina,300.0,150.0,Ankur,Matched,False
 345,Peteza,102,England vs Argentina,Jul 16,England,100.0,175.0,,Open,False
-346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,,Open,False
+346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,himadri,Matched,False

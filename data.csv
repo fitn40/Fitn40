@@ -268,4 +268,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 342,Yogi,102,England vs Argentina,Jul 16,Argentina,300.0,150.0,Ankur,Matched,False
 345,Peteza,102,England vs Argentina,Jul 16,England,100.0,175.0,,Open,False
 346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,,Open,False
-347,Peteza,903,Argentina to win WC,Jul 20,Yes,100.0,285.0,,Open,False

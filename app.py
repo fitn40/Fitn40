@@ -28,10 +28,7 @@ def get_match_data(year):
         # --- 🏆 LIVE UPCOMING FINAL MATCHES (2-WAY "TO ADVANCE" OUTRIGHT MARKETS) ---
         {"Match_Num": 103, "Date_Str": "Jul 19", "Home_Team": "France", "Away_Team": "England", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
         {"Match_Num": 104, "Date_Str": "Jul 20", "Home_Team": "Spain", "Away_Team": "Argentina", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
-        {"Match_Num": 105, "Date_Str": "Jul 20", "Home_Team": "No Goal by Messi (excluding pnealty shootout)", "Away_Team": "Atleast 1 Goal by Messi", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
-        {"Match_Num": 106, "Date_Str": "Jul 20", "Home_Team": "No Goal by any team(excluding pnealty shootout)", "Away_Team": "Atleast 1 Goal", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
-
-       
+              
         # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005 - TRUE IST DATELINE JUL 20) ---
         {"Match_Num": 1001, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "04:30"},
         {"Match_Num": 1002, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "04:30"},

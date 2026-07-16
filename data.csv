@@ -250,7 +250,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 318,Yogi,902,Spain to win WC,Jul 20,Yes,100.0,300.0,Ashu,Matched,False
 319,Himadri,1002,Lionel Messi for Golden Boot,Jul 20,Yes,250.0,170.0,Ankur,Matched,False
 323,TenWall,101,France vs Spain,Jul 15,Spain,300.0,275.0,Arjun,Matched,True
-324,Arjun,102,England vs Argentina,Jul 16,Argentina,500.0,350.0,TenWall,Matched,False
+324,Arjun,102,England vs Argentina,Jul 16,Argentina,500.0,350.0,TenWall,Matched,True
 325,Arjun,101,France vs Spain,Jul 15,France,300.0,275.0,Ashu,Matched,True
 327,TenWall,904,England to win WC,Jul 20,Yes,150.0,500.0,Ankur,Matched,False
 328,TenWall,902,Spain to win WC,Jul 20,Yes,150.0,350.0,Ankur,Matched,False
@@ -259,15 +259,16 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 332,Himadri,904,England to win WC,Jul 20,Yes,300.0,175.0,Ankur,Matched,False
 333,Ankur,904,England to win WC,Jul 20,Yes,100.0,300.0,Yogi,Matched,False
 335,Ankur,101,France vs Spain,Jul 15,Spain,100.0,120.0,Laakha,Matched,True
-336,Ankur,102,England vs Argentina,Jul 16,England,100.0,110.0,Arjun,Matched,False
+336,Ankur,102,England vs Argentina,Jul 16,England,100.0,110.0,Arjun,Matched,True
 337,Ankur,101,France vs Spain,Jul 15,France,100.0,90.0,Peteza,Matched,True
 339,Arjun,902,Spain to win WC,Jul 20,Yes,100.0,250.0,Himadri,Matched,False
 340,Arjun,1004,Harry Kane for Golden Boot,Jul 20,Yes,100.0,850.0,TenWall,Matched,False
 341,Arjun,1005,Jude Bellingham for Golden Boot,Jul 20,Yes,100.0,950.0,TenWall,Matched,False
-342,Yogi,102,England vs Argentina,Jul 16,Argentina,300.0,150.0,Ankur,Matched,False
-345,Peteza,102,England vs Argentina,Jul 16,England,100.0,175.0,,Open,False
-346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,himadri,Matched,False
+342,Yogi,102,England vs Argentina,Jul 16,Argentina,300.0,150.0,Ankur,Matched,True
+345,Peteza,102,England vs Argentina,Jul 16,England,100.0,175.0,,Open,True
+346,Ashu,102,England vs Argentina,Jul 16,England,100.0,150.0,himadri,Matched,True
 347,himadri,902,Spain to win WC,Jul 20,Yes,250.0,175.0,Ankur,Matched,False
 348,himadri,1001,Kylian Mbappe for Golden Boot,Jul 20,Yes,200.0,120.0,Arjun,Matched,False
 349,Arjun,903,Argentina to win WC,Jul 20,Yes,500.0,500.0,,Open,False
 350,Arjun,1002,Lionel Messi for Golden Boot,Jul 20,Yes,100.0,100.0,,Open,False
+351,TenWall,903,Argentina to win WC,Jul 20,Yes,500.0,400.0,,Open,False

@@ -27,15 +27,12 @@ def get_match_data(year):
 
         # --- 🎯 SPECIALIZED PLAYER & MATCH PROPS (YES-ONLY CUSTOM OUTRIGHT STRUCTURES) ---
         {"Match_Num": 801, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi NOT to score a goal (Final)", "Away_Team": "Field", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.20, "Time_Str": "04:30"},
-        {"Match_Num": 802, "Date_Str": "Jul 20", "Home_Team": "Goalless match (0-0) in Regulation Time (Final)", "Away_Team": "Field", "Home_Win_Odds": 8.50, "Draw_Odds": None, "Away_Win_Odds": 1.07, "Time_Str": "04:30"},
-        {"Match_Num": 803, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe to score a Hat-trick (Final)", "Away_Team": "Field", "Home_Win_Odds": 15.00, "Draw_Odds": None, "Away_Win_Odds": 1.02, "Time_Str": "04:30"},
+        {"Match_Num": 802, "Date_Str": "Jul 20", "Home_Team": "Goalless in regulation time match (Final)", "Away_Team": "Field", "Home_Win_Odds": 8.50, "Draw_Odds": None, "Away_Win_Odds": 1.07, "Time_Str": "04:30"},
         {"Match_Num": 804, "Date_Str": "Jul 20", "Home_Team": "Match to be decided on Penalty Shootout (Final)", "Away_Team": "Field", "Home_Win_Odds": 4.50, "Draw_Odds": None, "Away_Win_Odds": 1.22, "Time_Str": "04:30"},
 
-        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904) ---
+        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901 & 903 - ACTIVE FINALISTS ONLY) ---
         {"Match_Num": 901, "Date_Str": "Jul 20", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "04:30"},
-        {"Match_Num": 902, "Date_Str": "Jul 20", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "04:30"},
         {"Match_Num": 903, "Date_Str": "Jul 20", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "04:30"},
-        {"Match_Num": 904, "Date_Str": "Jul 20", "Home_Team": "England to win WC", "Away_Team": "Field", "Home_Win_Odds": 6.00, "Draw_Odds": None, "Away_Win_Odds": 1.12, "Time_Str": "04:30"},
 
         # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005) ---
         {"Match_Num": 1001, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "04:30"},

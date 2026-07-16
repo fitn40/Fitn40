@@ -275,7 +275,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 354,Laakha,902,Spain to win WC,Jul 20,Yes,215.0,250.0,Peteza,Matched,False
 355,Arjun,903,Argentina to win WC,Jul 20,Yes,400.0,400.0,Ashu,Matched,False
 356,Arjun,903,Argentina to win WC,Jul 20,Yes,300.0,300.0,Ankur,Matched,False
-357,Peteza,806,Lionel Messi Over 0.5 Assists (Final),Jul 20,Yes,50.0,75.0,,Open,False
+357,Peteza,806,Lionel Messi Over 0.5 Assists (Final),Jul 20,Yes,50.0,75.0,Himadri,Matched,False
 358,TenWall,806,Lionel Messi Over 0.5 Assists (Final),Jul 20,Yes,100.0,150.0,,Open,False
 359,TenWall,801,Lionel Messi NOT to score a goal (Final),Jul 20,Yes,100.0,65.0,Peteza,Matched,False
 360,TenWall,802,Goalless in regulation time match (Final),Jul 20,Yes,100.0,500.0,,Open,False

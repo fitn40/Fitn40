@@ -29,9 +29,6 @@ def get_match_data(year):
         {"Match_Num": 103, "Date_Str": "Jul 19", "Home_Team": "France", "Away_Team": "England", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
         {"Match_Num": 104, "Date_Str": "Jul 20", "Home_Team": "Spain", "Away_Team": "Argentina", "Home_Win_Odds": 1.00, "Draw_Odds": None, "Away_Win_Odds": 1.00, "Time_Str": "00:30"},
 
-        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901-904 - TRUE IST DATELINE JUL 20) ---
-        {"Match_Num": 902, "Date_Str": "Jul 20", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "04:30"},
-        {"Match_Num": 903, "Date_Str": "Jul 20", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "04:30"},
        
         # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005 - TRUE IST DATELINE JUL 20) ---
         {"Match_Num": 1001, "Date_Str": "Jul 20", "Home_Team": "Kylian Mbappe for Golden Boot", "Away_Team": "Field", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "04:30"},

@@ -287,3 +287,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 364,Laakha,801,Lionel Messi NOT to score a goal (Final),Jul 20,Yes,100.0,55.0,TenWall,Matched,False
 365,Laakha,802,Goalless in regulation time match (Final),Jul 20,Yes,100.0,450.0,,Open,False
 366,Arjun,1002,Lionel Messi for Golden Boot,Jul 20,Yes,200.0,195.0,,Open,False
+367,Ankur,104,Argentina vs Spain,Jul 20,Spain,150.0,168.0,,Open,False

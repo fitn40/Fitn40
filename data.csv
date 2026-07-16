@@ -282,3 +282,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 359,TenWall,801,Lionel Messi NOT to score a goal (Final),Jul 20,Yes,100.0,65.0,,Open,False
 360,TenWall,802,Goalless in regulation time match (Final),Jul 20,Yes,100.0,500.0,,Open,False
 361,TenWall,804,Match to be decided on Penalty Shootout (Final),Jul 20,Yes,100.0,350.0,,Open,False
+362,TenWall,805,Over 4.5 Yellow Cards in the match (Final),Jul 20,Yes,100.0,90.0,,Open,False

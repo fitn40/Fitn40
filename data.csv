@@ -279,3 +279,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 356,Arjun,903,Argentina to win WC,Jul 20,Yes,300.0,300.0,,Open,False
 357,Peteza,806,Lionel Messi Over 0.5 Assists (Final),Jul 20,Yes,50.0,75.0,,Open,False
 358,TenWall,806,Lionel Messi Over 0.5 Assists (Final),Jul 20,Yes,100.0,150.0,,Open,False
+359,TenWall,801,Lionel Messi NOT to score a goal (Final),Jul 20,Yes,100.0,65.0,,Open,False

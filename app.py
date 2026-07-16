@@ -19,11 +19,8 @@ def get_match_data(year):
         {"Match_Num": 101, "Date_Str": "Jul 15", "Home_Team": "France", "Away_Team": "Spain", "Home_Win_Odds": 1.85, "Draw_Odds": None, "Away_Win_Odds": 1.95, "Time_Str": "01:30"},
         {"Match_Num": 102, "Date_Str": "Jul 16", "Home_Team": "England", "Away_Team": "Argentina", "Home_Win_Odds": 2.10, "Draw_Odds": None, "Away_Win_Odds": 1.72, "Time_Str": "01:30"},
 
-        # --- 🥉 THIRD PLACE PLAYOFF (2-WAY OUTRIGHT TO WIN BRONZE) ---
-        {"Match_Num": 103, "Date_Str": "Jul 18", "Home_Team": "Spain", "Away_Team": "England", "Home_Win_Odds": 1.75, "Draw_Odds": None, "Away_Win_Odds": 2.10, "Time_Str": "21:30"},
-
-        # --- 🏆 WORLD CUP FINAL (2-WAY MARKET TO LIFT THE TROPHY) ---
-        {"Match_Num": 104, "Date_Str": "Jul 20", "Home_Team": "France", "Away_Team": "Argentina", "Home_Win_Odds": 1.80, "Draw_Odds": None, "Away_Win_Odds": 2.00, "Time_Str": "04:30"},
+        # --- 🏆 WORLD CUP FINAL (2-WAY MARKET TO LIFT THE TROPHY - ARGENTINA VS SPAIN) ---
+        {"Match_Num": 104, "Date_Str": "Jul 20", "Home_Team": "Argentina", "Away_Team": "Spain", "Home_Win_Odds": 1.88, "Draw_Odds": None, "Away_Win_Odds": 1.92, "Time_Str": "04:30"},
 
         # --- 🎯 SPECIALIZED PLAYER & MATCH PROPS (YES-ONLY CUSTOM OUTRIGHT STRUCTURES) ---
         {"Match_Num": 801, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi NOT to score a goal (Final)", "Away_Team": "Field", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.20, "Time_Str": "04:30"},
@@ -32,8 +29,8 @@ def get_match_data(year):
         {"Match_Num": 805, "Date_Str": "Jul 20", "Home_Team": "Over 4.5 Yellow Cards in the match (Final)", "Away_Team": "Field", "Home_Win_Odds": 1.90, "Draw_Odds": None, "Away_Win_Odds": 1.90, "Time_Str": "04:30"},
         {"Match_Num": 806, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi Over 0.5 Assists (Final)", "Away_Team": "Field", "Home_Win_Odds": 2.50, "Draw_Odds": None, "Away_Win_Odds": 1.50, "Time_Str": "04:30"},
 
-        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 901 & 903 - ACTIVE FINALISTS ONLY) ---
-        {"Match_Num": 901, "Date_Str": "Jul 20", "Home_Team": "France to win WC", "Away_Team": "Field", "Home_Win_Odds": 2.20, "Draw_Odds": None, "Away_Win_Odds": 1.65, "Time_Str": "04:30"},
+        # --- 🏆 INDIVIDUAL TOURNAMENT WINNER SELECTION MARKETS (MATCHES 902 & 903 - ACTIVE FINALISTS) ---
+        {"Match_Num": 902, "Date_Str": "Jul 20", "Home_Team": "Spain to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.50, "Draw_Odds": None, "Away_Win_Odds": 1.30, "Time_Str": "04:30"},
         {"Match_Num": 903, "Date_Str": "Jul 20", "Home_Team": "Argentina to win WC", "Away_Team": "Field", "Home_Win_Odds": 3.80, "Draw_Odds": None, "Away_Win_Odds": 1.25, "Time_Str": "04:30"},
 
         # --- 🥇 INDIVIDUAL GOLDEN BOOT SELECTION MARKETS (MATCHES 1001-1005) ---
@@ -54,8 +51,6 @@ def get_match_data(year):
             display_titles.append(f"🏆 WC Winner: {row['Home_Team'].split(' to ')[0]}")
         elif 1001 <= n <= 1005:
             display_titles.append(f"🥇 Golden Boot: {row['Home_Team'].split(' for ')[0]}")
-        elif n == 103:
-            display_titles.append(f"🥉 3rd Place Playoff ({row['Date_Str']}): {row['Home_Team']} vs {row['Away_Team']}")
         elif n == 104:
             display_titles.append(f"🏆 World Cup Final ({row['Date_Str']}): {row['Home_Team']} vs {row['Away_Team']}")
         else:
@@ -145,7 +140,7 @@ for bet in combined_bets:
         
         if (801 <= m_num <= 899) or (901 <= m_num <= 904) or (1001 <= m_num <= 1005) or m_num in [999, 1000]:
             bet["Is_Expired"] = False
-        elif m_num < 103:
+        elif m_num < 104:
             bet["Is_Expired"] = True
         else:
             m_lookup = match_data[match_data['Match_Num'] == m_num]

@@ -22,7 +22,7 @@ def get_match_data(year):
         # --- 🏆 WORLD CUP FINAL (2-WAY MARKET TO LIFT THE TROPHY - ARGENTINA VS SPAIN) ---
         {"Match_Num": 104, "Date_Str": "Jul 20", "Home_Team": "Argentina", "Away_Team": "Spain", "Home_Win_Odds": 1.88, "Draw_Odds": None, "Away_Win_Odds": 1.92, "Time_Str": "04:30"},
 
-        # --- 🎯 SPECIALIZED PLAYER & MATCH PROPS (YES-ONLY CUSTOM OUTRIGHT STRUCTURES) ---
+        # --- 🎯 SPECIALIZED PLAYER & MATCH PROPS ---
         {"Match_Num": 801, "Date_Str": "Jul 20", "Home_Team": "Lionel Messi NOT to score a goal (Final)", "Away_Team": "Field", "Home_Win_Odds": 1.65, "Draw_Odds": None, "Away_Win_Odds": 2.20, "Time_Str": "04:30"},
         {"Match_Num": 802, "Date_Str": "Jul 20", "Home_Team": "Goalless in regulation time match (Final)", "Away_Team": "Field", "Home_Win_Odds": 8.50, "Draw_Odds": None, "Away_Win_Odds": 1.07, "Time_Str": "04:30"},
         {"Match_Num": 804, "Date_Str": "Jul 20", "Home_Team": "Match to be decided on Penalty Shootout (Final)", "Away_Team": "Field", "Home_Win_Odds": 4.50, "Draw_Odds": None, "Away_Win_Odds": 1.22, "Time_Str": "04:30"},
@@ -267,19 +267,22 @@ elif st.session_state.current_page == "dashboard":
 
                 if 801 <= m_num <= 899:
                     clean_item_name = b_match.split(" (")[0]
-                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
+                    display_verb = "backs" if b_pred == "Yes" else "bets AGAINST"
+                    st.markdown(f"🗓️ **{b_creator}** {display_verb} **{clean_item_name}**")
                     st.write(f"📅 **Date:** Jul 20 | Prop Market Parameter")
                 elif 901 <= m_num <= 904 or m_num == 999:
                     clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
                     if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
                         clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Tournament Winner Selection"
-                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}** to win WC")
+                    display_verb = "backs" if b_pred != "No" else "bets AGAINST"
+                    st.markdown(f"🗓️ **{b_creator}** {display_verb} **{clean_item_name}** to win WC")
                     st.write(f"📅 **Date:** Jul 20 | Fixture: World Cup 2026 Winner Team Market")
                 elif 1001 <= m_num <= 1005 or m_num == 1000:
                     clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
                     if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
                         clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Kylian Mbappe"
-                    st.markdown(f"🗓️ **{b_creator}** backs **{clean_item_name}**")
+                    display_verb = "backs" if b_pred != "No" else "bets AGAINST"
+                    st.markdown(f"🗓️ **{b_creator}** {display_verb} **{clean_item_name}**")
                     st.write(f"📅 **Date:** Jul 20 | Fixture: Golden Boot (Top Goalscorer) Market")
                 else:
                     st.markdown(f"🗓️ **{b_creator}** backs **{b_pred}**")
@@ -318,21 +321,24 @@ elif st.session_state.current_page == "dashboard":
             
             if 801 <= m_num <= 899:
                 clean_item_name = b_match.split(" (")[0]
-                action_text = f"backed prop option: <b>{clean_item_name}</b>"
+                verb = "backed" if b_pred == "Yes" else "bet AGAINST"
+                action_text = f"{verb} prop option: <b>{clean_item_name}</b>"
                 display_match_name = "Specialized Final Prop Board"
                 display_date = "Jul 20"
             elif 901 <= m_num <= 904 or m_num == 999:
                 clean_item_name = b_match.replace(" to win WC", "").replace(" Winner Team Market", "")
                 if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
                     clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Tournament Winner"
-                action_text = f"backed <b>{clean_item_name} to win WC</b>"
+                verb = "backed" if b_pred != "No" else "bet AGAINST"
+                action_text = f"{verb} <b>{clean_item_name} to win WC</b>"
                 display_match_name = "World Cup 2026 Winner Team Market"
                 display_date = "Jul 20"
             elif 1001 <= m_num <= 1005 or m_num == 1000:
                 clean_item_name = b_match.replace(" for Golden Boot", "").replace(" (Top Goalscorer) Market", "")
                 if "vs" in clean_item_name or clean_item_name == "Field" or "Market" in clean_item_name:
                     clean_item_name = b_pred if b_pred not in ["Yes", "No"] else "Kylian Mbappe"
-                action_text = f"backed <b>{clean_item_name} for Golden Boot</b>"
+                verb = "backed" if b_pred != "No" else "bet AGAINST"
+                action_text = f"{verb} <b>{clean_item_name} for Golden Boot</b>"
                 display_match_name = "Golden Boot (Top Goalscorer) Market"
                 display_date = "Jul 20"
             else:
@@ -492,7 +498,7 @@ elif st.session_state.current_page == "confirm_match":
             prediction_type = b_pred
             
             if (801 <= m_num <= 899) or (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-                m_odds = m_lookup['Home_Win_Odds']
+                m_odds = m_lookup['Home_Win_Odds'] if prediction_type == "Yes" else m_lookup['Away_Win_Odds']
             elif prediction_type in [m_lookup['Home_Team'], "France", "Kylian Mbappe"]:
                 m_odds = m_lookup['Home_Win_Odds']
             elif prediction_type in [m_lookup['Away_Team'], "Spain", "Lionel Messi"]:
@@ -514,14 +520,16 @@ elif st.session_state.current_page == "confirm_match":
             st.write(f"📅 **Target Date:** {display_date}")
             st.write(f"🏆 **Market Target:** {clean_market_title}")
             
+            display_verb = "Backing" if b_pred == "Yes" else "Betting AGAINST"
             if is_outright:
-                st.write(f"🔮 **{creator_name}’s Choice:** Backing **{target_selection}**")
+                st.write(f"🔮 **{creator_name}’s Choice:** {display_verb} **{target_selection}**")
             else:
                 st.write(f"🔮 **{creator_name}’s Prediction:** Backing **{target_selection}**")
                 
             st.markdown("---")
-            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {target_selection} wins)*")
-            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {target_selection} fails)*")
+            opposing_action = "fails" if b_pred == "Yes" else "succeeds"
+            st.write(f"💵 **Your Risk Amount:** {your_risk} pts *(Amount you lose if {creator_name}'s bet succeeds)*")
+            st.write(f"💰 **Your Potential Payout:** {creator_risk} pts *(Amount you win if {creator_name}'s bet {opposing_action})*")
             
             if is_outright:
                 st.caption("ℹ️ *Result reflects official final tournament awards data.*")
@@ -564,8 +572,9 @@ elif st.session_state.current_page == "new_bet":
         match_row = match_data[match_data['Match_Display'] == selected_match_str].iloc[0]
         m_num = int(match_row['Match_Num'])
         
+        # 🔓 Restored "No" option alongside "Yes" for all specialized props and outright entries
         if (801 <= m_num <= 899) or (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-            prediction_options = ["-- Select --", "Yes"]
+            prediction_options = ["-- Select --", "Yes", "No"]
         elif pd.isna(match_row.get('Draw_Odds')) or match_row.get('Draw_Odds') is None:
             prediction_options = ["-- Select --", match_row['Home_Team'], match_row['Away_Team']]
         else:
@@ -576,7 +585,7 @@ elif st.session_state.current_page == "new_bet":
             points = st.number_input("Points You Want to Risk:", min_value=1, value=100, step=5)
             
             if (801 <= m_num <= 899) or (901 <= m_num <= 904) or (1001 <= m_num <= 1005):
-                odds = float(match_row['Home_Win_Odds'])
+                odds = float(match_row['Home_Win_Odds']) if selected_prediction == "Yes" else float(match_row['Away_Win_Odds'])
             elif selected_prediction == match_row['Home_Team']:
                 odds = float(match_row['Home_Win_Odds'])
             elif selected_prediction == match_row['Away_Team']:

@@ -284,7 +284,7 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 363,Peteza,804,Match to be decided on Penalty Shootout (Final),Jul 20,No,100.0,22.0,TenWall,Matched,False
 364,Laakha,801,Lionel Messi NOT to score a goal (Final),Jul 20,Yes,100.0,55.0,TenWall,Matched,False
 365,Laakha,802,Goalless in regulation time match (Final),Jul 20,Yes,100.0,450.0,Ankur,Matched,False
-366,Arjun,1002,Lionel Messi for Golden Boot,Jul 20,Yes,200.0,195.0,,Open,False
+366,Arjun,1002,Lionel Messi for Golden Boot,Jul 20,Yes,200.0,195.0,Ankur,Matched,False
 367,Arjun,805,Over 4.5 Yellow Cards in the match (Final),Jul 20,No,100.0,90.0,Ankur,Matched,False
 368,Arjun,802,Goalless in regulation time match (Final),Jul 20,Yes,100.0,750.0,,Open,False
 369,Ankur,903,Argentina to win WC,Jul 20,Yes,100.0,145.0,,Open,False

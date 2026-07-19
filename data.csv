@@ -290,4 +290,3 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 370,Ashu,802,Goalless in regulation time match (Final),Jul 20,Yes,25.0,100.0,Ankur,Matched,False
 371,Ashu,1001,Kylian Mbappe for Golden Boot,Jul 20,Yes,100.0,85.0,TenWall,Matched,False
 372,Ankur,104,Argentina vs Spain,Jul 20,Argentina,100.0,123.0,,Open,False
-375,Arjun,804,Match to be decided on Penalty Shootout (Final),Jul 20,Yes,100.0,350.0,,Open,False

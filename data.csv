@@ -292,3 +292,4 @@ Bet_ID,Creator,Match_Num,Match_Name,Match_Date,Prediction,Points,Opponent_Payout
 372,Ankur,104,Argentina vs Spain,Jul 20,Argentina,100.0,123.0,,Open,False
 373,Arjun,104,Argentina vs Spain,Jul 20,Spain,400.0,400.0,,Open,False
 374,Arjun,104,Argentina vs Spain,Jul 20,Spain,300.0,300.0,,Open,False
+375,Arjun,804,Match to be decided on Penalty Shootout (Final),Jul 20,Yes,100.0,350.0,,Open,False
